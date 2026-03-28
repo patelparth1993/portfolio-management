@@ -1,0 +1,7 @@
+.venv/
+__pycache__/
+*.pyc
+credentials/
+.env
+statements/
+# data/history.json and data/processed/ are committed — tracked by git

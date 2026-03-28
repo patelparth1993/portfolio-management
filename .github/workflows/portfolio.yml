@@ -1,0 +1,54 @@
+name: Portfolio Dashboard
+
+on:
+  # Manual trigger — tap "Run workflow" in the GitHub mobile app
+  workflow_dispatch:
+
+  # Automatic: 9am UTC on the 1st of every month
+  schedule:
+    - cron: '0 9 1 * *'
+
+permissions:
+  contents: write  # to commit history.json back to repo
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run pipeline (ingest → analyze → report)
+        env:
+          GDRIVE_SERVICE_ACCOUNT_JSON: ${{ secrets.GDRIVE_SERVICE_ACCOUNT_JSON }}
+          GDRIVE_FOLDER_ID: ${{ secrets.GDRIVE_FOLDER_ID }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: python run.py --no-open
+
+      - name: Commit updated history back to repo
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/history.json data/processed/ || true
+          git diff --cached --quiet || git commit -m "chore: update portfolio history [$(date -u '+%Y-%m-%d')]"
+          git push
+
+      - name: Deploy dashboard to Netlify
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+        run: |
+          npm install -g netlify-cli --silent
+          netlify deploy --prod --dir=dashboard --auth=$NETLIFY_AUTH_TOKEN --site=$NETLIFY_SITE_ID

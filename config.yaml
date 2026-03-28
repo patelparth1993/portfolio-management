@@ -1,0 +1,57 @@
+# Portfolio Management Dashboard Configuration
+
+institutions:
+  - wealthsimple
+  - manulife
+
+# Canadian TFSA annual contribution limits by year
+tfsa_annual_limits:
+  2009: 5000
+  2010: 5000
+  2011: 5000
+  2012: 5000
+  2013: 5500
+  2014: 5500
+  2015: 10000
+  2016: 5500
+  2017: 5500
+  2018: 5500
+  2019: 6000
+  2020: 6000
+  2021: 6000
+  2022: 6000
+  2023: 6500
+  2024: 7000
+  2025: 7000
+  2026: 7000  # update when CRA announces
+
+# RRSP rules
+rrsp:
+  contribution_rate: 0.18        # 18% of prior year earned income
+  annual_limit_2025: 32490
+  annual_limit_2024: 31560
+  annual_limit_2023: 30780
+
+# RESP rules
+resp:
+  lifetime_limit_per_beneficiary: 50000
+  cesg_rate: 0.20                # 20% match
+  cesg_annual_max_contribution: 2500  # max contribution eligible for CESG per year
+  cesg_annual_max_grant: 500     # max CESG grant per year
+  cesg_lifetime_max: 7200        # lifetime CESG per beneficiary
+
+# Google Drive (optional) — fill in folder_id to enable
+google_drive:
+  enabled: false
+  folder_id: ""                  # Google Drive folder ID containing statements
+  credentials_file: "credentials/gdrive_credentials.json"
+  token_file: "credentials/gdrive_token.json"
+
+# Dashboard settings
+dashboard:
+  output_path: "dashboard/index.html"
+  growth_rate_assumptions:
+    conservative: 0.05
+    balanced: 0.07
+    growth: 0.09
+  inflation_rate: 0.025

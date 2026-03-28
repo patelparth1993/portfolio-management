@@ -1,0 +1,40 @@
+# Your Personal Investment Profile
+# Run `python run.py --setup` to fill this in interactively, or edit directly.
+
+personal:
+  date_of_birth: ""              # YYYY-MM-DD (used to calculate TFSA room since age 18)
+  province: ""                   # e.g. ON, BC, AB — for tax estimates
+  annual_income: 0               # Current year gross employment income (for RRSP room)
+  prior_year_income: 0           # Prior year gross income (RRSP room is based on this)
+
+accounts:
+  tfsa:
+    current_room_available: 0    # CRA "My Account" — your current unused TFSA room
+    ytd_contributions: 0         # Contributions made this calendar year so far
+    ytd_withdrawals: 0           # Withdrawals made this calendar year (re-contributes next Jan 1)
+
+  rrsp:
+    current_room_available: 0    # From your latest NOA or CRA My Account
+    ytd_contributions: 0
+
+  resp:
+    beneficiaries:
+      - name: ""
+        date_of_birth: ""        # YYYY-MM-DD
+        lifetime_contributions: 0
+        lifetime_cesg_received: 0
+        ytd_contributions: 0
+
+contribution_plans:
+  # Annual amounts you plan to contribute to each account
+  tfsa_annual: 0
+  rrsp_annual: 0
+  resp_annual: 0                 # per beneficiary
+
+retirement:
+  target_retirement_age: 65
+  target_monthly_income: 0       # In today's dollars
+  cpp_estimate_monthly: 0        # Your estimated CPP benefit (from Service Canada)
+  oas_estimate_monthly: 727      # OAS 2025 max — adjust as needed
+
+risk_tolerance: balanced         # conservative | balanced | growth
