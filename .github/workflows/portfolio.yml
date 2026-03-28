@@ -34,21 +34,14 @@ jobs:
         env:
           GDRIVE_SERVICE_ACCOUNT_JSON: ${{ secrets.GDRIVE_SERVICE_ACCOUNT_JSON }}
           GDRIVE_FOLDER_ID: ${{ secrets.GDRIVE_FOLDER_ID }}
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          # GEMINI_API_KEY is optional — only needed if pdfplumber fails to parse a PDF
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: python run.py --no-open
 
-      - name: Commit updated history back to repo
+      - name: Commit dashboard + history back to repo
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/history.json data/processed/ || true
-          git diff --cached --quiet || git commit -m "chore: update portfolio history [$(date -u '+%Y-%m-%d')]"
+          git add data/history.json data/processed/ dashboard/index.html || true
+          git diff --cached --quiet || git commit -m "chore: update portfolio dashboard [$(date -u '+%Y-%m-%d')]"
           git push
-
-      - name: Deploy dashboard to Netlify
-        env:
-          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-        run: |
-          npm install -g netlify-cli --silent
-          netlify deploy --prod --dir=dashboard --auth=$NETLIFY_AUTH_TOKEN --site=$NETLIFY_SITE_ID

@@ -5,3 +5,4 @@ credentials/
 .env
 statements/
 # data/history.json and data/processed/ are committed — tracked by git
+portfolio-management-491617-845c71032759.json

@@ -136,15 +136,20 @@ def _extract_holdings_from_text(text: str) -> list[dict]:
     return holdings
 
 
-def _parse_with_claude(pdf_path: Path, account_type: str) -> dict:
-    """Fallback parser using Claude API for complex PDFs."""
+def _parse_with_gemini(pdf_path: Path, account_type: str) -> dict:
+    """Fallback parser using Gemini API (free tier). Skips if GEMINI_API_KEY not set."""
+    import os
+    if not os.environ.get("GEMINI_API_KEY"):
+        print("  No GEMINI_API_KEY set — skipping Gemini fallback.")
+        return {}
     try:
-        import anthropic
-        import base64
+        import google.generativeai as genai
 
-        client = anthropic.Anthropic()
+        genai.configure(api_key=os.environ["GEMINI_API_KEY"])
+        model = genai.GenerativeModel("gemini-1.5-flash")
+
         with open(pdf_path, "rb") as f:
-            pdf_data = base64.standard_b64encode(f.read()).decode("utf-8")
+            pdf_bytes = f.read()
 
         prompt = f"""This is a {account_type} investment account statement from Manulife.
 Extract the following information and return it as valid JSON:
@@ -160,20 +165,14 @@ Extract the following information and return it as valid JSON:
 }}
 Return only the JSON, no other text."""
 
-        response = client.messages.create(
-            model="claude-haiku-4-5-20251001",
-            max_tokens=2048,
-            messages=[{
-                "role": "user",
-                "content": [
-                    {"type": "document", "source": {"type": "base64", "media_type": "application/pdf", "data": pdf_data}},
-                    {"type": "text", "text": prompt},
-                ],
-            }],
-        )
-        return json.loads(response.content[0].text)
+        response = model.generate_content([
+            {"mime_type": "application/pdf", "data": pdf_bytes},
+            prompt,
+        ])
+        text = response.text.strip().removeprefix("```json").removeprefix("```").removesuffix("```").strip()
+        return json.loads(text)
     except Exception as e:
-        print(f"  Claude fallback failed: {e}")
+        print(f"  Gemini fallback failed: {e}")
         return {}
 
 
@@ -218,7 +217,7 @@ def parse(pdf_path: str | Path) -> dict:
 
     if not result["total_value"] or not result["statement_date"]:
         print(f"  Falling back to Claude API for {pdf_path.name}...")
-        claude_data = _parse_with_claude(pdf_path, result["account_type"])
+        claude_data = _parse_with_gemini(pdf_path, result["account_type"])
         if claude_data:
             result.update({k: v for k, v in claude_data.items() if v})
 
