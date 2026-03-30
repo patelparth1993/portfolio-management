@@ -1,40 +1,55 @@
-# Your Personal Investment Profile
-# Run `python run.py --setup` to fill this in interactively, or edit directly.
+# Personal Investment Profile — Parth Patel
+# Sources: CRA NOA 2024 & 2025, Manulife Dec 2025 annual statement, WealthSimple Feb 2026
 
 personal:
-  date_of_birth: ""              # YYYY-MM-DD (used to calculate TFSA room since age 18)
-  province: ""                   # e.g. ON, BC, AB — for tax estimates
-  annual_income: 0               # Current year gross employment income (for RRSP room)
-  prior_year_income: 0           # Prior year gross income (RRSP room is based on this)
+  date_of_birth: "1993-11-30"
+  canadian_resident_since: "2020-02-01"   # TFSA room accrues from 2020
+  province: ON
+  annual_income: 124000                   # 2026 salary ($124K, biweekly)
+  prior_year_income: 151870               # 2025 total income per NOA (line 15000)
 
 accounts:
   tfsa:
-    current_room_available: 0    # CRA "My Account" — your current unused TFSA room
-    ytd_contributions: 0         # Contributions made this calendar year so far
-    ytd_withdrawals: 0           # Withdrawals made this calendar year (re-contributes next Jan 1)
+    current_room_available: 30562.89      # CRA as of Jan 1, 2026
+    ytd_contributions: 0                  # Update if you've contributed to TFSA in 2026
+    ytd_withdrawals: 0
 
   rrsp:
-    current_room_available: 0    # From your latest NOA or CRA My Account
+    current_room_available: 69073.00      # CRA RRSP deduction limit as of 2025 NOA (lifetime accumulated room)
+    # Per CRA INVESTMENT_RULES.md rule #3: always use NOA/CRA figure directly.
+    # $69,073 is the accumulated deduction limit from 2025 NOA — do not recalculate.
     ytd_contributions: 0
 
+  hbp:
+    balance_left_to_repay: 7453.00        # Per 2025 NOA
+    annual_repayment_required: 621.00     # Minimum required for 2026
+
+  rpp:
+    # Deloitte Registered Pension Plan (Manulife, locked-in Ontario)
+    # 2% of salary deducted per paycheck; Deloitte matches 100%
+    member_annual_contribution: 2480      # 2% × $124,000
+    employer_annual_contribution: 2480    # Deloitte match
+    value_dec_2025: 13550.02             # From Manulife Dec 2025 statement
+
   resp:
-    beneficiaries:
-      - name: ""
-        date_of_birth: ""        # YYYY-MM-DD
-        lifetime_contributions: 0
-        lifetime_cesg_received: 0
-        ytd_contributions: 0
+    beneficiaries: []                     # No RESP yet — baby expected May 2026
+    # TODO: Open RESP after baby is born to start capturing CESG immediately
 
 contribution_plans:
-  # Annual amounts you plan to contribute to each account
-  tfsa_annual: 0
-  rrsp_annual: 0
-  resp_annual: 0                 # per beneficiary
+  # Payroll contributions (automatic — already happening)
+  rpp_annual_member: 2480                 # 2% of salary, via payroll to Manulife RPP
+  manulife_rrsp_annual: 2230             # ~estimated from payroll (voluntary group RRSP)
+  # Personal contributions (set your targets below)
+  tfsa_annual: 0                          # TODO: how much extra do you want to save in TFSA?
+  rrsp_annual_personal: 0                # TODO: any personal RRSP contributions beyond payroll?
+  resp_annual: 2500                       # Target $2,500/yr per child once RESP opened (max CESG)
 
 retirement:
-  target_retirement_age: 65
-  target_monthly_income: 0       # In today's dollars
-  cpp_estimate_monthly: 0        # Your estimated CPP benefit (from Service Canada)
-  oas_estimate_monthly: 727      # OAS 2025 max — adjust as needed
+  target_retirement_age: 55              # Early retirement target
+  target_monthly_income: 10000           # $10,000/month in today's dollars
+  cpp_estimate_monthly: 0               # TODO: get from Service Canada MySRA account
+  # Note: at age 55 you won't receive CPP until 60 (early) or 65 (standard)
+  # RPP is locked-in; earliest access is Dec 1, 2048 (age 55) per Manulife
+  oas_estimate_monthly: 727             # OAS starts at 65 — won't apply at age-55 retirement
 
-risk_tolerance: balanced         # conservative | balanced | growth
+risk_tolerance: moderate-growth         # Between balanced (7%) and growth (9%) → 8%

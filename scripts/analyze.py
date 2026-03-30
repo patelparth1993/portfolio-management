@@ -156,30 +156,26 @@ def _age_on(dob_str: str, as_of: date) -> int:
 
 
 def tfsa_room_analysis(profile: dict, config: dict) -> dict:
+    # RULE: Always use CRA-provided room directly — never recalculate from annual limits.
+    # See data/INVESTMENT_RULES.md rule #1 and #2.
     dob = profile.get("personal", {}).get("date_of_birth", "")
     if not dob:
         return {"error": "Date of birth not set in profile.yaml"}
 
     today = date.today()
     age = _age_on(dob, today)
-    limits = config["tfsa_annual_limits"]
-
-    # Cumulative room since 18 (or 2009 when TFSA started)
-    start_year = max(2009, datetime.strptime(dob, "%Y-%m-%d").year + 18)
-    total_room_ever = sum(v for yr, v in limits.items() if start_year <= yr <= today.year)
 
     current_room = profile.get("accounts", {}).get("tfsa", {}).get("current_room_available", 0) or 0
     ytd_contributions = profile.get("accounts", {}).get("tfsa", {}).get("ytd_contributions", 0) or 0
     remaining = max(0, current_room - ytd_contributions)
+    annual_limit = config["tfsa_annual_limits"].get(today.year, 0)
 
     return {
         "age": age,
-        "start_year": start_year,
-        "cumulative_room_ever": total_room_ever,
         "current_room_available": current_room,
         "ytd_contributions": ytd_contributions,
         "remaining_this_year": remaining,
-        "annual_limit_this_year": limits.get(today.year, 0),
+        "annual_limit_this_year": annual_limit,
     }
 
 

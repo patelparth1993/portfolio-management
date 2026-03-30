@@ -53,5 +53,6 @@ dashboard:
   growth_rate_assumptions:
     conservative: 0.05
     balanced: 0.07
+    moderate-growth: 0.08
     growth: 0.09
   inflation_rate: 0.025
