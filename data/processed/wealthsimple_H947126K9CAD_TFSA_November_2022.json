@@ -1,0 +1,24 @@
+{
+  "institution": "wealthsimple",
+  "file": "November_2022.pdf",
+  "file_hash": "58f3d8f5276c255cafaba99c10f89904",
+  "parsed_at": "2026-03-31T00:09:04.658642",
+  "statement_date": "2022-11-30",
+  "account_type": "TFSA",
+  "total_value": 3036.36,
+  "cash_balance": 2.28,
+  "period_deposits": 3000.0,
+  "currency": "CAD",
+  "holdings": [
+    {
+      "symbol": "DFN",
+      "name": "Dividend 15 Split Corp",
+      "quantity": 387.0,
+      "price": 7.84,
+      "market_value": 3034.08,
+      "book_value": 3212.3
+    }
+  ],
+  "raw_text_snippet": "1/4\nORDER EXECUTION ONLY ACCOUNT\nAll figures in $CAD unless otherwise specified\nAccount No. Owner Statement Period\nH947126K9CAD Parth Patel 2022-11-01 - 2022-11-30\n201 - 80 Spadina Avenue\nToronto, ON, M5V 2J4\nPhone: (416) 595-7200 Fax: (647) 245-1002\nTax-Free Savings Account\nMarket % of Market Book % of Total Book\nValue($) Value Value($) Value\nParth Patel Cash $2.28 0.07 $2.28 0.07\n27 Big Moe Crescent\nCanadian Equities and $3,034.08 99.92 $3,212.30 99.92\nBRAMPTON ON L6P1J7\nAlternatives\nCA\nUS Equ",
+  "account_id": "H947126K9CAD_TFSA"
+}

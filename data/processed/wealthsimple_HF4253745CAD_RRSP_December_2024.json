@@ -2,11 +2,12 @@
   "institution": "wealthsimple",
   "file": "December_2024.pdf",
   "file_hash": "d74cb179fe36fa9cc0ebbb1357032748",
-  "parsed_at": "2026-03-30T20:24:43.557504",
+  "parsed_at": "2026-03-31T00:09:12.055462",
   "statement_date": "2024-12-31",
   "account_type": "RRSP",
   "total_value": 1200.51,
   "cash_balance": 1.53,
+  "period_deposits": 0.0,
   "currency": "CAD",
   "holdings": [
     {

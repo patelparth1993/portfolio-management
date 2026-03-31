@@ -136,6 +136,46 @@ def _extract_holdings_from_text(text: str) -> list[dict]:
     return holdings
 
 
+def parse_crm2(pdf_path: str | Path, account_subdir: str = "") -> Optional[dict]:
+    """Parse a CRM2 Annual Investment Performance Report.
+    Extracts cumulative deposits since account opening from the
+    'Since You Opened Your Account: Deposits $X' column.
+    """
+    pdf_path = Path(pdf_path)
+    year_match = re.search(r"(\d{4})\.pdf$", pdf_path.name, re.IGNORECASE)
+    year = int(year_match.group(1)) if year_match else None
+    file_hash = hashlib.md5(pdf_path.read_bytes()).hexdigest()
+
+    try:
+        with pdfplumber.open(pdf_path) as pdf:
+            full_text = "\n".join(page.extract_text() or "" for page in pdf.pages)
+
+        # Table rows look like: "Deposits $1,000.00 $2,000.00"
+        # First $ = past year, Second $ = since account opening (cumulative)
+        m = re.search(r"Deposits\s+\$([\d,]+\.?\d*)\s+\$([\d,]+\.?\d*)", full_text)
+        if not m:
+            print(f"  CRM2: could not find Deposits row in {pdf_path.name}")
+            return None
+
+        m_wd = re.search(r"Withdrawals\s+\$([\d,]+\.?\d*)\s+\$([\d,]+\.?\d*)", full_text)
+        return {
+            "institution": "wealthsimple",
+            "file": pdf_path.name,
+            "file_hash": file_hash,
+            "parsed_at": datetime.now().isoformat(),
+            "record_type": "crm2",
+            "account_id": account_subdir if account_subdir else None,
+            "year": year,
+            "year_end": f"{year}-12-31" if year else None,
+            "past_year_deposits": float(m.group(1).replace(",", "")),
+            "cumulative_deposits": float(m.group(2).replace(",", "")),
+            "cumulative_withdrawals": float(m_wd.group(2).replace(",", "")) if m_wd else 0.0,
+        }
+    except Exception as e:
+        print(f"  CRM2 parse failed for {pdf_path.name}: {e}")
+        return None
+
+
 GEMINI_PROMPT_TEMPLATE = """This is a {account_type} investment account statement from WealthSimple.
 Extract the following information and return it as valid JSON:
 {{

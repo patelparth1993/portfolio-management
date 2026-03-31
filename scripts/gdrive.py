@@ -168,9 +168,10 @@ def download_new_statements(processed_hashes: set) -> list[Path]:
         name = file_meta["name"]
         folder_path = file_meta.get("folder_path", "")
 
-        # Skip CRM2 fee/performance reports
+        # Skip CRM2 charges/compensation reports; download investment performance reports
         if name.upper().startswith("CRM2"):
-            continue
+            if "INVESTMENT_PERFORMANCE" not in name.upper():
+                continue
 
         institution, dest_path = _local_dest(file_meta)
         if not institution:

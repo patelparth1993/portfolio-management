@@ -1,0 +1,88 @@
+{
+  "institution": "wealthsimple",
+  "file": "February_2021.pdf",
+  "file_hash": "675488b360513ea841e94ecfa69b3046",
+  "parsed_at": "2026-03-31T00:08:51.470954",
+  "statement_date": "2021-02-28",
+  "account_type": "TFSA",
+  "total_value": 2563.05,
+  "cash_balance": 2.4,
+  "period_deposits": 500.0,
+  "currency": "CAD",
+  "holdings": [
+    {
+      "symbol": "APHA",
+      "name": "Aphria Inc.",
+      "quantity": 15.0,
+      "price": 22.73,
+      "market_value": 340.95,
+      "book_value": 162.7
+    },
+    {
+      "symbol": "CM",
+      "name": "CIBC",
+      "quantity": 6.0,
+      "price": 117.33,
+      "market_value": 703.98,
+      "book_value": 661.86
+    },
+    {
+      "symbol": "DCBO",
+      "name": "Docebo Inc",
+      "quantity": 10.0,
+      "price": 55.64,
+      "market_value": 556.4,
+      "book_value": 673.7
+    },
+    {
+      "symbol": "ENB",
+      "name": "Enbridge",
+      "quantity": 8.0,
+      "price": 42.98,
+      "market_value": 343.84,
+      "book_value": 336.42
+    },
+    {
+      "symbol": "LSPD",
+      "name": "Lightspeed POS",
+      "quantity": 2.0,
+      "price": 87.14,
+      "market_value": 174.28,
+      "book_value": 175.0
+    },
+    {
+      "symbol": "PHO",
+      "name": "Photon Control Inc",
+      "quantity": 3.0,
+      "price": 2.66,
+      "market_value": 7.98,
+      "book_value": 8.58
+    },
+    {
+      "symbol": "XSP",
+      "name": "iShares S&P 500 Index ETF (CAD-",
+      "quantity": 3.0,
+      "price": 41.05,
+      "market_value": 123.15,
+      "book_value": 121.65
+    },
+    {
+      "symbol": "XIU",
+      "name": "iShares S&P/TSX 60 Index ETF",
+      "quantity": 5.0,
+      "price": 26.97,
+      "market_value": 134.85,
+      "book_value": 134.75
+    },
+    {
+      "symbol": "NIO",
+      "name": "NIO Inc",
+      "quantity": 3.0,
+      "price": 45.78,
+      "market_value": 175.22,
+      "book_value": 240.8
+    }
+  ],
+  "raw_text_snippet": "ORDER EXECUTION ONLY ACCOUNT 1/4\nAll figures in $CAD unless otherwise specified\nAccount No. Owner Statement Period\n241 Spadina Avenue, 3rd Floor\nH947126K9CAD Parth Patel 2021-02-01 - 2021-02-28\nToronto, ON, M5T 2E2\nPhone: (416) 595-7200 Fax: (416) 595-0400\nTax-Free Savings Account\nMarket % of Market Book % of Total Book\nValue($) Value Value($) Value\nCash $2.40 0.09 $2.40 0.09\nCanadian Equities $2,385.43 93.06 $2,274.66 90.34\nParth Patel\nForeign Equities $175.22 6.83 $240.80 9.56\n27 Big Moe Cresc",
+  "account_id": "H947126K9CAD_TFSA"
+}

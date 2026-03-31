@@ -55,12 +55,15 @@ retirement:
 risk_tolerance: moderate-growth         # Between balanced (7%) and growth (9%) → 8%
 
 # Total deposits override — used in "Invested vs Current Value" table.
-# Keys must match account_id exactly. Hard overrides Gemini-parsed period_deposits sum.
-# WealthSimple accounts are auto-calculated from statement history — do not add them here.
-# Update Manulife each quarter once new statements are parsed (Gemini will extract "money that went in").
+# Keys must match account_id exactly. Set for any account where you know the exact total deposited.
+# If not set, falls back to book cost from the latest statement (slightly overstates due to reinvested dividends).
+# Update after adding new contributions or receiving new statements.
 cost_basis_overrides:
-  manulife_RPP: 10800   # Total contributions (member + employer match) to date
-  manulife_RRSP: 1800   # Total contributions deposited to Manulife group RRSP to date
+  HF4253745CAD_RRSP: 4000      # WS RRSP — total contributions to date
+  # H947126K9CAD_TFSA: 0       # TODO: fill in total TFSA deposits to date
+  # WZ0969XK4CAD_TFSA_PORTFOLIO: 0  # TODO: fill in total managed TFSA deposits to date
+  manulife_RPP: 10800           # Total contributions (member + employer match) to date
+  manulife_RRSP: 1800           # Total contributions deposited to Manulife group RRSP to date
 
 # Prior year contribution room — used for "last year" chart on dashboard
 # Sources: CRA TFSA room calculation (line 1-6 per CRA MyAccount)

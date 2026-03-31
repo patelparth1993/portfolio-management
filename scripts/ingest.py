@@ -74,9 +74,11 @@ def _find_local_unprocessed(history: dict) -> list[tuple[str, Path, str | None, 
             continue  # skip folders with no registered parser (e.g. cra/)
         # glob "**/*.pdf" catches both flat and per-account subdirectory layouts
         for pdf in sorted(institution_dir.glob("**/*.pdf")):
-            # Skip CRM2 fee/performance reports — not account statements
-            if pdf.name.upper().startswith("CRM2"):
-                continue
+            name_upper = pdf.name.upper()
+            if name_upper.startswith("CRM2"):
+                # Process annual performance reports; skip charges/compensation reports
+                if "INVESTMENT_PERFORMANCE" not in name_upper:
+                    continue
             h = _file_hash(pdf)
             if h not in processed:
                 hint = _account_type_hint_from_dir(pdf.parent.name)
@@ -89,7 +91,18 @@ def _process_pdf(institution: str, pdf_path: Path, account_type_hint: str | None
                  account_subdir: str = "") -> list[dict]:
     """Returns a list of parsed account dicts (some parsers return multiple accounts per PDF).
     Sets account_id on each result to uniquely identify the account across institutions.
+    CRM2 Annual Investment Performance Reports are routed to parse_crm2().
     """
+    # CRM2 Annual Investment Performance Report — parse separately
+    if pdf_path.name.upper().startswith("CRM2") and institution == "wealthsimple":
+        from parsers.wealthsimple import parse_crm2
+        result = parse_crm2(pdf_path, account_subdir=account_subdir)
+        if result:
+            result["account_id"] = account_subdir if account_subdir and account_subdir != institution else result.get("account_id")
+            print(f"  CRM2: {pdf_path.name} → cumulative deposits ${result.get('cumulative_deposits', 0):,.0f}")
+            return [result]
+        return []
+
     parser = PARSERS.get(institution)
     if not parser:
         print(f"  No parser for institution: {institution}")
@@ -192,6 +205,8 @@ def _build_snapshots(all_results: list[dict]) -> list[dict]:
         accounts = []
         total = 0.0
         for r in records:
+            if r.get("record_type") == "crm2":
+                continue  # CRM2 records are deposit history, not portfolio snapshots
             val = r.get("total_value") or 0.0
             total += val
             accounts.append({
@@ -202,11 +217,12 @@ def _build_snapshots(all_results: list[dict]) -> list[dict]:
                 "currency": r.get("currency", "CAD"),
                 "holdings_count": len(r.get("holdings", [])),
             })
-        snapshots.append({
-            "date": date,
-            "total_net_worth": total,
-            "accounts": accounts,
-        })
+        if accounts:
+            snapshots.append({
+                "date": date,
+                "total_net_worth": total,
+                "accounts": accounts,
+            })
     return snapshots
 
 
@@ -274,10 +290,11 @@ def run():
             file_hash = None
             for result in results:
                 file_hash = result.get("file_hash") or file_hash
-                # Skip results with no value and no holdings
-                if not result.get("total_value") and not result.get("holdings"):
-                    print(f"  Skipping (no data): {result.get('file', pdf_path.name)}")
-                    continue
+                # Skip results with no value and no holdings (CRM2 records are exempt)
+                if result.get("record_type") != "crm2":
+                    if not result.get("total_value") and not result.get("holdings"):
+                        print(f"  Skipping (no data): {result.get('file', pdf_path.name)}")
+                        continue
                 out = _save_processed(result)
                 print(f"  Saved: {out.name}")
             if file_hash:

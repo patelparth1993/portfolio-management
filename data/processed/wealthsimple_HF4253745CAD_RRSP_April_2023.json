@@ -1,0 +1,40 @@
+{
+  "institution": "wealthsimple",
+  "file": "April_2023.pdf",
+  "file_hash": "600ee4e66c5ca324f81db0c2462b493d",
+  "parsed_at": "2026-03-31T00:09:09.762182",
+  "statement_date": "2023-04-30",
+  "account_type": "RRSP",
+  "total_value": 0.0,
+  "cash_balance": 0.0,
+  "period_deposits": 0.0,
+  "currency": "CAD",
+  "holdings": [
+    {
+      "symbol": "",
+      "name": "Cash",
+      "quantity": 0.0,
+      "price": 0.0,
+      "market_value": 0.0,
+      "book_value": 0.0
+    },
+    {
+      "symbol": "",
+      "name": "Canadian Equities and Alternatives",
+      "quantity": 0.0,
+      "price": 0.0,
+      "market_value": 0.0,
+      "book_value": 0.0
+    },
+    {
+      "symbol": "",
+      "name": "US Equities and Alternatives",
+      "quantity": 0.0,
+      "price": 0.0,
+      "market_value": 0.0,
+      "book_value": 0.0
+    }
+  ],
+  "raw_text_snippet": "1/3\nORDER EXECUTION ONLY ACCOUNT\nAll figures in $CAD unless otherwise specified\nAccount No. Owner Statement Period\nHF4253745CAD Parth Patel 2023-04-01 - 2023-04-30\n201 - 80 Spadina Avenue\nToronto, ON, M5V 2J4\nPhone: (416) 595-7200 Fax: (647) 245-1002\nRSP Account\nMarket % of Market Book % of Total Book\nValue($) Value Value($) Value\nParth Patel Cash $0.00 0.00 $0.00 0.00\n60 Pauline Cres\nCanadian Equities and $0.00 0.00 $0.00 0.00\nBRAMPTON ON L7A2V6\nAlternatives\nCA\nUS Equities and Alternatives $0.0",
+  "account_id": "HF4253745CAD_RRSP"
+}

@@ -1,0 +1,64 @@
+{
+  "institution": "wealthsimple",
+  "file": "October_2021.pdf",
+  "file_hash": "5dae889b090bb475a322f25a2223e2d0",
+  "parsed_at": "2026-03-31T00:09:05.322049",
+  "statement_date": "2021-10-31",
+  "account_type": "TFSA",
+  "total_value": 3182.46,
+  "cash_balance": 477.91,
+  "period_deposits": 500.0,
+  "currency": "CAD",
+  "holdings": [
+    {
+      "symbol": "CM",
+      "name": "CIBC",
+      "quantity": 6.0,
+      "price": 150.17,
+      "market_value": 901.02,
+      "book_value": 661.86
+    },
+    {
+      "symbol": "DCBO",
+      "name": "Docebo Inc",
+      "quantity": 10.0,
+      "price": 92.64,
+      "market_value": 926.4,
+      "book_value": 673.7
+    },
+    {
+      "symbol": "ENB",
+      "name": "Enbridge",
+      "quantity": 8.0,
+      "price": 51.84,
+      "market_value": 414.72,
+      "book_value": 336.42
+    },
+    {
+      "symbol": "XSP",
+      "name": "iShares S&P 500 Index ETF (CAD-",
+      "quantity": 3.0,
+      "price": 49.6,
+      "market_value": 148.8,
+      "book_value": 121.65
+    },
+    {
+      "symbol": "XIU",
+      "name": "iShares S&P/TSX 60 Index ETF",
+      "quantity": 5.0,
+      "price": 32.04,
+      "market_value": 160.2,
+      "book_value": 134.75
+    },
+    {
+      "symbol": "TLRY",
+      "name": "Tilray",
+      "quantity": 12.0,
+      "price": 10.3,
+      "market_value": 153.41,
+      "book_value": 236.93
+    }
+  ],
+  "raw_text_snippet": "ORDER EXECUTION ONLY ACCOUNT 1/4\nAll figures in $CAD unless otherwise specified\nAccount No. Owner Statement Period\n201 - 80 Spadina Avenue\nH947126K9CAD Parth Patel 2021-10-01 - 2021-10-31\nToronto, ON, M5V 2J4\nPhone: (416) 595-7200 Fax: (647) 245-1002\nTax-Free Savings Account\nMarket % of Market Book % of Total Book\nValue($) Value Value($) Value\nCash $477.91 15.01 $477.91 18.08\nCanadian Equities $2,551.14 80.16 $1,928.38 72.95\nParth Patel\nForeign Equities $153.41 4.82 $236.93 8.96\n27 Big Moe Cresc",
+  "account_id": "H947126K9CAD_TFSA"
+}

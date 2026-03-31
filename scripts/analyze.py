@@ -88,12 +88,26 @@ def cost_basis_summary(latest_per_account: dict[str, dict], all_processed: list[
     profile.yaml cost_basis_overrides are used as a hard override (e.g. for Manulife where
     historical statement coverage may be incomplete).
     """
-    # Sum period_deposits across all historical processed files per account
-    deposits_by_account: dict[str, float] = {}
+    # Find the latest CRM2 report per account (authoritative cumulative deposits through year-end)
+    latest_crm2: dict[str, dict] = {}
     for r in all_processed:
+        if r.get("record_type") == "crm2":
+            key = r.get("account_id", "")
+            if key and (key not in latest_crm2 or (r.get("year") or 0) > (latest_crm2[key].get("year") or 0)):
+                latest_crm2[key] = r
+
+    # Sum period_deposits from monthly statements AFTER the latest CRM2 year-end
+    # (covers partial current year — Jan onwards after last annual report)
+    post_crm2_deposits: dict[str, float] = {}
+    for r in all_processed:
+        if r.get("record_type") == "crm2":
+            continue
         key = r.get("account_id") or f"{r['institution']}_{r.get('account_type', '')}"
-        deps = r.get("period_deposits") or 0.0
-        deposits_by_account[key] = deposits_by_account.get(key, 0.0) + deps
+        crm2_year_end = latest_crm2.get(key, {}).get("year_end", "")
+        stmt_date = r.get("statement_date") or ""
+        if stmt_date > crm2_year_end:
+            deps = r.get("period_deposits") or 0.0
+            post_crm2_deposits[key] = post_crm2_deposits.get(key, 0.0) + deps
 
     overrides = (profile or {}).get("cost_basis_overrides", {}) or {}
 
@@ -102,13 +116,22 @@ def cost_basis_summary(latest_per_account: dict[str, dict], all_processed: list[
         total_mkt = r.get("total_value") or 0
 
         if account_id in overrides and overrides[account_id]:
-            # Hard override wins (used for Manulife and any account with known exact total)
+            # Hard override from profile.yaml — most reliable
             total_invested = round(float(overrides[account_id]), 2)
-        elif deposits_by_account.get(account_id, 0.0) > 0:
-            # Summed from statement history via Gemini/pdfplumber extraction
-            total_invested = round(deposits_by_account[account_id], 2)
+        elif account_id in latest_crm2:
+            # CRM2 annual report: cumulative deposits through year-end + partial current year
+            base = latest_crm2[account_id]["cumulative_deposits"]
+            post = post_crm2_deposits.get(account_id, 0.0)
+            total_invested = round(base + post, 2)
         else:
-            total_invested = None
+            # Fallback: book cost from latest statement (slightly overstates due to reinvested dividends)
+            holdings = r.get("holdings", [])
+            book_vals = [h["book_value"] for h in holdings if h.get("book_value")]
+            if book_vals:
+                cash = r.get("cash_balance") or 0
+                total_invested = round(sum(book_vals) + cash, 2)
+            else:
+                total_invested = None
 
         gain = round(total_mkt - total_invested, 2) if total_invested is not None else None
         gain_pct = round(gain / total_invested * 100, 1) if total_invested else None
@@ -195,6 +218,8 @@ def asset_allocation(processed: list[dict]) -> dict:
     # Get latest per institution+account_type
     latest: dict[str, dict] = {}
     for r in processed:
+        if r.get("record_type") == "crm2":
+            continue
         key = f"{r['institution']}_{r['account_type']}"
         r_date = r.get("statement_date") or r.get("parsed_at", "")[:10]
         if key not in latest or r_date > (latest[key].get("statement_date") or ""):

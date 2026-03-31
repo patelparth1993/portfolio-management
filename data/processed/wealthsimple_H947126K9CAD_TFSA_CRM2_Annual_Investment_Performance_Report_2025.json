@@ -1,0 +1,13 @@
+{
+  "institution": "wealthsimple",
+  "file": "CRM2_Annual_Investment_Performance_Report_2025.pdf",
+  "file_hash": "c885e32e26531e3fcaa626bf7ac6a2a4",
+  "parsed_at": "2026-03-31T00:20:05.967912",
+  "record_type": "crm2",
+  "account_id": "H947126K9CAD_TFSA",
+  "year": 2025,
+  "year_end": "2025-12-31",
+  "past_year_deposits": 8500.0,
+  "cumulative_deposits": 17500.0,
+  "cumulative_withdrawals": 3214.84
+}

@@ -2,11 +2,12 @@
   "institution": "wealthsimple",
   "file": "March_2024.pdf",
   "file_hash": "d0d0139e3cedb1e4894ca142754ed95b",
-  "parsed_at": "2026-03-30T20:24:40.170908",
+  "parsed_at": "2026-03-31T00:09:01.479275",
   "statement_date": "2024-03-31",
   "account_type": "TFSA",
   "total_value": 5373.07,
   "cash_balance": 89.21,
+  "period_deposits": 0.0,
   "currency": "CAD",
   "holdings": [
     {

@@ -1,0 +1,80 @@
+{
+  "institution": "wealthsimple",
+  "file": "July_2021.pdf",
+  "file_hash": "a295f48ca3d677ee26c5a6eb366167bb",
+  "parsed_at": "2026-03-31T00:08:55.766477",
+  "statement_date": "2021-07-31",
+  "account_type": "TFSA",
+  "total_value": 3045.07,
+  "cash_balance": 54.47,
+  "period_deposits": 500.0,
+  "currency": "CAD",
+  "holdings": [
+    {
+      "symbol": "CM",
+      "name": "CIBC",
+      "quantity": 6.0,
+      "price": 145.07,
+      "market_value": 870.42,
+      "book_value": 661.86
+    },
+    {
+      "symbol": "DCBO",
+      "name": "Docebo Inc",
+      "quantity": 10.0,
+      "price": 83.0,
+      "market_value": 830.0,
+      "book_value": 673.7
+    },
+    {
+      "symbol": "ENB",
+      "name": "Enbridge",
+      "quantity": 8.0,
+      "price": 49.18,
+      "market_value": 393.44,
+      "book_value": 336.42
+    },
+    {
+      "symbol": "LSPD",
+      "name": "Lightspeed POS",
+      "quantity": 2.0,
+      "price": 106.83,
+      "market_value": 213.66,
+      "book_value": 175.0
+    },
+    {
+      "symbol": "XSP",
+      "name": "iShares S&P 500 Index ETF (CAD-",
+      "quantity": 3.0,
+      "price": 47.31,
+      "market_value": 141.93,
+      "book_value": 121.65
+    },
+    {
+      "symbol": "XIU",
+      "name": "iShares S&P/TSX 60 Index ETF",
+      "quantity": 5.0,
+      "price": 30.79,
+      "market_value": 153.95,
+      "book_value": 134.75
+    },
+    {
+      "symbol": "NIO",
+      "name": "NIO Inc",
+      "quantity": 3.0,
+      "price": 44.68,
+      "market_value": 167.76,
+      "book_value": 240.8
+    },
+    {
+      "symbol": "TLRY",
+      "name": "Tilray",
+      "quantity": 12.0,
+      "price": 14.61,
+      "market_value": 219.43,
+      "book_value": 240.82
+    }
+  ],
+  "raw_text_snippet": "ORDER EXECUTION ONLY ACCOUNT 1/4\nAll figures in $CAD unless otherwise specified\nAccount No. Owner Statement Period\n241 Spadina Avenue, 3rd Floor\nH947126K9CAD Parth Patel 2021-07-01 - 2021-07-31\nToronto, ON, M5T 2E2\nPhone: (416) 595-7200 Fax: (416) 595-0400\nTax-Free Savings Account\nMarket % of Market Book % of Total Book\nValue($) Value Value($) Value\nCash $54.47 1.78 $54.47 2.06\nCanadian Equities $2,603.40 85.49 $2,103.38 79.68\nParth Patel\nForeign Equities $387.20 12.71 $481.62 18.24\n27 Big Moe C",
+  "account_id": "H947126K9CAD_TFSA"
+}

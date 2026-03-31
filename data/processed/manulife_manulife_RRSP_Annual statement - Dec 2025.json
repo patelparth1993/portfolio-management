@@ -2,10 +2,11 @@
   "institution": "manulife",
   "file": "Annual statement - Dec 2025.pdf",
   "file_hash": "d3fe00953eb9915b0cc6beb26d349fab",
-  "parsed_at": "2026-03-30T20:24:34.824352",
+  "parsed_at": "2026-03-31T00:08:44.565185",
   "statement_date": "2025-12-31",
   "account_type": "RRSP",
   "total_value": 2275.57,
+  "period_deposits": 0.0,
   "cash_balance": null,
   "currency": "CAD",
   "holdings": [

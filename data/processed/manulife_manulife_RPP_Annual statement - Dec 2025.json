@@ -2,10 +2,11 @@
   "institution": "manulife",
   "file": "Annual statement - Dec 2025.pdf",
   "file_hash": "d3fe00953eb9915b0cc6beb26d349fab",
-  "parsed_at": "2026-03-30T20:24:34.824349",
+  "parsed_at": "2026-03-31T00:08:44.565179",
   "statement_date": "2025-12-31",
   "account_type": "RPP",
   "total_value": 13550.02,
+  "period_deposits": 0.0,
   "cash_balance": null,
   "currency": "CAD",
   "holdings": [

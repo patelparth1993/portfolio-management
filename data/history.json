@@ -1,6 +1,444 @@
 {
-  "processed_hashes": [],
+  "processed_hashes": [
+    "d3fe00953eb9915b0cc6beb26d349fab",
+    "71c019d19f5ced3ef332cf40bfd36e6f",
+    "9a4182ad6ef519fd17090ad77fc98af0",
+    "d41b86cc6a15ae58c1ec62cf13d2165a",
+    "1ebf08ea69e1b1bbd883e74edc6f1c12",
+    "4e2ed3490b668440988850d7dc140fdd",
+    "de435db81a954ede4aefe328b310192a",
+    "85e2b76be47e323e988e44fc52966f4d",
+    "f16af31863574ffcafe14b3a70891dda",
+    "2d5b028d4036760e79cf43a5006945aa",
+    "bb3ceb1b40eca287dcd2dac8659bc8db",
+    "3a7f40d726b7d11ccab910b75cc8d917",
+    "90763d3f6374a09c00f7e32327514887",
+    "881a0e88fdeb9cd4f1a228bac17ad348",
+    "4a9e2676d7c6331243bb53cdbc5dba49",
+    "2a12b8d09b91165b90f01674a3299ed6",
+    "6a86ba7d9a6566ce108cfc9161eead75",
+    "331623866f0fe8f6d1d6d7013c3f1771",
+    "675488b360513ea841e94ecfa69b3046",
+    "e73b7131b071477fbcdb2bf0dfc51361",
+    "f96f7034dff15c3f1819c9534584bf7d",
+    "ba1210394f6718186e6d0acab610f6f7",
+    "15c6ff23ffd4df602406c76489a4af47",
+    "3bdd3d9fe1335dc346183f540fbf4fdf",
+    "ba96ff333cc082f667f35353d11495f3",
+    "df53a0e0a53f070459a6ea449a8d1484",
+    "a25ca511400ab20e9d62e7f4b7d2a13d",
+    "f06e93df7d529ec00934a6de7f1a185a",
+    "44b8bfd26670f6c5d8412cf091866939",
+    "a9dd968ef6f4383a94f971e854713032",
+    "a295f48ca3d677ee26c5a6eb366167bb",
+    "9d99d2de4d755a5e2113236ef6c291a8",
+    "a2242707a8679d93a7e13761ec5e6b52",
+    "3280bd38441fe06f1df69e9b21b40144",
+    "f57fa46c9b385434b405b4c0fa7d8b27",
+    "9df5571e29dd7a43dc3cbc5dbfbb3c9c",
+    "6df9373b73cf5b2e391ec42f79fcfec2",
+    "a5d7cf24fdfb80b0e77d3cbacd633711",
+    "6fd003d8d69f4456b004e7607c7d9353",
+    "a1469a7e92064f9b3c87d81a76f2dd48",
+    "c44f1ac9a9d0619241c2030e3e2081e5",
+    "9a26661e159c49a8fd079e01fc54e8c2",
+    "a54a67d1f7206cb4163d0c97dca532f6",
+    "d0d0139e3cedb1e4894ca142754ed95b",
+    "a856430e808f641c67afe9dadf97bc99",
+    "62ac01bd8ab32df696a0fd9b9e6f2fc9",
+    "6cd88f6d0fa299e6649b4cdea5a3516b",
+    "48e1492bb02886d6eed8921d24b472cc",
+    "232193b5a03391cc00e915ea65dcf4c1",
+    "2d0b20b184cc9172420c978baebae37d",
+    "598eab9e6457471e93615aa52e9a0f74",
+    "58f3d8f5276c255cafaba99c10f89904",
+    "e80942ad9202218d14a4de1c457f232c",
+    "7e09bde79883e04c70e582e6565328a3",
+    "499af86df4ddf264df5d2f0fa29a183b",
+    "5dae889b090bb475a322f25a2223e2d0",
+    "d3f4aa7f7f47fda5ba9c21ac4d42e4d3",
+    "13716b325ec7b7e70ed516547f2a5ab3",
+    "4a1d91879e23c465e9b633fafab0c89a",
+    "cd5800ccbbe094990a7a8649ad38daa1",
+    "9fe1d4f985357f1ae4e6c42847aaaaff",
+    "c8087dd702c3d25b109db0381259fc22",
+    "d4b29a106283e140ebbdf871777e20d0",
+    "6c0fbe883c5310ac3a1566c5b5058c03",
+    "33a13afd69bafa47417cd285c9e0736d",
+    "600ee4e66c5ca324f81db0c2462b493d",
+    "07debd7bb41271a1f1bb74ea53f05672",
+    "1b6db6b591b0b8a19decc5878ae77906",
+    "07b6f20783194e6ef904cfa65b25cbd2",
+    "dd86a39a4541b9a037bfda1dae3726b3",
+    "3d8974cf918c3b7fafbe945265f12a85",
+    "3a44bda4f2d9a05c6d83a558f3c93727",
+    "b251518c8ff4380d469d5fe96bb770dd",
+    "2476e7881f746f1dc08489048761fc86",
+    "1985e22a25d59ea8dbf5d59e01453774",
+    "1b9b3c307af42b3da9d7f13564192f23",
+    "d7da7d44f5e7169f2faeb78635c4238e",
+    "d74cb179fe36fa9cc0ebbb1357032748",
+    "757b69dfaf4caaab225438f31dce0257",
+    "02d2b9e1ae7ee2f3234cf01411f06e88",
+    "11dc54291f33079c99391f4d93c47109",
+    "f34265ea877498eae1f833f365f70ffc",
+    "d6ba481db07e4b196c94fbf2411506d1",
+    "ad2e71229736d8e243a256c6c4ea592f",
+    "e8a4edbf2f07b59811bba9a4abb68412",
+    "9a63e2f30b88f526963fbd3c7267a182",
+    "b609dcbc047dba84836db79267f755d4",
+    "f2033f418c30f5025ea89f26ffe650c0",
+    "f6e16e51741e78ee899f3002241e0a0c",
+    "a91de88a2bce7d5d02f9a335d2a5f06a",
+    "c2e3960776a53e9797ac4aac8c00ab51",
+    "1e3f30d37bd6af8f02a5f884e4fe6270",
+    "58493db8e3e6e724725d4b0649056c5d",
+    "eb001ba34c1fa16af93f20a50b7d1ad6",
+    "1439e7f4d402dba788280ee3fa259bdc",
+    "808dd9fe8f3785091ac9d198d50885bd",
+    "b884b46a45d9f31856e29fc025d45231",
+    "37ed22b3875175fc9b4539b77995e650",
+    "1b8c347eb8811c432ebb503d2eceab56",
+    "adc52d483611988cb4ccfd7b11df1f72",
+    "112c05a1d49c6e96d79c81933b9dd226",
+    "b93fc81617966de2d7c5eec46ccf4443",
+    "f9c0098233b4eace8ead3090337ae9e4",
+    "4226cfd4d24ce53583afe61300c592f5",
+    "cfa01dff338c46602138afbc9bd00d8a",
+    "304960be9bab63b1c8aeb8a946952fcb",
+    "c3f7faf4a4aeae7978befc910192a8a3",
+    "dca7dc815b1983f689344fecfd0d13ef",
+    "1e5ebd962381a862d3dbfc873a97a6c2",
+    "25def82efe906bc14b3e47cf537f8575",
+    "3649f6567014f8c7cda2f9ff5b2f323c",
+    "f39035108755e65ff0d79a3a9bc6ba20",
+    "824dae0870b4107f45698407a7d9bd33",
+    "ddbd2f55278d33456c4fedf294358482",
+    "c885e32e26531e3fcaa626bf7ac6a2a4"
+  ],
   "snapshots": [
+    {
+      "date": "2021-01-31",
+      "total_net_worth": 2507.7,
+      "accounts": [
+        {
+          "institution": "wealthsimple",
+          "account_type": "TFSA",
+          "account_id": "H947126K9CAD_TFSA",
+          "total_value": 2507.7,
+          "currency": "CAD",
+          "holdings_count": 8
+        }
+      ]
+    },
+    {
+      "date": "2021-02-28",
+      "total_net_worth": 2563.05,
+      "accounts": [
+        {
+          "institution": "wealthsimple",
+          "account_type": "TFSA",
+          "account_id": "H947126K9CAD_TFSA",
+          "total_value": 2563.05,
+          "currency": "CAD",
+          "holdings_count": 9
+        }
+      ]
+    },
+    {
+      "date": "2021-03-31",
+      "total_net_worth": 2582.6,
+      "accounts": [
+        {
+          "institution": "wealthsimple",
+          "account_type": "TFSA",
+          "account_id": "H947126K9CAD_TFSA",
+          "total_value": 2582.6,
+          "currency": "CAD",
+          "holdings_count": 9
+        }
+      ]
+    },
+    {
+      "date": "2021-04-30",
+      "total_net_worth": 2705.72,
+      "accounts": [
+        {
+          "institution": "wealthsimple",
+          "account_type": "TFSA",
+          "account_id": "H947126K9CAD_TFSA",
+          "total_value": 2705.72,
+          "currency": "CAD",
+          "holdings_count": 8
+        }
+      ]
+    },
+    {
+      "date": "2021-05-31",
+      "total_net_worth": 2727.11,
+      "accounts": [
+        {
+          "institution": "wealthsimple",
+          "account_type": "TFSA",
+          "account_id": "H947126K9CAD_TFSA",
+          "total_value": 2727.11,
+          "currency": "CAD",
+          "holdings_count": 8
+        }
+      ]
+    },
+    {
+      "date": "2021-06-30",
+      "total_net_worth": 2989.86,
+      "accounts": [
+        {
+          "institution": "wealthsimple",
+          "account_type": "TFSA",
+          "account_id": "H947126K9CAD_TFSA",
+          "total_value": 2989.86,
+          "currency": "CAD",
+          "holdings_count": 8
+        }
+      ]
+    },
+    {
+      "date": "2021-07-31",
+      "total_net_worth": 3045.07,
+      "accounts": [
+        {
+          "institution": "wealthsimple",
+          "account_type": "TFSA",
+          "account_id": "H947126K9CAD_TFSA",
+          "total_value": 3045.07,
+          "currency": "CAD",
+          "holdings_count": 8
+        }
+      ]
+    },
+    {
+      "date": "2021-08-31",
+      "total_net_worth": 3321.79,
+      "accounts": [
+        {
+          "institution": "wealthsimple",
+          "account_type": "TFSA",
+          "account_id": "H947126K9CAD_TFSA",
+          "total_value": 3321.79,
+          "currency": "CAD",
+          "holdings_count": 8
+        }
+      ]
+    },
+    {
+      "date": "2021-09-30",
+      "total_net_worth": 3080.24,
+      "accounts": [
+        {
+          "institution": "wealthsimple",
+          "account_type": "TFSA",
+          "account_id": "H947126K9CAD_TFSA",
+          "total_value": 3080.24,
+          "currency": "CAD",
+          "holdings_count": 8
+        }
+      ]
+    },
+    {
+      "date": "2021-10-31",
+      "total_net_worth": 3182.46,
+      "accounts": [
+        {
+          "institution": "wealthsimple",
+          "account_type": "TFSA",
+          "account_id": "H947126K9CAD_TFSA",
+          "total_value": 3182.46,
+          "currency": "CAD",
+          "holdings_count": 6
+        }
+      ]
+    },
+    {
+      "date": "2021-12-31",
+      "total_net_worth": 6.68,
+      "accounts": [
+        {
+          "institution": "wealthsimple",
+          "account_type": "TFSA",
+          "account_id": "H947126K9CAD_TFSA",
+          "total_value": 6.68,
+          "currency": "CAD",
+          "holdings_count": 0
+        }
+      ]
+    },
+    {
+      "date": "2022-01-31",
+      "total_net_worth": 6.68,
+      "accounts": [
+        {
+          "institution": "wealthsimple",
+          "account_type": "TFSA",
+          "account_id": "H947126K9CAD_TFSA",
+          "total_value": 6.68,
+          "currency": "CAD",
+          "holdings_count": 0
+        }
+      ]
+    },
+    {
+      "date": "2022-02-28",
+      "total_net_worth": 6.68,
+      "accounts": [
+        {
+          "institution": "wealthsimple",
+          "account_type": "TFSA",
+          "account_id": "H947126K9CAD_TFSA",
+          "total_value": 6.68,
+          "currency": "CAD",
+          "holdings_count": 0
+        }
+      ]
+    },
+    {
+      "date": "2022-03-31",
+      "total_net_worth": 6.68,
+      "accounts": [
+        {
+          "institution": "wealthsimple",
+          "account_type": "TFSA",
+          "account_id": "H947126K9CAD_TFSA",
+          "total_value": 6.68,
+          "currency": "CAD",
+          "holdings_count": 0
+        }
+      ]
+    },
+    {
+      "date": "2022-04-30",
+      "total_net_worth": 1986.16,
+      "accounts": [
+        {
+          "institution": "wealthsimple",
+          "account_type": "TFSA",
+          "account_id": "H947126K9CAD_TFSA",
+          "total_value": 1986.16,
+          "currency": "CAD",
+          "holdings_count": 1
+        }
+      ]
+    },
+    {
+      "date": "2022-05-31",
+      "total_net_worth": 1994.11,
+      "accounts": [
+        {
+          "institution": "wealthsimple",
+          "account_type": "TFSA",
+          "account_id": "H947126K9CAD_TFSA",
+          "total_value": 1994.11,
+          "currency": "CAD",
+          "holdings_count": 1
+        }
+      ]
+    },
+    {
+      "date": "2022-06-30",
+      "total_net_worth": 1908.97,
+      "accounts": [
+        {
+          "institution": "wealthsimple",
+          "account_type": "TFSA",
+          "account_id": "H947126K9CAD_TFSA",
+          "total_value": 1908.97,
+          "currency": "CAD",
+          "holdings_count": 1
+        }
+      ]
+    },
+    {
+      "date": "2022-07-31",
+      "total_net_worth": 1793.95,
+      "accounts": [
+        {
+          "institution": "wealthsimple",
+          "account_type": "TFSA",
+          "account_id": "H947126K9CAD_TFSA",
+          "total_value": 1793.95,
+          "currency": "CAD",
+          "holdings_count": 1
+        }
+      ]
+    },
+    {
+      "date": "2022-08-31",
+      "total_net_worth": 2927.86,
+      "accounts": [
+        {
+          "institution": "wealthsimple",
+          "account_type": "TFSA",
+          "account_id": "H947126K9CAD_TFSA",
+          "total_value": 2927.86,
+          "currency": "CAD",
+          "holdings_count": 1
+        }
+      ]
+    },
+    {
+      "date": "2022-09-30",
+      "total_net_worth": 2716.9,
+      "accounts": [
+        {
+          "institution": "wealthsimple",
+          "account_type": "TFSA",
+          "account_id": "H947126K9CAD_TFSA",
+          "total_value": 2716.9,
+          "currency": "CAD",
+          "holdings_count": 1
+        }
+      ]
+    },
+    {
+      "date": "2022-10-31",
+      "total_net_worth": 2759.82,
+      "accounts": [
+        {
+          "institution": "wealthsimple",
+          "account_type": "TFSA",
+          "account_id": "H947126K9CAD_TFSA",
+          "total_value": 2759.82,
+          "currency": "CAD",
+          "holdings_count": 1
+        }
+      ]
+    },
+    {
+      "date": "2022-11-30",
+      "total_net_worth": 3036.36,
+      "accounts": [
+        {
+          "institution": "wealthsimple",
+          "account_type": "TFSA",
+          "account_id": "H947126K9CAD_TFSA",
+          "total_value": 3036.36,
+          "currency": "CAD",
+          "holdings_count": 1
+        }
+      ]
+    },
+    {
+      "date": "2022-12-31",
+      "total_net_worth": 2954.44,
+      "accounts": [
+        {
+          "institution": "wealthsimple",
+          "account_type": "TFSA",
+          "account_id": "H947126K9CAD_TFSA",
+          "total_value": 2954.44,
+          "currency": "CAD",
+          "holdings_count": 1
+        }
+      ]
+    },
     {
       "date": "2023-01-31",
       "total_net_worth": 3107.22,
@@ -40,6 +478,14 @@
           "total_value": 4394.34,
           "currency": "CAD",
           "holdings_count": 3
+        },
+        {
+          "institution": "wealthsimple",
+          "account_type": "RRSP",
+          "account_id": "HF4253745CAD_RRSP",
+          "total_value": 0.0,
+          "currency": "CAD",
+          "holdings_count": 3
         }
       ]
     },
@@ -52,6 +498,14 @@
           "account_type": "TFSA",
           "account_id": "H947126K9CAD_TFSA",
           "total_value": 4417.05,
+          "currency": "CAD",
+          "holdings_count": 3
+        },
+        {
+          "institution": "wealthsimple",
+          "account_type": "RRSP",
+          "account_id": "HF4253745CAD_RRSP",
+          "total_value": 0.0,
           "currency": "CAD",
           "holdings_count": 3
         }
@@ -870,5 +1324,5 @@
       ]
     }
   ],
-  "last_updated": "2026-03-30T22:22:03.918723"
+  "last_updated": "2026-03-31T00:22:22.389328"
 }
