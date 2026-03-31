@@ -2,7 +2,7 @@
   "institution": "manulife",
   "file": "Quarterly statement - Jun 2025.pdf",
   "file_hash": "71c019d19f5ced3ef332cf40bfd36e6f",
-  "parsed_at": "2026-03-31T00:08:45.194576",
+  "parsed_at": "2026-03-31T10:12:44.218072",
   "statement_date": "2025-06-30",
   "account_type": "RRSP",
   "total_value": 2008.88,
@@ -18,6 +18,5 @@
       "market_value": 2008.88
     }
   ],
-  "raw_text_snippet": "Progress report:\nPARTHPATEL\nLooking ahead\n60PAULINECRES\nto your retirement\nBRAMPTONON L7A2V6\nMay23,2025toJune30,2025\nDELOITTE LLP.\nPARTH PATEL Yourcustomernumber\n102853039\nThecurrentvalueofyourManulifeplansshowninthisreportis\nPlansyouareamemberof\n$11,698.67. Ifyoucontinuemakingyouraveragemonthly Reg",
   "account_id": "manulife_RRSP"
 }

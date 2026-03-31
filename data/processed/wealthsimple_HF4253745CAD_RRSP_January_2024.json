@@ -2,7 +2,7 @@
   "institution": "wealthsimple",
   "file": "January_2024.pdf",
   "file_hash": "e8a4edbf2f07b59811bba9a4abb68412",
-  "parsed_at": "2026-03-31T00:09:13.079979",
+  "parsed_at": "2026-03-31T10:13:13.906412",
   "statement_date": "2024-01-31",
   "account_type": "RRSP",
   "total_value": 987.86,
@@ -27,6 +27,5 @@
       "book_value": 535.11
     }
   ],
-  "raw_text_snippet": "1/4\nORDER EXECUTION ONLY ACCOUNT\nAll figures in $CAD unless otherwise specified\nAccount No. Owner Statement Period\nHF4253745CAD Parth Patel 2024-01-01 - 2024-01-31\n201 - 80 Spadina Avenue\nToronto, ON, M5V 2J4\nPhone: (416) 595-7200 Fax: (647) 245-1002\nRSP Account\nMarket % of Market Book % of Total Book\nValue($) Value Value($) Value\nParth Patel Cash $0.00 0.00 $0.00 0.00\n60 Pauline Cres\nCanadian Equities and $987.86 100.00 $1,036.86 100.00\nBRAMPTON ON L7A2V6\nAlternatives\nCA\nUS Equities and Alterna",
   "account_id": "HF4253745CAD_RRSP"
 }

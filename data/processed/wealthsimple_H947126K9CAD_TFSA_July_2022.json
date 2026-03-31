@@ -2,7 +2,7 @@
   "institution": "wealthsimple",
   "file": "July_2022.pdf",
   "file_hash": "9d99d2de4d755a5e2113236ef6c291a8",
-  "parsed_at": "2026-03-31T00:08:56.612245",
+  "parsed_at": "2026-03-31T10:12:57.034113",
   "statement_date": "2022-07-31",
   "account_type": "TFSA",
   "total_value": 1793.95,
@@ -19,6 +19,5 @@
       "book_value": 2071.91
     }
   ],
-  "raw_text_snippet": "ORDER EXECUTION ONLY ACCOUNT 1/4\nAll figures in $CAD unless otherwise specified\nAccount No. Owner Statement Period\n201 - 80 Spadina Avenue\nH947126K9CAD Parth Patel 2022-07-01 - 2022-07-31\nToronto, ON, M5V 2J4\nPhone: (416) 595-7200 Fax: (647) 245-1002\nTax-Free Savings Account\nMarket % of Market Book % of Total Book\nValue($) Value Value($) Value\nCash $5.57 0.31 $5.57 0.26\nParth Patel Canadian Equities $1,788.38 99.68 $2,071.91 99.73\n27 Big Moe Crescent Foreign Equities $0.00 0.00 $0.00 0.00\nBRAMPT",
   "account_id": "H947126K9CAD_TFSA"
 }

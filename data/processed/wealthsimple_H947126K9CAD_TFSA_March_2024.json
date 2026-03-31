@@ -2,7 +2,7 @@
   "institution": "wealthsimple",
   "file": "March_2024.pdf",
   "file_hash": "d0d0139e3cedb1e4894ca142754ed95b",
-  "parsed_at": "2026-03-31T00:09:01.479275",
+  "parsed_at": "2026-03-31T10:13:02.456144",
   "statement_date": "2024-03-31",
   "account_type": "TFSA",
   "total_value": 5373.07,
@@ -75,6 +75,5 @@
       "book_value": 359.33
     }
   ],
-  "raw_text_snippet": "1/4\nORDER EXECUTION ONLY ACCOUNT\nAll figures in $CAD unless otherwise specified\nAccount No. Owner Statement Period\nH947126K9CAD Parth Patel 2024-03-01 - 2024-03-31\n201 - 80 Spadina Avenue\nToronto, ON, M5V 2J4\nPhone: (416) 595-7200 Fax: (647) 245-1002\nTax-Free Savings Account\nMarket % of Market Book % of Total Book\nValue($) Value Value($) Value\nParth Patel Cash $89.21 1.66 $89.21 1.35\n60 Pauline Cres\nCanadian Equities and $5,283.86 98.33 $6,488.18 98.64\nBRAMPTON ON L7A2V6\nAlternatives\nCA\nUS Equit",
   "account_id": "H947126K9CAD_TFSA"
 }

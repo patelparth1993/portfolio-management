@@ -1,11 +1,11 @@
-# Personal Investment Profile — Parth Patel
+# Personal Investment Profile
 # Sources: CRA NOA 2024 & 2025, Manulife Dec 2025 annual statement, WealthSimple Feb 2026
 
 personal:
-  date_of_birth: "1993-11-30"
+  birth_year: 1993
   canadian_resident_since: "2020-02-01"   # TFSA room accrues from 2020
   province: ON
-  annual_income: 124000                   # 2026 salary ($124K, biweekly)
+  annual_income: 124000                   # 2026 salary
   prior_year_income: 151870               # 2025 total income per NOA (line 15000)
 
 accounts:
@@ -25,19 +25,19 @@ accounts:
     annual_repayment_required: 621.00     # Minimum required for 2026
 
   rpp:
-    # Deloitte Registered Pension Plan (Manulife, locked-in Ontario)
-    # 2% of salary deducted per paycheck; Deloitte matches 100%
-    member_annual_contribution: 2480      # 2% × $124,000
-    employer_annual_contribution: 2480    # Deloitte match
+    # Employer Registered Pension Plan (Manulife, locked-in Ontario)
+    # 2% of salary deducted per paycheck; employer matches 100%
+    member_annual_contribution: 2480
+    employer_annual_contribution: 2480
     value_dec_2025: 13550.02             # From Manulife Dec 2025 statement
 
   resp:
-    beneficiaries: []                     # No RESP yet — baby expected May 2026
-    # TODO: Open RESP after baby is born to start capturing CESG immediately
+    beneficiaries: []                     # No RESP yet
+    # TODO: Open RESP to start capturing CESG immediately
 
 contribution_plans:
   # Payroll contributions (automatic — already happening)
-  rpp_annual_member: 2480                 # 2% of salary, via payroll to Manulife RPP
+  rpp_annual_member: 2480                 # 2% of salary, via payroll to RPP
   manulife_rrsp_annual: 2230             # ~estimated from payroll (voluntary group RRSP)
   # Personal contributions (set your targets below)
   tfsa_annual: 0                          # TODO: how much extra do you want to save in TFSA?
@@ -49,7 +49,7 @@ retirement:
   target_monthly_income: 10000           # $10,000/month in today's dollars
   cpp_estimate_monthly: 0               # TODO: get from Service Canada MySRA account
   # Note: at age 55 you won't receive CPP until 60 (early) or 65 (standard)
-  # RPP is locked-in; earliest access is Dec 1, 2048 (age 55) per Manulife
+  # RPP is locked-in; earliest access is age 55 per Manulife
   oas_estimate_monthly: 727             # OAS starts at 65 — won't apply at age-55 retirement
 
 risk_tolerance: moderate-growth         # Between balanced (7%) and growth (9%) → 8%

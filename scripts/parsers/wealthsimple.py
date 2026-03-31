@@ -218,13 +218,11 @@ def parse(pdf_path: str | Path, account_type_hint: Optional[str] = None) -> dict
         "period_deposits": 0.0,
         "currency": "CAD",
         "holdings": [],
-        "raw_text_snippet": "",
     }
 
     try:
         with pdfplumber.open(pdf_path) as pdf:
             full_text = "\n".join(page.extract_text() or "" for page in pdf.pages)
-            result["raw_text_snippet"] = full_text[:500]
 
             detected = _detect_account_type(full_text)
             result["account_type"] = account_type_hint if account_type_hint else detected

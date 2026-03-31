@@ -13,6 +13,12 @@
     "bb3ceb1b40eca287dcd2dac8659bc8db",
     "3a7f40d726b7d11ccab910b75cc8d917",
     "90763d3f6374a09c00f7e32327514887",
+    "f39035108755e65ff0d79a3a9bc6ba20",
+    "3a44bda4f2d9a05c6d83a558f3c93727",
+    "b251518c8ff4380d469d5fe96bb770dd",
+    "824dae0870b4107f45698407a7d9bd33",
+    "ddbd2f55278d33456c4fedf294358482",
+    "c885e32e26531e3fcaa626bf7ac6a2a4",
     "881a0e88fdeb9cd4f1a228bac17ad348",
     "4a9e2676d7c6331243bb53cdbc5dba49",
     "2a12b8d09b91165b90f01674a3299ed6",
@@ -72,7 +78,6 @@
     "dd86a39a4541b9a037bfda1dae3726b3",
     "3d8974cf918c3b7fafbe945265f12a85",
     "3a44bda4f2d9a05c6d83a558f3c93727",
-    "b251518c8ff4380d469d5fe96bb770dd",
     "2476e7881f746f1dc08489048761fc86",
     "1985e22a25d59ea8dbf5d59e01453774",
     "1b9b3c307af42b3da9d7f13564192f23",
@@ -110,11 +115,7 @@
     "dca7dc815b1983f689344fecfd0d13ef",
     "1e5ebd962381a862d3dbfc873a97a6c2",
     "25def82efe906bc14b3e47cf537f8575",
-    "3649f6567014f8c7cda2f9ff5b2f323c",
-    "f39035108755e65ff0d79a3a9bc6ba20",
-    "824dae0870b4107f45698407a7d9bd33",
-    "ddbd2f55278d33456c4fedf294358482",
-    "c885e32e26531e3fcaa626bf7ac6a2a4"
+    "3649f6567014f8c7cda2f9ff5b2f323c"
   ],
   "snapshots": [
     {
@@ -478,14 +479,6 @@
           "total_value": 4394.34,
           "currency": "CAD",
           "holdings_count": 3
-        },
-        {
-          "institution": "wealthsimple",
-          "account_type": "RRSP",
-          "account_id": "HF4253745CAD_RRSP",
-          "total_value": 0.0,
-          "currency": "CAD",
-          "holdings_count": 3
         }
       ]
     },
@@ -498,14 +491,6 @@
           "account_type": "TFSA",
           "account_id": "H947126K9CAD_TFSA",
           "total_value": 4417.05,
-          "currency": "CAD",
-          "holdings_count": 3
-        },
-        {
-          "institution": "wealthsimple",
-          "account_type": "RRSP",
-          "account_id": "HF4253745CAD_RRSP",
-          "total_value": 0.0,
           "currency": "CAD",
           "holdings_count": 3
         }
@@ -1324,5 +1309,5 @@
       ]
     }
   ],
-  "last_updated": "2026-03-31T00:22:22.389328"
+  "last_updated": "2026-03-31T10:18:50.489670"
 }

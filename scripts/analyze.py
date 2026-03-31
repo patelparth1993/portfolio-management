@@ -84,9 +84,9 @@ def cost_basis_summary(latest_per_account: dict[str, dict], all_processed: list[
                        profile: dict | None = None) -> list[dict]:
     """
     Per-account comparison of total deposited vs current market value.
-    Total deposited = sum of period_deposits across ALL historical statements (extracted by Gemini/pdfplumber).
-    profile.yaml cost_basis_overrides are used as a hard override (e.g. for Manulife where
-    historical statement coverage may be incomplete).
+    Priority: (1) profile.yaml override, (2) CRM2 cumulative + post-CRM2 period_deposits,
+    (3) sum of all period_deposits (for accounts with no CRM2 yet, e.g. new accounts).
+    profile.yaml cost_basis_overrides are used as a hard override (e.g. for Manulife).
     """
     # Find the latest CRM2 report per account (authoritative cumulative deposits through year-end)
     latest_crm2: dict[str, dict] = {}
@@ -124,14 +124,9 @@ def cost_basis_summary(latest_per_account: dict[str, dict], all_processed: list[
             post = post_crm2_deposits.get(account_id, 0.0)
             total_invested = round(base + post, 2)
         else:
-            # Fallback: book cost from latest statement (slightly overstates due to reinvested dividends)
-            holdings = r.get("holdings", [])
-            book_vals = [h["book_value"] for h in holdings if h.get("book_value")]
-            if book_vals:
-                cash = r.get("cash_balance") or 0
-                total_invested = round(sum(book_vals) + cash, 2)
-            else:
-                total_invested = None
+            # Fallback: sum of period_deposits across all statements (monthly increments)
+            summed = post_crm2_deposits.get(account_id, 0.0)
+            total_invested = round(summed, 2) if summed else None
 
         gain = round(total_mkt - total_invested, 2) if total_invested is not None else None
         gain_pct = round(gain / total_invested * 100, 1) if total_invested else None
@@ -255,20 +250,19 @@ def asset_allocation(processed: list[dict]) -> dict:
 
 # ─── Contribution Room ────────────────────────────────────────────────────────
 
-def _age_on(dob_str: str, as_of: date) -> int:
-    dob = datetime.strptime(dob_str, "%Y-%m-%d").date()
-    return as_of.year - dob.year - ((as_of.month, as_of.day) < (dob.month, dob.day))
+def _age_from_birth_year(birth_year: int, as_of: date) -> int:
+    return as_of.year - birth_year
 
 
 def tfsa_room_analysis(profile: dict, config: dict) -> dict:
     # RULE: Always use CRA-provided room directly — never recalculate from annual limits.
     # See data/INVESTMENT_RULES.md rule #1 and #2.
-    dob = profile.get("personal", {}).get("date_of_birth", "")
-    if not dob:
-        return {"error": "Date of birth not set in profile.yaml"}
+    birth_year = profile.get("personal", {}).get("birth_year")
+    if not birth_year:
+        return {"error": "birth_year not set in profile.yaml"}
 
     today = date.today()
-    age = _age_on(dob, today)
+    age = _age_from_birth_year(birth_year, today)
 
     current_room = profile.get("accounts", {}).get("tfsa", {}).get("current_room_available", 0) or 0
     ytd_contributions = profile.get("accounts", {}).get("tfsa", {}).get("ytd_contributions", 0) or 0
@@ -335,8 +329,8 @@ def resp_analysis(profile: dict, config: dict) -> list[dict]:
 
     for b in beneficiaries:
         name = b.get("name", "Beneficiary")
-        dob = b.get("date_of_birth", "")
-        age = _age_on(dob, today) if dob else None
+        birth_year = b.get("birth_year")
+        age = _age_from_birth_year(birth_year, today) if birth_year else None
         lifetime_contribs = b.get("lifetime_contributions", 0) or 0
         lifetime_cesg = b.get("lifetime_cesg_received", 0) or 0
         ytd_contribs = b.get("ytd_contributions", 0) or 0
@@ -427,9 +421,9 @@ def calculate_historical_growth_rates(processed: list[dict], config: dict) -> di
 # ─── Projections ──────────────────────────────────────────────────────────────
 
 def project_portfolio(profile: dict, config: dict, current_total: float, processed: list[dict]) -> dict:
-    dob = profile.get("personal", {}).get("date_of_birth", "")
+    birth_year = profile.get("personal", {}).get("birth_year")
     today = date.today()
-    current_age = _age_on(dob, today) if dob else 35
+    current_age = _age_from_birth_year(birth_year, today) if birth_year else 35
     target_age = profile.get("retirement", {}).get("target_retirement_age", 65)
     years = max(0, target_age - current_age)
     inflation = config["dashboard"]["inflation_rate"]

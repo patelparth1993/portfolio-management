@@ -2,7 +2,7 @@
   "institution": "wealthsimple",
   "file": "January_2026.pdf",
   "file_hash": "a9dd968ef6f4383a94f971e854713032",
-  "parsed_at": "2026-03-31T00:08:55.559415",
+  "parsed_at": "2026-03-31T10:12:56.002338",
   "statement_date": "2026-01-31",
   "account_type": "TFSA",
   "total_value": 17390.89,
@@ -115,6 +115,5 @@
       "book_value": 1955.47
     }
   ],
-  "raw_text_snippet": "1/6\nORDER EXECUTION ONLY ACCOUNT\nAll figures in $CAD unless otherwise specified\nAccount No. Owner Statement Period\nH947126K9CAD Parth Patel 2026-01-01 - 2026-01-31\n201 - 80 Spadina Avenue\nToronto, ON, M5V 2J4\nPhone: (416) 595-7200 Fax: (647) 245-1002\nSelf-directed TFSA Account\nMarket Value % of Market Book Cost % of Total Book\n($CAD) Value ($CAD) Cost\nParth Patel Cash $1,353.20 7.78 $1,353.20 8.47\n60 Pauline Cres\nCanadian Equities and $16,037.69 92.21 $14,614.82 91.52\nBRAMPTON ON L7A2V6\nAlternat",
   "account_id": "H947126K9CAD_TFSA"
 }

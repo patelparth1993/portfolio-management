@@ -199,7 +199,6 @@ def parse(pdf_path: str | Path, account_type_hint: str | None = None) -> list[di
                 "cash_balance": None,
                 "currency": "CAD",
                 "holdings": holdings_by_plan.get(plan_type, []),
-                "raw_text_snippet": full_text[:300],
             })
 
     except Exception as e:

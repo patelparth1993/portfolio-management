@@ -13,7 +13,7 @@
     .header h1 { font-size: 1.75rem; font-weight: 700; }
     .header p { opacity: 0.85; margin-top: 0.25rem; font-size: 0.9rem; }
 
-    .summary-bar { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; padding: 1.25rem 2rem; background: white; border-bottom: 1px solid #e2e8f0; }
+    .summary-bar { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; padding: 1.25rem 2rem; background: white; border-bottom: 1px solid #e2e8f0; }
     .summary-card { text-align: center; padding: 0.5rem; }
     .summary-card .value { font-size: 1.6rem; font-weight: 700; color: #4f46e5; }
     .summary-card .label { font-size: 0.75rem; color: #64748b; text-transform: uppercase; letter-spacing: 0.05em; margin-top: 0.25rem; }
@@ -21,8 +21,8 @@
     .main { max-width: 1400px; margin: 0 auto; padding: 2rem; }
     .section-title { font-size: 1rem; font-weight: 600; color: #475569; margin-bottom: 1rem; padding-bottom: 0.4rem; border-bottom: 2px solid #e2e8f0; text-transform: uppercase; letter-spacing: 0.05em; }
 
-    .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 1.5rem; margin-bottom: 2rem; }
-    .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-bottom: 2rem; }
+    .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-bottom: 2rem; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-bottom: 2rem; }
     .grid-1 { margin-bottom: 2rem; }
 
     .card { background: white; border-radius: 12px; padding: 1.25rem 1.5rem; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
@@ -31,17 +31,17 @@
     .chart-sm { min-height: 200px; }
 
     /* Cost basis table */
-    .cb-table { width: 100%; border-collapse: collapse; font-size: 0.875rem; }
-    .cb-table th { text-align: left; padding: 0.5rem 0.75rem; color: #94a3b8; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 1px solid #e2e8f0; }
+    .cb-table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .cb-table { width: 100%; border-collapse: collapse; font-size: 0.875rem; min-width: 480px; }
+    .cb-table th { text-align: left; padding: 0.5rem 0.75rem; color: #94a3b8; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 1px solid #e2e8f0; white-space: nowrap; }
     .cb-table td { padding: 0.6rem 0.75rem; border-bottom: 1px solid #f1f5f9; }
     .cb-table tr:last-child td { border-bottom: none; font-weight: 700; background: #f8fafc; }
     .gain-pos { color: #10b981; font-weight: 600; }
     .gain-neg { color: #ef4444; font-weight: 600; }
     .gain-na  { color: #94a3b8; }
     .cb-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; align-items: start; }
-    @media (max-width: 800px) { .cb-layout { grid-template-columns: 1fr; } }
 
-    .projection-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 1rem; margin-top: 1.25rem; }
+    .projection-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1rem; margin-top: 1.25rem; }
     .proj-stat { background: #f8fafc; border-radius: 8px; padding: 0.875rem; text-align: center; }
     .proj-stat .val { font-size: 1.2rem; font-weight: 700; color: #4f46e5; }
     .proj-stat .lbl { font-size: 0.72rem; color: #64748b; margin-top: 0.2rem; line-height: 1.4; }
@@ -65,10 +65,40 @@
 
     footer { text-align: center; padding: 2rem; color: #94a3b8; font-size: 0.78rem; }
 
-    @media (max-width: 600px) {
-      .summary-bar { padding: 1rem; }
-      .main { padding: 1rem; }
-      .grid-2, .grid-3 { grid-template-columns: 1fr; }
+    /* Tablet: 2-col allocation, stacked contribution charts */
+    @media (max-width: 900px) {
+      .grid-3 { grid-template-columns: repeat(2, 1fr); }
+      .cb-layout { grid-template-columns: 1fr; }
+    }
+
+    /* Mobile */
+    @media (max-width: 640px) {
+      .header { padding: 1rem; }
+      .header h1 { font-size: 1.3rem; }
+      .header p { font-size: 0.8rem; }
+
+      .summary-bar { grid-template-columns: repeat(2, 1fr); padding: 0.75rem 1rem; gap: 0.75rem; }
+      .summary-card .value { font-size: 1.2rem; }
+      .summary-card .label { font-size: 0.68rem; }
+
+      .main { padding: 0.75rem; }
+      .section-title { font-size: 0.85rem; }
+
+      .grid-2, .grid-3 { grid-template-columns: 1fr; gap: 0.75rem; margin-bottom: 1.25rem; }
+      .grid-1 { margin-bottom: 1.25rem; }
+
+      .card { padding: 0.875rem 1rem; border-radius: 8px; }
+      .chart-container { min-height: 240px; }
+      .chart-sm { min-height: 160px; }
+
+      .projection-stats { grid-template-columns: repeat(2, 1fr); gap: 0.75rem; }
+      .proj-stat { padding: 0.625rem; }
+      .proj-stat .val { font-size: 1rem; }
+
+      .suggestion { gap: 0.625rem; padding: 0.75rem; }
+      .suggestion .text { font-size: 0.82rem; }
+
+      footer { padding: 1.25rem 1rem; font-size: 0.72rem; }
     }
   </style>
 </head>
@@ -130,7 +160,7 @@
         <div class="chart-container chart-sm" id="chart-cost-basis"></div>
       </div>
       <div>
-        <table class="cb-table">
+        <div class="cb-table-wrap"><table class="cb-table">
           <thead>
             <tr>
               <th>Account</th>
@@ -160,7 +190,7 @@
             </tr>
             {% endfor %}
           </tbody>
-        </table>
+        </table></div>
       </div>
     </div>
   </div>
@@ -283,6 +313,16 @@
   plot("chart-contrib-prior",  charts.contribPrior);
   plot("chart-projection",     charts.projection);
   plot("chart-cost-basis",     charts.costBasis);
+
+  // Reflow all Plotly charts on orientation change / resize
+  var chartIds = ["chart-net-worth","chart-alloc-class","chart-alloc-geo","chart-alloc-acct",
+                  "chart-contrib-current","chart-contrib-prior","chart-projection","chart-cost-basis"];
+  window.addEventListener("resize", function() {
+    chartIds.forEach(function(id) {
+      var el = document.getElementById(id);
+      if (el && el.data) Plotly.Plots.resize(el);
+    });
+  });
 </script>
 </body>
 </html>

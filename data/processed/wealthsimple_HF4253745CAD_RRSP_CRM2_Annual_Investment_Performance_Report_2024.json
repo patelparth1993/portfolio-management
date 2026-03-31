@@ -1,0 +1,13 @@
+{
+  "institution": "wealthsimple",
+  "file": "CRM2_Annual_Investment_Performance_Report_2024.pdf",
+  "file_hash": "1985e22a25d59ea8dbf5d59e01453774",
+  "parsed_at": "2026-03-31T10:13:12.495775",
+  "record_type": "crm2",
+  "account_id": "HF4253745CAD_RRSP",
+  "year": 2024,
+  "year_end": "2024-12-31",
+  "past_year_deposits": 0.0,
+  "cumulative_deposits": 1000.0,
+  "cumulative_withdrawals": 0.0
+}
