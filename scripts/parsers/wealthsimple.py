@@ -1,7 +1,7 @@
 """
 WealthSimple statement parser.
 Handles WealthSimple PDF account statements and extracts holdings, values, and transactions.
-Falls back to Claude API for complex/image-based pages.
+Falls back to Gemini API for complex/image-based pages.
 """
 import re
 import json
@@ -13,10 +13,9 @@ from typing import Optional
 import pdfplumber
 
 
-# Account type keywords found in WealthSimple statements
 ACCOUNT_TYPE_PATTERNS = {
     "TFSA": r"tax.free savings account|tfsa",
-    "RRSP": r"registered retirement savings|rrsp",
+    "RRSP": r"registered retirement savings|rrsp|\brsp\b",   # WealthSimple sometimes writes "RSP Account"
     "RESP": r"registered education savings|resp",
     "FHSA": r"first home savings account|fhsa",
     "RRIF": r"registered retirement income|rrif",
@@ -34,126 +33,110 @@ def _detect_account_type(text: str) -> str:
 
 
 def _extract_statement_date(text: str) -> Optional[str]:
-    """Extract statement period end date from WealthSimple PDF text."""
-    patterns = [
-        r"statement period[:\s]+\w+ \d+,? \d{4}\s*[-–to]+\s*(\w+ \d+,? \d{4})",
-        r"as of\s+(\w+ \d+,? \d{4})",
-        r"(\w+ \d+,? \d{4})\s*account statement",
-        r"period ending\s+(\w+ \d+,? \d{4})",
-        r"(\d{4}-\d{2}-\d{2})",
-    ]
-    for pattern in patterns:
-        match = re.search(pattern, text, re.IGNORECASE)
-        if match:
-            raw = match.group(1).strip()
-            for fmt in ("%B %d, %Y", "%B %d %Y", "%b %d, %Y", "%b %d %Y", "%Y-%m-%d"):
-                try:
-                    return datetime.strptime(raw, fmt).strftime("%Y-%m-%d")
-                except ValueError:
-                    continue
+    """Extract statement period END date from WealthSimple PDF.
+    Format: 'YYYY-MM-DD - YYYY-MM-DD' — we want the end date (second one).
+    """
+    # WealthSimple uses ISO format: "2026-02-01 - 2026-02-28"
+    m = re.search(r"(\d{4}-\d{2}-\d{2})\s*-\s*(\d{4}-\d{2}-\d{2})", text)
+    if m:
+        return m.group(2)  # end date
+    # Fallback: any ISO date
+    m = re.search(r"(\d{4}-\d{2}-\d{2})", text)
+    if m:
+        return m.group(1)
     return None
 
 
 def _extract_total_value(text: str) -> Optional[float]:
-    """Extract total portfolio/account value."""
-    patterns = [
+    """Extract total portfolio value.
+    WealthSimple format: 'Total Portfolio $4,571.55 100.00 $4,249.49 100.00'
+    """
+    m = re.search(r"Total Portfolio\s+\$([\d,]+\.?\d*)", text)
+    if m:
+        return float(m.group(1).replace(",", ""))
+    # Fallback patterns
+    for pattern in [
         r"total\s+(?:account\s+)?value[:\s]+\$?([\d,]+\.?\d*)",
         r"portfolio\s+value[:\s]+\$?([\d,]+\.?\d*)",
-        r"market\s+value[:\s]+\$?([\d,]+\.?\d*)",
-        r"total\s+holdings[:\s]+\$?([\d,]+\.?\d*)",
-    ]
-    for pattern in patterns:
-        match = re.search(pattern, text, re.IGNORECASE)
-        if match:
-            return float(match.group(1).replace(",", ""))
+    ]:
+        m = re.search(pattern, text, re.IGNORECASE)
+        if m:
+            return float(m.group(1).replace(",", ""))
     return None
 
 
-def _extract_holdings(pages: list) -> list[dict]:
-    """Extract individual holdings from statement pages."""
-    holdings = []
-    for page in pages:
-        tables = page.extract_tables()
-        for table in tables:
-            if not table:
-                continue
-            headers = [str(h).lower().strip() if h else "" for h in table[0]]
-            # Look for tables with holding-like columns
-            has_symbol = any("symbol" in h or "ticker" in h or "security" in h for h in headers)
-            has_value = any("value" in h or "market" in h or "amount" in h for h in headers)
-            if not (has_symbol or has_value):
-                continue
-            for row in table[1:]:
-                if not row or all(cell is None or str(cell).strip() == "" for cell in row):
-                    continue
-                holding = {}
-                for i, header in enumerate(headers):
-                    if i < len(row) and row[i]:
-                        val = str(row[i]).strip()
-                        if "symbol" in header or "ticker" in header:
-                            holding["symbol"] = val
-                        elif "security" in header or "name" in header or "description" in header:
-                            holding["name"] = val
-                        elif "quantity" in header or "units" in header or "shares" in header:
-                            try:
-                                holding["quantity"] = float(val.replace(",", ""))
-                            except ValueError:
-                                pass
-                        elif "market value" in header or ("value" in header and "book" not in header):
-                            try:
-                                holding["market_value"] = float(val.replace(",", "").replace("$", ""))
-                            except ValueError:
-                                pass
-                        elif "book value" in header or "acb" in header or "cost" in header:
-                            try:
-                                holding["book_value"] = float(val.replace(",", "").replace("$", ""))
-                            except ValueError:
-                                pass
-                        elif "price" in header:
-                            try:
-                                holding["price"] = float(val.replace(",", "").replace("$", ""))
-                            except ValueError:
-                                pass
-                if holding.get("symbol") or holding.get("name"):
-                    holdings.append(holding)
-    return holdings
+def _extract_cash_balance(text: str) -> Optional[float]:
+    """Extract closing cash balance.
+    WealthSimple format: 'Closing Cash Balance $801.32'
+    """
+    m = re.search(r"Closing Cash Balance\s+\$([\d,]+\.?\d*)", text)
+    if m:
+        return float(m.group(1).replace(",", ""))
+    return None
+
+
+def _extract_period_deposits(text: str) -> float:
+    """Extract new external money deposited/contributed this statement period.
+    TFSA/non-reg: 'Cash Paid In Deposits $X'
+    RRSP: 'First 60 Days $X' + 'Rest of Year $X' (RRSP contribution buckets)
+    Does NOT include proceeds from sales, dividends, or interest.
+    """
+    total = 0.0
+    m = re.search(r"Cash Paid In\s+Deposits\s+\$([\d,]+\.?\d*)", text)
+    if m:
+        total += float(m.group(1).replace(",", ""))
+    for pat in [r"First 60 Days\s+\$([\d,]+\.?\d*)", r"Rest of Year\s+\$([\d,]+\.?\d*)"]:
+        m = re.search(pat, text)
+        if m:
+            total += float(m.group(1).replace(",", ""))
+    return round(total, 2)
 
 
 def _extract_holdings_from_text(text: str) -> list[dict]:
-    """Fallback: extract holdings from raw text using regex patterns."""
+    """
+    Parse holdings from the Portfolio Assets section.
+
+    WealthSimple line format:
+      Name  SYMBOL  QTY  QTY  $PRICE  CAD  $MKT_VALUE  $BOOK_VALUE
+    Example:
+      BMO Canadian High Dividend Covered ZWC 33.2431 33.2431 $22.06 CAD $733.34 $565.27
+      NorthWest Healthcare Properties REIT NWH.UN 180.4642 180.4642 $5.84 CAD $1,053.91 $1,005.39
+    """
     holdings = []
-    # Pattern: SYMBOL  Description  Qty  Price  MarketValue
-    pattern = r"([A-Z]{1,5}(?:\.[A-Z]{1,3})?)\s+(.+?)\s+([\d,]+\.?\d*)\s+\$?([\d,]+\.?\d*)\s+\$?([\d,]+\.?\d*)"
-    for match in re.finditer(pattern, text):
-        try:
-            holdings.append({
-                "symbol": match.group(1),
-                "name": match.group(2).strip(),
-                "quantity": float(match.group(3).replace(",", "")),
-                "price": float(match.group(4).replace(",", "")),
-                "market_value": float(match.group(5).replace(",", "")),
-            })
-        except ValueError:
+    # Match: (anything) SYMBOL QTY QTY $PRICE CAD|USD $MKT_VALUE $BOOK_VALUE
+    pattern = re.compile(
+        r"^(.*?)\s+"                           # name (greedy up to symbol)
+        r"([A-Z]{1,6}(?:\.[A-Z]{1,3})?)\s+"   # SYMBOL (e.g. ZWC, NWH.UN)
+        r"([\d,]+\.\d+)\s+"                    # total quantity
+        r"[\d,]+\.\d+\s+"                      # segregated quantity (same value, skip)
+        r"\$([\d,]+\.?\d*)\s+"                 # price
+        r"(?:CAD|USD)\s+"                      # currency
+        r"\$([\d,]+\.?\d*)\s+"                 # market value
+        r"\$([\d,]+\.?\d*)",                   # book cost
+        re.MULTILINE,
+    )
+    for m in pattern.finditer(text):
+        name = m.group(1).strip()
+        symbol = m.group(2)
+        qty = float(m.group(3).replace(",", ""))
+        price = float(m.group(4).replace(",", ""))
+        mkt_val = float(m.group(5).replace(",", ""))
+        book_val = float(m.group(6).replace(",", ""))
+        # Skip header rows or zero-value placeholders that matched by accident
+        if mkt_val == 0.0 and qty == 0.0:
             continue
+        holdings.append({
+            "symbol": symbol,
+            "name": name,
+            "quantity": qty,
+            "price": price,
+            "market_value": mkt_val,
+            "book_value": book_val,
+        })
     return holdings
 
 
-def _parse_with_gemini(pdf_path: Path, account_type: str) -> dict:
-    """Fallback parser using Gemini API (free tier). Skips if GEMINI_API_KEY not set."""
-    import os
-    if not os.environ.get("GEMINI_API_KEY"):
-        print("  No GEMINI_API_KEY set — skipping Gemini fallback.")
-        return {}
-    try:
-        import google.generativeai as genai
-
-        genai.configure(api_key=os.environ["GEMINI_API_KEY"])
-        model = genai.GenerativeModel("gemini-1.5-flash")
-
-        with open(pdf_path, "rb") as f:
-            pdf_bytes = f.read()
-
-        prompt = f"""This is a {account_type} investment account statement from WealthSimple.
+GEMINI_PROMPT_TEMPLATE = """This is a {account_type} investment account statement from WealthSimple.
 Extract the following information and return it as valid JSON:
 {{
   "statement_date": "YYYY-MM-DD",
@@ -163,25 +146,22 @@ Extract the following information and return it as valid JSON:
     {{"symbol": "", "name": "", "quantity": 0.0, "price": 0.0, "market_value": 0.0, "book_value": 0.0}}
   ],
   "cash_balance": 0.0,
+  "period_deposits": 0.0,
   "currency": "CAD"
 }}
+For period_deposits: sum ONLY new external money deposited this period.
+- For TFSA/non-registered: use the "Cash Paid In Deposits" amount.
+- For RRSP: sum "First 60 Days" + "Rest of Year" contribution amounts.
+- Do NOT include proceeds from investment sales, dividends, or interest.
 Return only the JSON, no other text."""
 
-        response = model.generate_content([
-            {"mime_type": "application/pdf", "data": pdf_bytes},
-            prompt,
-        ])
-        text = response.text.strip().removeprefix("```json").removeprefix("```").removesuffix("```").strip()
-        return json.loads(text)
-    except Exception as e:
-        print(f"  Gemini fallback failed: {e}")
-        return {}
 
+def parse(pdf_path: str | Path, account_type_hint: Optional[str] = None) -> dict:
+    """Parse a WealthSimple PDF statement using pdfplumber.
+    Marks _needs_gemini=True if key data is missing — caller handles Gemini batch.
 
-def parse(pdf_path: str | Path) -> dict:
-    """
-    Parse a WealthSimple PDF statement.
-    Returns a dict with standardized fields.
+    account_type_hint: if provided (from subdir name like 'HF4253745CAD_RRSP'),
+    overrides auto-detection — the directory name is authoritative.
     """
     pdf_path = Path(pdf_path)
     file_hash = hashlib.md5(pdf_path.read_bytes()).hexdigest()
@@ -195,6 +175,7 @@ def parse(pdf_path: str | Path) -> dict:
         "account_type": "Unknown",
         "total_value": None,
         "cash_balance": None,
+        "period_deposits": 0.0,
         "currency": "CAD",
         "holdings": [],
         "raw_text_snippet": "",
@@ -205,24 +186,32 @@ def parse(pdf_path: str | Path) -> dict:
             full_text = "\n".join(page.extract_text() or "" for page in pdf.pages)
             result["raw_text_snippet"] = full_text[:500]
 
-            result["account_type"] = _detect_account_type(full_text)
+            detected = _detect_account_type(full_text)
+            result["account_type"] = account_type_hint if account_type_hint else detected
             result["statement_date"] = _extract_statement_date(full_text)
             result["total_value"] = _extract_total_value(full_text)
-
-            # Try table extraction first
-            holdings = _extract_holdings(pdf.pages)
-            if not holdings:
-                holdings = _extract_holdings_from_text(full_text)
-            result["holdings"] = holdings
+            result["cash_balance"] = _extract_cash_balance(full_text)
+            result["period_deposits"] = _extract_period_deposits(full_text)
+            result["holdings"] = _extract_holdings_from_text(full_text)
 
     except Exception as e:
         print(f"  pdfplumber failed for {pdf_path.name}: {e}")
 
-    # If core data missing, fall back to Claude
     if not result["total_value"] or not result["statement_date"]:
-        print(f"  Falling back to Claude API for {pdf_path.name}...")
-        claude_data = _parse_with_gemini(pdf_path, result["account_type"])
-        if claude_data:
-            result.update({k: v for k, v in claude_data.items() if v})
+        result["_needs_gemini"] = True
+        result["_gemini_prompt"] = GEMINI_PROMPT_TEMPLATE.format(account_type=result["account_type"])
 
+    return result
+
+
+def apply_gemini_response(result: dict, gemini_text: str) -> dict:
+    """Merge a Gemini JSON response into an existing pdfplumber result dict."""
+    try:
+        text = gemini_text.strip().removeprefix("```json").removeprefix("```").removesuffix("```").strip()
+        gemini_data = json.loads(text)
+        result.update({k: v for k, v in gemini_data.items() if v})
+    except Exception as e:
+        print(f"  Failed to parse Gemini response for {result.get('file')}: {e}")
+    result.pop("_needs_gemini", None)
+    result.pop("_gemini_prompt", None)
     return result

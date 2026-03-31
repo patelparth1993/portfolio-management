@@ -32,6 +32,27 @@ def load_history() -> dict:
     return {"snapshots": []}
 
 
+def _readable_label(account_id: str) -> str:
+    """Convert account_id to a human-readable chart label.
+    'H947126K9CAD_TFSA'          → 'WS TFSA'
+    'WZ0969XK4CAD_TFSA_PORTFOLIO' → 'WS TFSA Portfolio'
+    'HF4253745CAD_RRSP'           → 'WS RRSP'
+    'manulife_RPP'                → 'Manulife RPP'
+    """
+    import re
+    ACRONYMS = {"TFSA", "RRSP", "RPP", "RESP", "FHSA", "RRIF", "WS"}
+    ws_match = re.match(r'^[A-Z0-9]+CAD_(.+)$', account_id)
+    if ws_match:
+        words = [w if w in ACRONYMS else w.title() for w in ws_match.group(1).split("_")]
+        return "WS " + " ".join(words)
+    parts = account_id.split("_", 1)
+    if len(parts) == 2:
+        inst = parts[0].title()
+        typ = parts[1] if parts[1] in ACRONYMS else parts[1].title()
+        return f"{inst} {typ}"
+    return account_id.replace("_", " ").title()
+
+
 def load_all_processed() -> list[dict]:
     results = []
     for f in sorted(PROCESSED_DIR.glob("*.json")):
@@ -48,13 +69,72 @@ def net_worth_over_time(history: dict) -> pd.DataFrame:
     for snap in history.get("snapshots", []):
         row = {"date": snap["date"], "total": snap["total_net_worth"]}
         for acct in snap.get("accounts", []):
-            key = f"{acct['institution']}_{acct['account_type']}"
+            key = acct.get("account_id") or f"{acct['institution']}_{acct['account_type']}"
             row[key] = acct["total_value"]
         rows.append(row)
     if not rows:
         return pd.DataFrame(columns=["date", "total"])
     df = pd.DataFrame(rows).sort_values("date")
     return df
+
+
+# ─── Cost Basis vs Market Value ───────────────────────────────────────────────
+
+def cost_basis_summary(latest_per_account: dict[str, dict], all_processed: list[dict],
+                       profile: dict | None = None) -> list[dict]:
+    """
+    Per-account comparison of total deposited vs current market value.
+    Total deposited = sum of period_deposits across ALL historical statements (extracted by Gemini/pdfplumber).
+    profile.yaml cost_basis_overrides are used as a hard override (e.g. for Manulife where
+    historical statement coverage may be incomplete).
+    """
+    # Sum period_deposits across all historical processed files per account
+    deposits_by_account: dict[str, float] = {}
+    for r in all_processed:
+        key = r.get("account_id") or f"{r['institution']}_{r.get('account_type', '')}"
+        deps = r.get("period_deposits") or 0.0
+        deposits_by_account[key] = deposits_by_account.get(key, 0.0) + deps
+
+    overrides = (profile or {}).get("cost_basis_overrides", {}) or {}
+
+    rows = []
+    for account_id, r in sorted(latest_per_account.items()):
+        total_mkt = r.get("total_value") or 0
+
+        if account_id in overrides and overrides[account_id]:
+            # Hard override wins (used for Manulife and any account with known exact total)
+            total_invested = round(float(overrides[account_id]), 2)
+        elif deposits_by_account.get(account_id, 0.0) > 0:
+            # Summed from statement history via Gemini/pdfplumber extraction
+            total_invested = round(deposits_by_account[account_id], 2)
+        else:
+            total_invested = None
+
+        gain = round(total_mkt - total_invested, 2) if total_invested is not None else None
+        gain_pct = round(gain / total_invested * 100, 1) if total_invested else None
+        rows.append({
+            "account_id": account_id,
+            "label": _readable_label(account_id),
+            "current_value": round(total_mkt, 2),
+            "book_value": total_invested,
+            "gain": gain,
+            "gain_pct": gain_pct,
+            "as_of": r.get("statement_date"),
+        })
+    total_mkt = sum(r["current_value"] for r in rows)
+    known_book = [r["book_value"] for r in rows if r["book_value"] is not None]
+    total_book = round(sum(known_book), 2) if known_book else None
+    gain = round(total_mkt - total_book, 2) if total_book is not None else None
+    rows.append({
+        "account_id": "total",
+        "label": "Total Portfolio",
+        "current_value": round(total_mkt, 2),
+        "book_value": total_book,
+        "gain": gain,
+        "gain_pct": round(gain / total_book * 100, 1) if total_book else None,
+        "as_of": None,
+    })
+    return rows
 
 
 # ─── Asset Allocation ─────────────────────────────────────────────────────────
@@ -125,7 +205,7 @@ def asset_allocation(processed: list[dict]) -> dict:
     by_acct: dict[str, float] = {}
 
     for key, r in latest.items():
-        acct_label = f"{r['institution'].title()} {r['account_type']}"
+        acct_label = _readable_label(r.get("account_id") or key)
         val = r.get("total_value") or 0
         by_acct[acct_label] = by_acct.get(acct_label, 0) + val
 
@@ -180,19 +260,45 @@ def tfsa_room_analysis(profile: dict, config: dict) -> dict:
 
 
 def rrsp_room_analysis(profile: dict, config: dict) -> dict:
+    # RULE: Always use CRA-provided room directly — never recalculate.
+    # See data/INVESTMENT_RULES.md rule #1 and #3.
     accts = profile.get("accounts", {}).get("rrsp", {}) or {}
     current_room = accts.get("current_room_available", 0) or 0
     ytd = accts.get("ytd_contributions", 0) or 0
-    prior_income = profile.get("personal", {}).get("prior_year_income", 0) or 0
-    annual_limit = config["rrsp"].get(f"annual_limit_{date.today().year}", 32490)
-    new_room_this_year = min(prior_income * 0.18, annual_limit)
 
     return {
         "current_room_available": current_room,
         "ytd_contributions": ytd,
         "remaining_this_year": max(0, current_room - ytd),
-        "new_room_accruing_this_year": round(new_room_this_year, 2),
-        "annual_limit": annual_limit,
+    }
+
+
+def prior_year_room_analysis(profile: dict, config: dict) -> dict:
+    """
+    Reconstruct last year's contribution room usage from CRA-provided data in profile.yaml.
+    TFSA: derivable from Jan 1 room + annual limit + known contributions.
+    RRSP: use prior_year_contributions if set, else unknown.
+    """
+    prior = profile.get("prior_year_contributions", {}) or {}
+    prior_year = prior.get("year", date.today().year - 1)
+    tfsa_room_start = prior.get("tfsa_room_start", 0) or 0
+    tfsa_contrib = prior.get("tfsa", 0) or 0
+    rrsp_contrib = prior.get("rrsp", 0) or 0
+    rrsp_room = prior.get("rrsp_room_start", 0) or 0
+    annual_limit_tfsa = config["tfsa_annual_limits"].get(prior_year, 0)
+    return {
+        "year": prior_year,
+        "tfsa": {
+            "room_available": tfsa_room_start,
+            "contributions": tfsa_contrib,
+            "remaining": max(0, tfsa_room_start - tfsa_contrib),
+            "annual_limit": annual_limit_tfsa,
+        },
+        "rrsp": {
+            "room_available": rrsp_room,
+            "contributions": rrsp_contrib,
+            "remaining": max(0, rrsp_room - rrsp_contrib),
+        },
     }
 
 
@@ -230,55 +336,147 @@ def resp_analysis(profile: dict, config: dict) -> list[dict]:
     return results
 
 
+# ─── Historical Growth Rates ──────────────────────────────────────────────────
+
+def calculate_historical_growth_rates(processed: list[dict], config: dict) -> dict[str, float]:
+    """
+    Calculate annualized growth rate per institution+account_type from statement history.
+    - WealthSimple: uses (market_value - book_value) / book_value, annualised by account age.
+    - Others: uses period return between earliest and latest statement.
+    Falls back to configured risk-tolerance rate if insufficient data.
+    """
+    from collections import defaultdict
+
+    default_rate = config["dashboard"]["growth_rate_assumptions"].get("moderate-growth", 0.08)
+    by_account: dict[str, list] = defaultdict(list)
+
+    for r in processed:
+        if r.get("total_value") and r.get("statement_date"):
+            key = r.get("account_id") or f"{r['institution']}_{r['account_type']}"
+            by_account[key].append(r)
+
+    rates: dict[str, float] = {}
+    for key, records in by_account.items():
+        records.sort(key=lambda x: x["statement_date"])
+        latest = records[-1]
+
+        # WealthSimple holdings carry book_value — use return-on-cost
+        holdings = latest.get("holdings", [])
+        with_book = [h for h in holdings if h.get("book_value") and h.get("market_value")]
+        if with_book:
+            total_book = sum(h["book_value"] for h in with_book)
+            total_mkt = sum(h["market_value"] for h in with_book)
+            if total_book > 0:
+                try:
+                    first_dt = datetime.strptime(records[0]["statement_date"], "%Y-%m-%d")
+                    last_dt = datetime.strptime(latest["statement_date"], "%Y-%m-%d")
+                    years = max(0.5, (last_dt - first_dt).days / 365.25)
+                    total_return = (total_mkt - total_book) / total_book
+                    annualised = (1 + total_return) ** (1 / years) - 1
+                    rates[key] = round(max(0.01, min(0.25, annualised)), 4)
+                    continue
+                except (ValueError, ZeroDivisionError):
+                    pass
+
+        # Manulife / others: use raw period return (includes contributions, so treat as floor)
+        if len(records) >= 2:
+            first, last = records[0], records[-1]
+            v0, v1 = first["total_value"], last["total_value"]
+            try:
+                first_dt = datetime.strptime(first["statement_date"], "%Y-%m-%d")
+                last_dt = datetime.strptime(last["statement_date"], "%Y-%m-%d")
+                years = max(0.25, (last_dt - first_dt).days / 365.25)
+                if v0 > 0 and v1 > 0:
+                    annualised = (v1 / v0) ** (1 / years) - 1
+                    # Contributions inflate this number — cap at reasonable max
+                    rates[key] = round(max(0.01, min(0.20, annualised)), 4)
+                    continue
+            except (ValueError, ZeroDivisionError):
+                pass
+
+        rates[key] = default_rate
+
+    return rates
+
+
 # ─── Projections ──────────────────────────────────────────────────────────────
 
-def project_portfolio(profile: dict, config: dict, current_total: float) -> dict:
+def project_portfolio(profile: dict, config: dict, current_total: float, processed: list[dict]) -> dict:
     dob = profile.get("personal", {}).get("date_of_birth", "")
     today = date.today()
     current_age = _age_on(dob, today) if dob else 35
     target_age = profile.get("retirement", {}).get("target_retirement_age", 65)
     years = max(0, target_age - current_age)
-
-    risk = profile.get("risk_tolerance", "balanced")
-    growth_rate = config["dashboard"]["growth_rate_assumptions"].get(risk, 0.07)
     inflation = config["dashboard"]["inflation_rate"]
+    annual_withdrawal = 1000  # user preference: minimal withdrawals
 
-    annual_contribution = (
-        (profile.get("contribution_plans", {}).get("tfsa_annual", 0) or 0)
-        + (profile.get("contribution_plans", {}).get("rrsp_annual", 0) or 0)
-        + (profile.get("contribution_plans", {}).get("resp_annual", 0) or 0)
+    # Historical growth rates from actual statements
+    hist_rates = calculate_historical_growth_rates(processed, config)
+    default_rate = config["dashboard"]["growth_rate_assumptions"].get(
+        profile.get("risk_tolerance", "balanced"), 0.07
     )
 
-    # Year-by-year projection
-    projection = []
-    value = current_total
+    # Per-account: get latest value + assigned growth rate
+    latest_by_key: dict[str, dict] = {}
+    for r in processed:
+        if r.get("total_value") and r.get("statement_date"):
+            key = r.get("account_id") or f"{r['institution']}_{r['account_type']}"
+            if key not in latest_by_key or r["statement_date"] > latest_by_key[key]["statement_date"]:
+                latest_by_key[key] = r
+
+    per_account_projections = []
+    for key, rec in sorted(latest_by_key.items()):
+        rate = hist_rates.get(key, default_rate)
+        label = _readable_label(rec.get("account_id") or key)
+        value = rec["total_value"]
+        series = []
+        for yr in range(years + 1):
+            series.append({"year": today.year + yr, "value": round(value, 2)})
+            value = value * (1 + rate)
+        per_account_projections.append({
+            "key": key,
+            "label": label,
+            "current_value": rec["total_value"],
+            "growth_rate": rate,
+            "projected_at_retirement": round(series[-1]["value"], 2) if series else 0,
+            "series": series,
+        })
+
+    contrib_plans = profile.get("contribution_plans", {}) or {}
+    annual_contribution = (
+        (contrib_plans.get("tfsa_annual", 0) or 0)
+        + (contrib_plans.get("rrsp_annual_personal", 0) or 0)
+        + (contrib_plans.get("manulife_rrsp_annual", 0) or 0)
+    )
+    avg_rate = (
+        sum(a["growth_rate"] * a["current_value"] for a in per_account_projections)
+        / sum(a["current_value"] for a in per_account_projections)
+        if per_account_projections else default_rate
+    )
+
+    # Total series = sum of per-account series so chart lines always add up correctly
+    total_series = []
     for yr in range(years + 1):
-        projection.append({
+        yr_total = sum(acct["series"][yr]["value"] for acct in per_account_projections)
+        total_series.append({
             "year": today.year + yr,
             "age": current_age + yr,
-            "value": round(value, 2),
-            "value_real": round(value / ((1 + inflation) ** yr), 2),
+            "value": round(yr_total, 2),
+            "value_real": round(yr_total / ((1 + inflation) ** yr), 2),
         })
-        value = (value + annual_contribution) * (1 + growth_rate)
 
-    target_monthly = profile.get("retirement", {}).get("target_monthly_income", 0) or 0
-    cpp = profile.get("retirement", {}).get("cpp_estimate_monthly", 0) or 0
-    oas = profile.get("retirement", {}).get("oas_estimate_monthly", 727) or 727
-    portfolio_income_needed = max(0, target_monthly - cpp - oas) * 12  # annual
-
-    final_value = projection[-1]["value"] if projection else 0
-    safe_withdrawal = final_value * 0.04  # 4% rule
+    final_value = total_series[-1]["value"] if total_series else 0
 
     return {
         "years_to_retirement": years,
-        "growth_rate": growth_rate,
+        "average_growth_rate": round(avg_rate, 4),
         "annual_contribution": annual_contribution,
+        "annual_withdrawal": annual_withdrawal,
         "projected_value_at_retirement": round(final_value, 2),
-        "projected_value_real": projection[-1]["value_real"] if projection else 0,
-        "safe_withdrawal_annual": round(safe_withdrawal, 2),
-        "income_needed_from_portfolio": round(portfolio_income_needed, 2),
-        "on_track": safe_withdrawal >= portfolio_income_needed if portfolio_income_needed > 0 else None,
-        "projection_series": projection,
+        "projected_value_real": total_series[-1]["value_real"] if total_series else 0,
+        "projection_series": total_series,
+        "per_account_projections": per_account_projections,
+        "on_track": None,
     }
 
 
@@ -345,13 +543,25 @@ def run() -> dict:
     processed = load_all_processed()
 
     net_worth_df = net_worth_over_time(history)
-    current_total = float(net_worth_df["total"].iloc[-1]) if not net_worth_df.empty else 0.0
 
+    # current_total = sum of the LATEST known value per account (from processed files).
+    # This handles accounts with different statement frequencies correctly — Manulife
+    # quarterly data is not dropped just because WealthSimple has a more recent month.
+    latest_per_account: dict[str, dict] = {}
+    for r in processed:
+        if r.get("total_value") and r.get("statement_date"):
+            key = r.get("account_id") or f"{r['institution']}_{r['account_type']}"
+            if key not in latest_per_account or r["statement_date"] > latest_per_account[key]["statement_date"]:
+                latest_per_account[key] = r
+    current_total = sum(r["total_value"] for r in latest_per_account.values())
+
+    cost_basis = cost_basis_summary(latest_per_account, processed, profile)
     allocation = asset_allocation(processed)
     tfsa = tfsa_room_analysis(profile, config)
     rrsp = rrsp_room_analysis(profile, config)
     resp = resp_analysis(profile, config)
-    projection = project_portfolio(profile, config, current_total)
+    prior_year_room = prior_year_room_analysis(profile, config)
+    projection = project_portfolio(profile, config, current_total, processed)
     suggestions = generate_suggestions(tfsa, rrsp, resp, projection)
 
     result = {
@@ -363,8 +573,10 @@ def run() -> dict:
             "tfsa": tfsa,
             "rrsp": rrsp,
             "resp": resp,
+            "prior_year": prior_year_room,
         },
         "projection": projection,
+        "cost_basis": cost_basis,
         "suggestions": suggestions,
     }
 

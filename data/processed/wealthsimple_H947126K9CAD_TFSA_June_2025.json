@@ -1,0 +1,79 @@
+{
+  "institution": "wealthsimple",
+  "file": "June_2025.pdf",
+  "file_hash": "a1469a7e92064f9b3c87d81a76f2dd48",
+  "parsed_at": "2026-03-30T20:24:39.873960",
+  "statement_date": "2025-06-30",
+  "account_type": "TFSA",
+  "total_value": 6482.26,
+  "cash_balance": 118.59,
+  "currency": "CAD",
+  "holdings": [
+    {
+      "symbol": "ABX",
+      "name": "Barrick Mining Corp.",
+      "quantity": 27.4787,
+      "price": 28.35,
+      "market_value": 779.02,
+      "book_value": 609.42
+    },
+    {
+      "symbol": "ZWC",
+      "name": "BMO Canadian High Dividend Covered",
+      "quantity": 28.1263,
+      "price": 18.52,
+      "market_value": 520.89,
+      "book_value": 448.27
+    },
+    {
+      "symbol": "DFN",
+      "name": "Dividend 15 Split Corp",
+      "quantity": 436.8631,
+      "price": 6.26,
+      "market_value": 2734.76,
+      "book_value": 3237.37
+    },
+    {
+      "symbol": "DCBO",
+      "name": "Docebo Inc",
+      "quantity": 9.0,
+      "price": 39.47,
+      "market_value": 355.23,
+      "book_value": 466.29
+    },
+    {
+      "symbol": "NWH.UN",
+      "name": "NorthWest Healthcare Properties REIT",
+      "quantity": 180.4345,
+      "price": 4.98,
+      "market_value": 898.56,
+      "book_value": 1441.98
+    },
+    {
+      "symbol": "SIA",
+      "name": "Sienna Senior Living Inc.",
+      "quantity": 3.2733,
+      "price": 19.05,
+      "market_value": 62.35,
+      "book_value": 46.95
+    },
+    {
+      "symbol": "SJ",
+      "name": "Stella-Jones Inc.",
+      "quantity": 7.097,
+      "price": 78.49,
+      "market_value": 557.04,
+      "book_value": 559.32
+    },
+    {
+      "symbol": "VFV",
+      "name": "Vanguard S&P 500 Index ETF",
+      "quantity": 3.0415,
+      "price": 149.87,
+      "market_value": 455.82,
+      "book_value": 364.97
+    }
+  ],
+  "raw_text_snippet": "1/5\nORDER EXECUTION ONLY ACCOUNT\nAll figures in $CAD unless otherwise specified\nAccount No. Owner Statement Period\nH947126K9CAD Parth Patel 2025-06-01 - 2025-06-30\n201 - 80 Spadina Avenue\nToronto, ON, M5V 2J4\nPhone: (416) 595-7200 Fax: (647) 245-1002\nTax-Free Savings SDI Cash Account\nMarket Value % of Market Book Cost % of Total Book\n($CAD) Value ($CAD) Cost\nParth Patel Cash $118.59 1.82 $118.59 1.62\n60 Pauline Cres\nCanadian Equities and $6,363.67 98.17 $7,174.57 98.37\nBRAMPTON ON L7A2V6\nAlterna",
+  "account_id": "H947126K9CAD_TFSA"
+}

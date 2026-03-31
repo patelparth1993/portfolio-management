@@ -1,0 +1,39 @@
+{
+  "institution": "wealthsimple",
+  "file": "February_2025.pdf",
+  "file_hash": "f34265ea877498eae1f833f365f70ffc",
+  "parsed_at": "2026-03-30T20:24:44.124711",
+  "statement_date": "2025-02-28",
+  "account_type": "RRSP",
+  "total_value": 1229.15,
+  "cash_balance": 44.17,
+  "currency": "CAD",
+  "holdings": [
+    {
+      "symbol": "ZWC",
+      "name": "BMO Canadian High Dividend Covered",
+      "quantity": 32.0465,
+      "price": 18.17,
+      "market_value": 582.28,
+      "book_value": 541.82
+    },
+    {
+      "symbol": "EIF",
+      "name": "Exchange Income Corporation",
+      "quantity": 0.0031,
+      "price": 50.38,
+      "market_value": 0.15,
+      "book_value": 0.17
+    },
+    {
+      "symbol": "VFV",
+      "name": "Vanguard S&P 500 Index ETF",
+      "quantity": 3.9383,
+      "price": 153.0,
+      "market_value": 602.55,
+      "book_value": 543.73
+    }
+  ],
+  "raw_text_snippet": "1/5\nORDER EXECUTION ONLY ACCOUNT\nAll figures in $CAD unless otherwise specified\nAccount No. Owner Statement Period\nHF4253745CAD Parth Patel 2025-02-01 - 2025-02-28\n201 - 80 Spadina Avenue\nToronto, ON, M5V 2J4\nPhone: (416) 595-7200 Fax: (647) 245-1002\nRRSP SDI Cash Account\nMarket Value % of Market Book Cost % of Total Book\n($CAD) Value ($CAD) Cost\nParth Patel Cash $44.17 3.59 $44.17 3.90\n60 Pauline Cres\nCanadian Equities and $1,184.98 96.40 $1,085.72 96.09\nBRAMPTON ON L7A2V6\nAlternatives\nCA\nUS Eq",
+  "account_id": "HF4253745CAD_RRSP"
+}

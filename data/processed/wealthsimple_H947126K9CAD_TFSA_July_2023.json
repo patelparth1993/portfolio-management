@@ -1,0 +1,47 @@
+{
+  "institution": "wealthsimple",
+  "file": "July_2023.pdf",
+  "file_hash": "a2242707a8679d93a7e13761ec5e6b52",
+  "parsed_at": "2026-03-30T20:24:39.045867",
+  "statement_date": "2023-07-31",
+  "account_type": "TFSA",
+  "total_value": 4626.86,
+  "cash_balance": 250.0,
+  "currency": "CAD",
+  "holdings": [
+    {
+      "symbol": "DFN",
+      "name": "Dividend 15 Split Corp",
+      "quantity": 435.8956,
+      "price": 6.59,
+      "market_value": 2872.55,
+      "book_value": 3569.03
+    },
+    {
+      "symbol": "DCBO",
+      "name": "Docebo Inc",
+      "quantity": 9.0,
+      "price": 50.74,
+      "market_value": 456.66,
+      "book_value": 466.29
+    },
+    {
+      "symbol": "NWH.UN",
+      "name": "NorthWest Healthcare Properties REIT",
+      "quantity": 148.9492,
+      "price": 6.99,
+      "market_value": 1041.15,
+      "book_value": 1280.64
+    },
+    {
+      "symbol": "SIA",
+      "name": "Sienna Senior Living Inc.",
+      "quantity": 0.5663,
+      "price": 11.48,
+      "market_value": 6.5,
+      "book_value": 6.55
+    }
+  ],
+  "raw_text_snippet": "1/4\nORDER EXECUTION ONLY ACCOUNT\nAll figures in $CAD unless otherwise specified\nAccount No. Owner Statement Period\nH947126K9CAD Parth Patel 2023-07-01 - 2023-07-31\n201 - 80 Spadina Avenue\nToronto, ON, M5V 2J4\nPhone: (416) 595-7200 Fax: (647) 245-1002\nTax-Free Savings Account\nMarket % of Market Book % of Total Book\nValue($) Value Value($) Value\nParth Patel Cash $250.00 5.40 $250.00 4.48\n60 Pauline Cres\nCanadian Equities and $4,376.86 94.59 $5,322.51 95.51\nBRAMPTON ON L7A2V6\nAlternatives\nCA\nUS Equ",
+  "account_id": "H947126K9CAD_TFSA"
+}

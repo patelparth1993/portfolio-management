@@ -1,0 +1,22 @@
+{
+  "institution": "manulife",
+  "file": "Annual statement - Dec 2025.pdf",
+  "file_hash": "d3fe00953eb9915b0cc6beb26d349fab",
+  "parsed_at": "2026-03-30T20:24:34.824352",
+  "statement_date": "2025-12-31",
+  "account_type": "RRSP",
+  "total_value": 2275.57,
+  "cash_balance": null,
+  "currency": "CAD",
+  "holdings": [
+    {
+      "symbol": "2760MLRetDateIndxPlus2060o6",
+      "name": "2760MLRetDateIndxPlus2060o6",
+      "quantity": 112.55302,
+      "price": 20.218,
+      "market_value": 2275.57
+    }
+  ],
+  "raw_text_snippet": "Progress report:\n@@@@@@@\nPARTHPATEL Looking ahead\n60 PAULINECRES\nto your retirement\nBRAMPTON ON L7A 2V6\nMay23,2025toDecember31,2025\nDELOITTE LLP.\nPARTH PATEL Yourcustomernumber\n102853039\nThecurrentvalueofyourManulifeplansshowninthisreportis\nPlansyouareamemberof\n$15,825.59. Ifyoucontinuemakingyourave",
+  "account_id": "manulife_RRSP"
+}

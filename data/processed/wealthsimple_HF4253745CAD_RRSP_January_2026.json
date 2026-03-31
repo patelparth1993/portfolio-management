@@ -1,0 +1,71 @@
+{
+  "institution": "wealthsimple",
+  "file": "January_2026.pdf",
+  "file_hash": "b609dcbc047dba84836db79267f755d4",
+  "parsed_at": "2026-03-30T20:24:44.843982",
+  "statement_date": "2026-01-31",
+  "account_type": "RRSP",
+  "total_value": 4436.3,
+  "cash_balance": 500.03,
+  "currency": "CAD",
+  "holdings": [
+    {
+      "symbol": "ZWC",
+      "name": "BMO Canadian High Dividend Covered",
+      "quantity": 33.0788,
+      "price": 20.7,
+      "market_value": 684.73,
+      "book_value": 561.8
+    },
+    {
+      "symbol": "ZGRO",
+      "name": "BMO Growth ETF",
+      "quantity": 32.1468,
+      "price": 17.74,
+      "market_value": 570.28,
+      "book_value": 564.25
+    },
+    {
+      "symbol": "ZCN",
+      "name": "BMO SP TSX CAPPED COMP IDX ETF",
+      "quantity": 11.241,
+      "price": 42.76,
+      "market_value": 480.66,
+      "book_value": 500.0
+    },
+    {
+      "symbol": "EIF",
+      "name": "Exchange Income Corporation",
+      "quantity": 3.1453,
+      "price": 95.0,
+      "market_value": 298.8,
+      "book_value": 250.89
+    },
+    {
+      "symbol": "GSY",
+      "name": "GoEasy Limited",
+      "quantity": 1.8624,
+      "price": 125.12,
+      "market_value": 233.02,
+      "book_value": 252.67
+    },
+    {
+      "symbol": "NWH.UN",
+      "name": "NorthWest Healthcare Properties REIT",
+      "quantity": 179.5332,
+      "price": 5.59,
+      "market_value": 1003.59,
+      "book_value": 1000.0
+    },
+    {
+      "symbol": "VFV",
+      "name": "Vanguard S&P 500 Index ETF",
+      "quantity": 3.968,
+      "price": 167.64,
+      "market_value": 665.19,
+      "book_value": 548.28
+    }
+  ],
+  "raw_text_snippet": "1/5\nORDER EXECUTION ONLY ACCOUNT\nAll figures in $CAD unless otherwise specified\nAccount No. Owner Statement Period\nHF4253745CAD Parth Patel 2026-01-01 - 2026-01-31\n201 - 80 Spadina Avenue\nToronto, ON, M5V 2J4\nPhone: (416) 595-7200 Fax: (647) 245-1002\nSelf-directed RRSP Account\nMarket Value % of Market Book Cost % of Total Book\n($CAD) Value ($CAD) Cost\nParth Patel Cash $500.03 11.27 $500.03 11.96\n60 Pauline Cres\nCanadian Equities and $3,936.27 88.72 $3,677.89 88.03\nBRAMPTON ON L7A2V6\nAlternatives",
+  "account_id": "HF4253745CAD_RRSP"
+}

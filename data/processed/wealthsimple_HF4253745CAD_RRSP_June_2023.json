@@ -1,0 +1,31 @@
+{
+  "institution": "wealthsimple",
+  "file": "June_2023.pdf",
+  "file_hash": "c2e3960776a53e9797ac4aac8c00ab51",
+  "parsed_at": "2026-03-30T20:24:45.465982",
+  "statement_date": "2023-06-30",
+  "account_type": "RRSP",
+  "total_value": 1007.79,
+  "cash_balance": 0.0,
+  "currency": "CAD",
+  "holdings": [
+    {
+      "symbol": "ZWC",
+      "name": "BMO Canadian High Dividend Covered",
+      "quantity": 28.4527,
+      "price": 17.0,
+      "market_value": 483.69,
+      "book_value": 480.0
+    },
+    {
+      "symbol": "EIF",
+      "name": "Exchange Income Corporation",
+      "quantity": 10.0,
+      "price": 52.41,
+      "market_value": 524.1,
+      "book_value": 520.0
+    }
+  ],
+  "raw_text_snippet": "1/4\nORDER EXECUTION ONLY ACCOUNT\nAll figures in $CAD unless otherwise specified\nAccount No. Owner Statement Period\nHF4253745CAD Parth Patel 2023-06-01 - 2023-06-30\n201 - 80 Spadina Avenue\nToronto, ON, M5V 2J4\nPhone: (416) 595-7200 Fax: (647) 245-1002\nRSP Account\nMarket % of Market Book % of Total Book\nValue($) Value Value($) Value\nParth Patel Cash $0.00 0.00 $0.00 0.00\n60 Pauline Cres\nCanadian Equities and $1,007.79 100.00 $1,000.00 100.00\nBRAMPTON ON L7A2V6\nAlternatives\nCA\nUS Equities and Alter",
+  "account_id": "HF4253745CAD_RRSP"
+}

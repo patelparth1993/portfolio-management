@@ -1,0 +1,39 @@
+{
+  "institution": "wealthsimple",
+  "file": "March_2023.pdf",
+  "file_hash": "a54a67d1f7206cb4163d0c97dca532f6",
+  "parsed_at": "2026-03-30T20:24:40.031344",
+  "statement_date": "2023-03-31",
+  "account_type": "TFSA",
+  "total_value": 4394.34,
+  "cash_balance": 6.33,
+  "currency": "CAD",
+  "holdings": [
+    {
+      "symbol": "DFN",
+      "name": "Dividend 15 Split Corp",
+      "quantity": 412.0,
+      "price": 7.29,
+      "market_value": 3003.48,
+      "book_value": 3403.65
+    },
+    {
+      "symbol": "DCBO",
+      "name": "Docebo Inc",
+      "quantity": 9.0,
+      "price": 55.02,
+      "market_value": 495.18,
+      "book_value": 466.29
+    },
+    {
+      "symbol": "NWH.UN",
+      "name": "NorthWest Healthcare Properties REIT",
+      "quantity": 105.0,
+      "price": 8.47,
+      "market_value": 889.35,
+      "book_value": 999.5
+    }
+  ],
+  "raw_text_snippet": "1/4\nORDER EXECUTION ONLY ACCOUNT\nAll figures in $CAD unless otherwise specified\nAccount No. Owner Statement Period\nH947126K9CAD Parth Patel 2023-03-01 - 2023-03-31\n201 - 80 Spadina Avenue\nToronto, ON, M5V 2J4\nPhone: (416) 595-7200 Fax: (647) 245-1002\nTax-Free Savings Account\nMarket % of Market Book % of Total Book\nValue($) Value Value($) Value\nParth Patel Cash $6.33 0.14 $6.33 0.12\n60 Pauline Cres\nCanadian Equities and $4,388.01 99.85 $4,869.44 99.87\nBRAMPTON ON L7A2V6\nAlternatives\nCA\nUS Equitie",
+  "account_id": "H947126K9CAD_TFSA"
+}

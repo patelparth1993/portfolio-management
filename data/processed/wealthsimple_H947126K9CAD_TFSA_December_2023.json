@@ -1,0 +1,63 @@
+{
+  "institution": "wealthsimple",
+  "file": "December_2023.pdf",
+  "file_hash": "2a12b8d09b91165b90f01674a3299ed6",
+  "parsed_at": "2026-03-30T20:24:37.140416",
+  "statement_date": "2023-12-31",
+  "account_type": "TFSA",
+  "total_value": 4257.82,
+  "cash_balance": 0.01,
+  "currency": "CAD",
+  "holdings": [
+    {
+      "symbol": "ABX",
+      "name": "Barrick Gold Corp.",
+      "quantity": 26.7023,
+      "price": 23.94,
+      "market_value": 639.25,
+      "book_value": 590.55
+    },
+    {
+      "symbol": "ZWC",
+      "name": "BMO Canadian High Dividend Covered",
+      "quantity": 25.6824,
+      "price": 17.05,
+      "market_value": 437.88,
+      "book_value": 405.33
+    },
+    {
+      "symbol": "DFN",
+      "name": "Dividend 15 Split Corp",
+      "quantity": 334.3052,
+      "price": 5.38,
+      "market_value": 1798.56,
+      "book_value": 2666.28
+    },
+    {
+      "symbol": "DCBO",
+      "name": "Docebo Inc",
+      "quantity": 9.0,
+      "price": 63.99,
+      "market_value": 575.91,
+      "book_value": 466.29
+    },
+    {
+      "symbol": "NWH.UN",
+      "name": "NorthWest Healthcare Properties REIT",
+      "quantity": 154.9403,
+      "price": 5.16,
+      "market_value": 799.49,
+      "book_value": 1314.36
+    },
+    {
+      "symbol": "SIA",
+      "name": "Sienna Senior Living Inc.",
+      "quantity": 0.585,
+      "price": 11.49,
+      "market_value": 6.72,
+      "book_value": 6.76
+    }
+  ],
+  "raw_text_snippet": "1/5\nORDER EXECUTION ONLY ACCOUNT\nAll figures in $CAD unless otherwise specified\nAccount No. Owner Statement Period\nH947126K9CAD Parth Patel 2023-12-01 - 2023-12-31\n201 - 80 Spadina Avenue\nToronto, ON, M5V 2J4\nPhone: (416) 595-7200 Fax: (647) 245-1002\nTax-Free Savings Account\nMarket % of Market Book % of Total Book\nValue($) Value Value($) Value\nParth Patel Cash $0.01 0.00 $0.01 0.00\n60 Pauline Cres\nCanadian Equities and $4,257.81 99.99 $5,449.57 99.99\nBRAMPTON ON L7A2V6\nAlternatives\nCA\nUS Equitie",
+  "account_id": "H947126K9CAD_TFSA"
+}

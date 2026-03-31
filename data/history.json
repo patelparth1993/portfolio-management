@@ -1,0 +1,874 @@
+{
+  "processed_hashes": [],
+  "snapshots": [
+    {
+      "date": "2023-01-31",
+      "total_net_worth": 3107.22,
+      "accounts": [
+        {
+          "institution": "wealthsimple",
+          "account_type": "TFSA",
+          "account_id": "H947126K9CAD_TFSA",
+          "total_value": 3107.22,
+          "currency": "CAD",
+          "holdings_count": 1
+        }
+      ]
+    },
+    {
+      "date": "2023-02-28",
+      "total_net_worth": 3629.29,
+      "accounts": [
+        {
+          "institution": "wealthsimple",
+          "account_type": "TFSA",
+          "account_id": "H947126K9CAD_TFSA",
+          "total_value": 3629.29,
+          "currency": "CAD",
+          "holdings_count": 2
+        }
+      ]
+    },
+    {
+      "date": "2023-03-31",
+      "total_net_worth": 4394.34,
+      "accounts": [
+        {
+          "institution": "wealthsimple",
+          "account_type": "TFSA",
+          "account_id": "H947126K9CAD_TFSA",
+          "total_value": 4394.34,
+          "currency": "CAD",
+          "holdings_count": 3
+        }
+      ]
+    },
+    {
+      "date": "2023-04-30",
+      "total_net_worth": 4417.05,
+      "accounts": [
+        {
+          "institution": "wealthsimple",
+          "account_type": "TFSA",
+          "account_id": "H947126K9CAD_TFSA",
+          "total_value": 4417.05,
+          "currency": "CAD",
+          "holdings_count": 3
+        }
+      ]
+    },
+    {
+      "date": "2023-05-31",
+      "total_net_worth": 4289.02,
+      "accounts": [
+        {
+          "institution": "wealthsimple",
+          "account_type": "TFSA",
+          "account_id": "H947126K9CAD_TFSA",
+          "total_value": 4289.02,
+          "currency": "CAD",
+          "holdings_count": 3
+        }
+      ]
+    },
+    {
+      "date": "2023-06-30",
+      "total_net_worth": 5214.66,
+      "accounts": [
+        {
+          "institution": "wealthsimple",
+          "account_type": "TFSA",
+          "account_id": "H947126K9CAD_TFSA",
+          "total_value": 4206.87,
+          "currency": "CAD",
+          "holdings_count": 0
+        },
+        {
+          "institution": "wealthsimple",
+          "account_type": "RRSP",
+          "account_id": "HF4253745CAD_RRSP",
+          "total_value": 1007.79,
+          "currency": "CAD",
+          "holdings_count": 2
+        }
+      ]
+    },
+    {
+      "date": "2023-07-31",
+      "total_net_worth": 5631.969999999999,
+      "accounts": [
+        {
+          "institution": "wealthsimple",
+          "account_type": "TFSA",
+          "account_id": "H947126K9CAD_TFSA",
+          "total_value": 4626.86,
+          "currency": "CAD",
+          "holdings_count": 4
+        },
+        {
+          "institution": "wealthsimple",
+          "account_type": "RRSP",
+          "account_id": "HF4253745CAD_RRSP",
+          "total_value": 1005.11,
+          "currency": "CAD",
+          "holdings_count": 2
+        }
+      ]
+    },
+    {
+      "date": "2023-08-31",
+      "total_net_worth": 4987.73,
+      "accounts": [
+        {
+          "institution": "wealthsimple",
+          "account_type": "TFSA",
+          "account_id": "H947126K9CAD_TFSA",
+          "total_value": 4021.04,
+          "currency": "CAD",
+          "holdings_count": 4
+        },
+        {
+          "institution": "wealthsimple",
+          "account_type": "RRSP",
+          "account_id": "HF4253745CAD_RRSP",
+          "total_value": 966.69,
+          "currency": "CAD",
+          "holdings_count": 2
+        }
+      ]
+    },
+    {
+      "date": "2023-09-30",
+      "total_net_worth": 4102.68,
+      "accounts": [
+        {
+          "institution": "wealthsimple",
+          "account_type": "TFSA",
+          "account_id": "H947126K9CAD_TFSA",
+          "total_value": 3181.95,
+          "currency": "CAD",
+          "holdings_count": 4
+        },
+        {
+          "institution": "wealthsimple",
+          "account_type": "RRSP",
+          "account_id": "HF4253745CAD_RRSP",
+          "total_value": 920.73,
+          "currency": "CAD",
+          "holdings_count": 2
+        }
+      ]
+    },
+    {
+      "date": "2023-10-31",
+      "total_net_worth": 4136.91,
+      "accounts": [
+        {
+          "institution": "wealthsimple",
+          "account_type": "TFSA",
+          "account_id": "H947126K9CAD_TFSA",
+          "total_value": 3247.98,
+          "currency": "CAD",
+          "holdings_count": 6
+        },
+        {
+          "institution": "wealthsimple",
+          "account_type": "RRSP",
+          "account_id": "HF4253745CAD_RRSP",
+          "total_value": 888.93,
+          "currency": "CAD",
+          "holdings_count": 2
+        }
+      ]
+    },
+    {
+      "date": "2023-11-30",
+      "total_net_worth": 4605.42,
+      "accounts": [
+        {
+          "institution": "wealthsimple",
+          "account_type": "TFSA",
+          "account_id": "H947126K9CAD_TFSA",
+          "total_value": 3655.1,
+          "currency": "CAD",
+          "holdings_count": 6
+        },
+        {
+          "institution": "wealthsimple",
+          "account_type": "RRSP",
+          "account_id": "HF4253745CAD_RRSP",
+          "total_value": 950.32,
+          "currency": "CAD",
+          "holdings_count": 2
+        }
+      ]
+    },
+    {
+      "date": "2023-12-31",
+      "total_net_worth": 5225.62,
+      "accounts": [
+        {
+          "institution": "wealthsimple",
+          "account_type": "TFSA",
+          "account_id": "H947126K9CAD_TFSA",
+          "total_value": 4257.82,
+          "currency": "CAD",
+          "holdings_count": 6
+        },
+        {
+          "institution": "wealthsimple",
+          "account_type": "RRSP",
+          "account_id": "HF4253745CAD_RRSP",
+          "total_value": 967.8,
+          "currency": "CAD",
+          "holdings_count": 2
+        }
+      ]
+    },
+    {
+      "date": "2024-01-31",
+      "total_net_worth": 5102.41,
+      "accounts": [
+        {
+          "institution": "wealthsimple",
+          "account_type": "TFSA",
+          "account_id": "H947126K9CAD_TFSA",
+          "total_value": 4114.55,
+          "currency": "CAD",
+          "holdings_count": 6
+        },
+        {
+          "institution": "wealthsimple",
+          "account_type": "RRSP",
+          "account_id": "HF4253745CAD_RRSP",
+          "total_value": 987.86,
+          "currency": "CAD",
+          "holdings_count": 2
+        }
+      ]
+    },
+    {
+      "date": "2024-02-29",
+      "total_net_worth": 6106.98,
+      "accounts": [
+        {
+          "institution": "wealthsimple",
+          "account_type": "TFSA",
+          "account_id": "H947126K9CAD_TFSA",
+          "total_value": 5093.36,
+          "currency": "CAD",
+          "holdings_count": 8
+        },
+        {
+          "institution": "wealthsimple",
+          "account_type": "RRSP",
+          "account_id": "HF4253745CAD_RRSP",
+          "total_value": 1013.62,
+          "currency": "CAD",
+          "holdings_count": 2
+        }
+      ]
+    },
+    {
+      "date": "2024-03-31",
+      "total_net_worth": 6414.91,
+      "accounts": [
+        {
+          "institution": "wealthsimple",
+          "account_type": "TFSA",
+          "account_id": "H947126K9CAD_TFSA",
+          "total_value": 5373.07,
+          "currency": "CAD",
+          "holdings_count": 8
+        },
+        {
+          "institution": "wealthsimple",
+          "account_type": "RRSP",
+          "account_id": "HF4253745CAD_RRSP",
+          "total_value": 1041.84,
+          "currency": "CAD",
+          "holdings_count": 2
+        }
+      ]
+    },
+    {
+      "date": "2024-04-30",
+      "total_net_worth": 6292.63,
+      "accounts": [
+        {
+          "institution": "wealthsimple",
+          "account_type": "TFSA",
+          "account_id": "H947126K9CAD_TFSA",
+          "total_value": 5295.29,
+          "currency": "CAD",
+          "holdings_count": 8
+        },
+        {
+          "institution": "wealthsimple",
+          "account_type": "RRSP",
+          "account_id": "HF4253745CAD_RRSP",
+          "total_value": 997.34,
+          "currency": "CAD",
+          "holdings_count": 2
+        }
+      ]
+    },
+    {
+      "date": "2024-05-31",
+      "total_net_worth": 6328.67,
+      "accounts": [
+        {
+          "institution": "wealthsimple",
+          "account_type": "TFSA",
+          "account_id": "H947126K9CAD_TFSA",
+          "total_value": 5334.08,
+          "currency": "CAD",
+          "holdings_count": 8
+        },
+        {
+          "institution": "wealthsimple",
+          "account_type": "RRSP",
+          "account_id": "HF4253745CAD_RRSP",
+          "total_value": 994.59,
+          "currency": "CAD",
+          "holdings_count": 2
+        }
+      ]
+    },
+    {
+      "date": "2024-06-30",
+      "total_net_worth": 6183.139999999999,
+      "accounts": [
+        {
+          "institution": "wealthsimple",
+          "account_type": "TFSA",
+          "account_id": "H947126K9CAD_TFSA",
+          "total_value": 5190.78,
+          "currency": "CAD",
+          "holdings_count": 8
+        },
+        {
+          "institution": "wealthsimple",
+          "account_type": "RRSP",
+          "account_id": "HF4253745CAD_RRSP",
+          "total_value": 992.36,
+          "currency": "CAD",
+          "holdings_count": 2
+        }
+      ]
+    },
+    {
+      "date": "2024-07-31",
+      "total_net_worth": 6645.6900000000005,
+      "accounts": [
+        {
+          "institution": "wealthsimple",
+          "account_type": "TFSA",
+          "account_id": "H947126K9CAD_TFSA",
+          "total_value": 5588.88,
+          "currency": "CAD",
+          "holdings_count": 8
+        },
+        {
+          "institution": "wealthsimple",
+          "account_type": "RRSP",
+          "account_id": "HF4253745CAD_RRSP",
+          "total_value": 1056.81,
+          "currency": "CAD",
+          "holdings_count": 2
+        }
+      ]
+    },
+    {
+      "date": "2024-08-31",
+      "total_net_worth": 6802.709999999999,
+      "accounts": [
+        {
+          "institution": "wealthsimple",
+          "account_type": "TFSA",
+          "account_id": "H947126K9CAD_TFSA",
+          "total_value": 5724.4,
+          "currency": "CAD",
+          "holdings_count": 8
+        },
+        {
+          "institution": "wealthsimple",
+          "account_type": "RRSP",
+          "account_id": "HF4253745CAD_RRSP",
+          "total_value": 1078.31,
+          "currency": "CAD",
+          "holdings_count": 2
+        }
+      ]
+    },
+    {
+      "date": "2024-09-30",
+      "total_net_worth": 7223.5199999999995,
+      "accounts": [
+        {
+          "institution": "wealthsimple",
+          "account_type": "TFSA",
+          "account_id": "H947126K9CAD_TFSA",
+          "total_value": 6108.41,
+          "currency": "CAD",
+          "holdings_count": 8
+        },
+        {
+          "institution": "wealthsimple",
+          "account_type": "RRSP",
+          "account_id": "HF4253745CAD_RRSP",
+          "total_value": 1115.11,
+          "currency": "CAD",
+          "holdings_count": 2
+        }
+      ]
+    },
+    {
+      "date": "2024-10-31",
+      "total_net_worth": 7380.240000000001,
+      "accounts": [
+        {
+          "institution": "wealthsimple",
+          "account_type": "TFSA",
+          "account_id": "H947126K9CAD_TFSA",
+          "total_value": 6219.02,
+          "currency": "CAD",
+          "holdings_count": 8
+        },
+        {
+          "institution": "wealthsimple",
+          "account_type": "RRSP",
+          "account_id": "HF4253745CAD_RRSP",
+          "total_value": 1161.22,
+          "currency": "CAD",
+          "holdings_count": 3
+        }
+      ]
+    },
+    {
+      "date": "2024-11-30",
+      "total_net_worth": 7559.08,
+      "accounts": [
+        {
+          "institution": "wealthsimple",
+          "account_type": "TFSA",
+          "account_id": "H947126K9CAD_TFSA",
+          "total_value": 6339.51,
+          "currency": "CAD",
+          "holdings_count": 8
+        },
+        {
+          "institution": "wealthsimple",
+          "account_type": "RRSP",
+          "account_id": "HF4253745CAD_RRSP",
+          "total_value": 1219.57,
+          "currency": "CAD",
+          "holdings_count": 3
+        }
+      ]
+    },
+    {
+      "date": "2024-12-31",
+      "total_net_worth": 7176.02,
+      "accounts": [
+        {
+          "institution": "wealthsimple",
+          "account_type": "TFSA",
+          "account_id": "H947126K9CAD_TFSA",
+          "total_value": 5975.51,
+          "currency": "CAD",
+          "holdings_count": 8
+        },
+        {
+          "institution": "wealthsimple",
+          "account_type": "RRSP",
+          "account_id": "HF4253745CAD_RRSP",
+          "total_value": 1200.51,
+          "currency": "CAD",
+          "holdings_count": 3
+        }
+      ]
+    },
+    {
+      "date": "2025-01-31",
+      "total_net_worth": 7225.0,
+      "accounts": [
+        {
+          "institution": "wealthsimple",
+          "account_type": "TFSA",
+          "account_id": "H947126K9CAD_TFSA",
+          "total_value": 5987.46,
+          "currency": "CAD",
+          "holdings_count": 8
+        },
+        {
+          "institution": "wealthsimple",
+          "account_type": "RRSP",
+          "account_id": "HF4253745CAD_RRSP",
+          "total_value": 1237.54,
+          "currency": "CAD",
+          "holdings_count": 3
+        }
+      ]
+    },
+    {
+      "date": "2025-02-28",
+      "total_net_worth": 7082.530000000001,
+      "accounts": [
+        {
+          "institution": "wealthsimple",
+          "account_type": "TFSA",
+          "account_id": "H947126K9CAD_TFSA",
+          "total_value": 5853.38,
+          "currency": "CAD",
+          "holdings_count": 8
+        },
+        {
+          "institution": "wealthsimple",
+          "account_type": "RRSP",
+          "account_id": "HF4253745CAD_RRSP",
+          "total_value": 1229.15,
+          "currency": "CAD",
+          "holdings_count": 3
+        }
+      ]
+    },
+    {
+      "date": "2025-03-31",
+      "total_net_worth": 7041.96,
+      "accounts": [
+        {
+          "institution": "wealthsimple",
+          "account_type": "TFSA",
+          "account_id": "H947126K9CAD_TFSA",
+          "total_value": 5854.28,
+          "currency": "CAD",
+          "holdings_count": 8
+        },
+        {
+          "institution": "wealthsimple",
+          "account_type": "RRSP",
+          "account_id": "HF4253745CAD_RRSP",
+          "total_value": 1187.68,
+          "currency": "CAD",
+          "holdings_count": 3
+        }
+      ]
+    },
+    {
+      "date": "2025-04-30",
+      "total_net_worth": 6982.24,
+      "accounts": [
+        {
+          "institution": "wealthsimple",
+          "account_type": "TFSA",
+          "account_id": "H947126K9CAD_TFSA",
+          "total_value": 5821.72,
+          "currency": "CAD",
+          "holdings_count": 8
+        },
+        {
+          "institution": "wealthsimple",
+          "account_type": "RRSP",
+          "account_id": "HF4253745CAD_RRSP",
+          "total_value": 1160.52,
+          "currency": "CAD",
+          "holdings_count": 3
+        }
+      ]
+    },
+    {
+      "date": "2025-05-31",
+      "total_net_worth": 7391.48,
+      "accounts": [
+        {
+          "institution": "wealthsimple",
+          "account_type": "TFSA",
+          "account_id": "H947126K9CAD_TFSA",
+          "total_value": 6178.99,
+          "currency": "CAD",
+          "holdings_count": 8
+        },
+        {
+          "institution": "wealthsimple",
+          "account_type": "RRSP",
+          "account_id": "HF4253745CAD_RRSP",
+          "total_value": 1212.49,
+          "currency": "CAD",
+          "holdings_count": 3
+        }
+      ]
+    },
+    {
+      "date": "2025-06-30",
+      "total_net_worth": 19423.95,
+      "accounts": [
+        {
+          "institution": "manulife",
+          "account_type": "RPP",
+          "account_id": "manulife_RPP",
+          "total_value": 9689.79,
+          "currency": "CAD",
+          "holdings_count": 0
+        },
+        {
+          "institution": "manulife",
+          "account_type": "RRSP",
+          "account_id": "manulife_RRSP",
+          "total_value": 2008.88,
+          "currency": "CAD",
+          "holdings_count": 1
+        },
+        {
+          "institution": "wealthsimple",
+          "account_type": "TFSA",
+          "account_id": "H947126K9CAD_TFSA",
+          "total_value": 6482.26,
+          "currency": "CAD",
+          "holdings_count": 8
+        },
+        {
+          "institution": "wealthsimple",
+          "account_type": "RRSP",
+          "account_id": "HF4253745CAD_RRSP",
+          "total_value": 1243.02,
+          "currency": "CAD",
+          "holdings_count": 3
+        }
+      ]
+    },
+    {
+      "date": "2025-07-31",
+      "total_net_worth": 7934.18,
+      "accounts": [
+        {
+          "institution": "wealthsimple",
+          "account_type": "TFSA",
+          "account_id": "H947126K9CAD_TFSA",
+          "total_value": 6658.05,
+          "currency": "CAD",
+          "holdings_count": 8
+        },
+        {
+          "institution": "wealthsimple",
+          "account_type": "RRSP",
+          "account_id": "HF4253745CAD_RRSP",
+          "total_value": 1276.13,
+          "currency": "CAD",
+          "holdings_count": 3
+        }
+      ]
+    },
+    {
+      "date": "2025-08-31",
+      "total_net_worth": 11810.730000000001,
+      "accounts": [
+        {
+          "institution": "wealthsimple",
+          "account_type": "TFSA",
+          "account_id": "H947126K9CAD_TFSA",
+          "total_value": 10508.37,
+          "currency": "CAD",
+          "holdings_count": 8
+        },
+        {
+          "institution": "wealthsimple",
+          "account_type": "RRSP",
+          "account_id": "HF4253745CAD_RRSP",
+          "total_value": 1302.36,
+          "currency": "CAD",
+          "holdings_count": 3
+        }
+      ]
+    },
+    {
+      "date": "2025-09-30",
+      "total_net_worth": 26519.050000000003,
+      "accounts": [
+        {
+          "institution": "manulife",
+          "account_type": "RPP",
+          "account_id": "manulife_RPP",
+          "total_value": 11859.01,
+          "currency": "CAD",
+          "holdings_count": 0
+        },
+        {
+          "institution": "manulife",
+          "account_type": "RRSP",
+          "account_id": "manulife_RRSP",
+          "total_value": 2211.39,
+          "currency": "CAD",
+          "holdings_count": 1
+        },
+        {
+          "institution": "wealthsimple",
+          "account_type": "TFSA",
+          "account_id": "H947126K9CAD_TFSA",
+          "total_value": 11097.75,
+          "currency": "CAD",
+          "holdings_count": 9
+        },
+        {
+          "institution": "wealthsimple",
+          "account_type": "RRSP",
+          "account_id": "HF4253745CAD_RRSP",
+          "total_value": 1350.9,
+          "currency": "CAD",
+          "holdings_count": 3
+        }
+      ]
+    },
+    {
+      "date": "2025-10-31",
+      "total_net_worth": 16205.43,
+      "accounts": [
+        {
+          "institution": "wealthsimple",
+          "account_type": "TFSA",
+          "account_id": "H947126K9CAD_TFSA",
+          "total_value": 14330.26,
+          "currency": "CAD",
+          "holdings_count": 12
+        },
+        {
+          "institution": "wealthsimple",
+          "account_type": "RRSP",
+          "account_id": "HF4253745CAD_RRSP",
+          "total_value": 1875.17,
+          "currency": "CAD",
+          "holdings_count": 4
+        }
+      ]
+    },
+    {
+      "date": "2025-11-30",
+      "total_net_worth": 19125.32,
+      "accounts": [
+        {
+          "institution": "wealthsimple",
+          "account_type": "TFSA",
+          "account_id": "H947126K9CAD_TFSA",
+          "total_value": 16718.83,
+          "currency": "CAD",
+          "holdings_count": 12
+        },
+        {
+          "institution": "wealthsimple",
+          "account_type": "RRSP",
+          "account_id": "HF4253745CAD_RRSP",
+          "total_value": 2406.49,
+          "currency": "CAD",
+          "holdings_count": 4
+        }
+      ]
+    },
+    {
+      "date": "2025-12-31",
+      "total_net_worth": 45080.899999999994,
+      "accounts": [
+        {
+          "institution": "manulife",
+          "account_type": "RPP",
+          "account_id": "manulife_RPP",
+          "total_value": 13550.02,
+          "currency": "CAD",
+          "holdings_count": 1
+        },
+        {
+          "institution": "manulife",
+          "account_type": "RRSP",
+          "account_id": "manulife_RRSP",
+          "total_value": 2275.57,
+          "currency": "CAD",
+          "holdings_count": 1
+        },
+        {
+          "institution": "wealthsimple",
+          "account_type": "TFSA",
+          "account_id": "H947126K9CAD_TFSA",
+          "total_value": 16975.44,
+          "currency": "CAD",
+          "holdings_count": 13
+        },
+        {
+          "institution": "wealthsimple",
+          "account_type": "RRSP",
+          "account_id": "HF4253745CAD_RRSP",
+          "total_value": 2393.64,
+          "currency": "CAD",
+          "holdings_count": 5
+        },
+        {
+          "institution": "wealthsimple",
+          "account_type": "TFSA",
+          "account_id": "WZ0969XK4CAD_TFSA_PORTFOLIO",
+          "total_value": 9886.23,
+          "currency": "CAD",
+          "holdings_count": 5
+        }
+      ]
+    },
+    {
+      "date": "2026-01-31",
+      "total_net_worth": 31845.989999999998,
+      "accounts": [
+        {
+          "institution": "wealthsimple",
+          "account_type": "TFSA",
+          "account_id": "H947126K9CAD_TFSA",
+          "total_value": 17390.89,
+          "currency": "CAD",
+          "holdings_count": 13
+        },
+        {
+          "institution": "wealthsimple",
+          "account_type": "RRSP",
+          "account_id": "HF4253745CAD_RRSP",
+          "total_value": 4436.3,
+          "currency": "CAD",
+          "holdings_count": 7
+        },
+        {
+          "institution": "wealthsimple",
+          "account_type": "TFSA",
+          "account_id": "WZ0969XK4CAD_TFSA_PORTFOLIO",
+          "total_value": 10018.8,
+          "currency": "CAD",
+          "holdings_count": 5
+        }
+      ]
+    },
+    {
+      "date": "2026-02-28",
+      "total_net_worth": 32629.33,
+      "accounts": [
+        {
+          "institution": "wealthsimple",
+          "account_type": "TFSA",
+          "account_id": "H947126K9CAD_TFSA",
+          "total_value": 17668.84,
+          "currency": "CAD",
+          "holdings_count": 13
+        },
+        {
+          "institution": "wealthsimple",
+          "account_type": "RRSP",
+          "account_id": "HF4253745CAD_RRSP",
+          "total_value": 4571.55,
+          "currency": "CAD",
+          "holdings_count": 7
+        },
+        {
+          "institution": "wealthsimple",
+          "account_type": "TFSA",
+          "account_id": "WZ0969XK4CAD_TFSA_PORTFOLIO",
+          "total_value": 10388.94,
+          "currency": "CAD",
+          "holdings_count": 5
+        }
+      ]
+    }
+  ],
+  "last_updated": "2026-03-30T22:22:03.918723"
+}

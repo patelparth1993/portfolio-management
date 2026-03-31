@@ -1,0 +1,55 @@
+{
+  "institution": "wealthsimple",
+  "file": "December_2025.pdf",
+  "file_hash": "1e5ebd962381a862d3dbfc873a97a6c2",
+  "parsed_at": "2026-03-30T20:24:48.066669",
+  "statement_date": "2025-12-31",
+  "account_type": "TFSA",
+  "total_value": 9886.23,
+  "cash_balance": 23.54,
+  "currency": "CAD",
+  "holdings": [
+    {
+      "symbol": "QCN",
+      "name": "Mackenzie Canadian Equity Index ETF",
+      "quantity": 13.78,
+      "price": 193.5,
+      "market_value": 2666.43,
+      "book_value": 2693.25
+    },
+    {
+      "symbol": "IEFA",
+      "name": "iShares Core MSCI EAFE ETF",
+      "quantity": 14.5377,
+      "price": 89.46,
+      "market_value": 1782.52,
+      "book_value": 1795.5
+    },
+    {
+      "symbol": "EEMV",
+      "name": "iShares Inc. - MSCI Emerging Markets Min",
+      "quantity": 6.7564,
+      "price": 64.04,
+      "market_value": 593.03,
+      "book_value": 598.5
+    },
+    {
+      "symbol": "ACWV",
+      "name": "iShares Inc. - MSCI Global Min Vol",
+      "quantity": 7.8686,
+      "price": 118.75,
+      "market_value": 1280.68,
+      "book_value": 1296.75
+    },
+    {
+      "symbol": "VOO",
+      "name": "Vanguard S&P 500 ETF",
+      "quantity": 4.1185,
+      "price": 627.13,
+      "market_value": 3540.03,
+      "book_value": 3590.92
+    }
+  ],
+  "raw_text_snippet": "1/5\nORDER EXECUTION ONLY ACCOUNT\nAll figures in $CAD unless otherwise specified\nAccount No. Owner Statement Period\nWZ0969XK4CAD Parth Patel 2025-12-01 - 2025-12-31\n201 - 80 Spadina Avenue\nToronto, ON, M5V 2J4\nPhone: (416) 595-7200 Fax: (647) 245-1002\nSelf-directed TFSA Account\nMarket Value % of Market Book Cost % of Total Book\n($CAD) Value ($CAD) Cost\nParth Patel Cash $23.54 0.23 $23.54 0.23\n60 Pauline Cres\nCanadian Equities and $2,666.43 26.97 $2,693.25 26.93\nBRAMPTON ON L7A2V6\nAlternatives\nCA\n",
+  "account_id": "WZ0969XK4CAD_TFSA_PORTFOLIO"
+}

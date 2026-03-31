@@ -13,52 +13,57 @@
     .header h1 { font-size: 1.75rem; font-weight: 700; }
     .header p { opacity: 0.85; margin-top: 0.25rem; font-size: 0.9rem; }
 
-    .summary-bar { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; padding: 1.5rem 2rem; background: white; border-bottom: 1px solid #e2e8f0; }
-    .summary-card { text-align: center; }
-    .summary-card .value { font-size: 1.75rem; font-weight: 700; color: #4f46e5; }
-    .summary-card .label { font-size: 0.8rem; color: #64748b; text-transform: uppercase; letter-spacing: 0.05em; margin-top: 0.2rem; }
-    .summary-card .change { font-size: 0.85rem; margin-top: 0.2rem; }
-    .change.pos { color: #10b981; } .change.neg { color: #ef4444; } .change.neutral { color: #64748b; }
+    .summary-bar { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; padding: 1.25rem 2rem; background: white; border-bottom: 1px solid #e2e8f0; }
+    .summary-card { text-align: center; padding: 0.5rem; }
+    .summary-card .value { font-size: 1.6rem; font-weight: 700; color: #4f46e5; }
+    .summary-card .label { font-size: 0.75rem; color: #64748b; text-transform: uppercase; letter-spacing: 0.05em; margin-top: 0.25rem; }
 
     .main { max-width: 1400px; margin: 0 auto; padding: 2rem; }
-    .section-title { font-size: 1.1rem; font-weight: 600; color: #1e293b; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid #e2e8f0; }
+    .section-title { font-size: 1rem; font-weight: 600; color: #475569; margin-bottom: 1rem; padding-bottom: 0.4rem; border-bottom: 2px solid #e2e8f0; text-transform: uppercase; letter-spacing: 0.05em; }
 
     .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 1.5rem; margin-bottom: 2rem; }
-    .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-bottom: 2rem; }
+    .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-bottom: 2rem; }
     .grid-1 { margin-bottom: 2rem; }
 
-    .card { background: white; border-radius: 12px; padding: 1.5rem; box-shadow: 0 1px 3px rgba(0,0,0,0.07); }
-    .chart-container { width: 100%; min-height: 350px; }
+    .card { background: white; border-radius: 12px; padding: 1.25rem 1.5rem; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+    .card-label { font-size: 0.8rem; font-weight: 600; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.75rem; }
+    .chart-container { width: 100%; min-height: 320px; }
+    .chart-sm { min-height: 200px; }
+
+    /* Cost basis table */
+    .cb-table { width: 100%; border-collapse: collapse; font-size: 0.875rem; }
+    .cb-table th { text-align: left; padding: 0.5rem 0.75rem; color: #94a3b8; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 1px solid #e2e8f0; }
+    .cb-table td { padding: 0.6rem 0.75rem; border-bottom: 1px solid #f1f5f9; }
+    .cb-table tr:last-child td { border-bottom: none; font-weight: 700; background: #f8fafc; }
+    .gain-pos { color: #10b981; font-weight: 600; }
+    .gain-neg { color: #ef4444; font-weight: 600; }
+    .gain-na  { color: #94a3b8; }
+    .cb-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; align-items: start; }
+    @media (max-width: 800px) { .cb-layout { grid-template-columns: 1fr; } }
+
+    .projection-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 1rem; margin-top: 1.25rem; }
+    .proj-stat { background: #f8fafc; border-radius: 8px; padding: 0.875rem; text-align: center; }
+    .proj-stat .val { font-size: 1.2rem; font-weight: 700; color: #4f46e5; }
+    .proj-stat .lbl { font-size: 0.72rem; color: #64748b; margin-top: 0.2rem; line-height: 1.4; }
+    .proj-stat .sub { font-size: 0.7rem; color: #94a3b8; margin-top: 0.1rem; }
+
+    .acct-rates { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.75rem; }
+    .rate-badge { background: #f1f5f9; border-radius: 6px; padding: 0.3rem 0.6rem; font-size: 0.75rem; color: #475569; }
+    .rate-badge span { font-weight: 700; color: #4f46e5; }
 
     .suggestions { display: flex; flex-direction: column; gap: 0.75rem; }
-    .suggestion { display: flex; gap: 1rem; padding: 1rem; border-radius: 8px; align-items: flex-start; }
+    .suggestion { display: flex; gap: 1rem; padding: 0.875rem 1rem; border-radius: 8px; align-items: flex-start; }
     .suggestion.high { background: #fef2f2; border-left: 4px solid #ef4444; }
     .suggestion.medium { background: #fffbeb; border-left: 4px solid #f59e0b; }
     .suggestion.info { background: #f0fdf4; border-left: 4px solid #10b981; }
-    .suggestion .badge { font-size: 0.7rem; font-weight: 700; padding: 2px 8px; border-radius: 99px; white-space: nowrap; }
+    .suggestion .badge { font-size: 0.65rem; font-weight: 700; padding: 2px 7px; border-radius: 99px; white-space: nowrap; }
     .suggestion.high .badge { background: #ef4444; color: white; }
     .suggestion.medium .badge { background: #f59e0b; color: white; }
     .suggestion.info .badge { background: #10b981; color: white; }
-    .suggestion .text { font-size: 0.9rem; line-height: 1.5; }
-    .suggestion .account-tag { font-size: 0.75rem; font-weight: 600; color: #4f46e5; margin-bottom: 0.2rem; }
+    .suggestion .text { font-size: 0.875rem; line-height: 1.5; }
+    .suggestion .account-tag { font-size: 0.72rem; font-weight: 600; color: #4f46e5; margin-bottom: 0.15rem; }
 
-    .contrib-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; }
-    .contrib-card { background: #f8fafc; border-radius: 8px; padding: 1rem; }
-    .contrib-card h4 { font-size: 0.85rem; font-weight: 600; color: #475569; margin-bottom: 0.75rem; }
-    .contrib-row { display: flex; justify-content: space-between; font-size: 0.85rem; padding: 0.2rem 0; }
-    .contrib-row .key { color: #64748b; }
-    .contrib-row .val { font-weight: 600; color: #1e293b; }
-    .progress-bar { background: #e2e8f0; border-radius: 99px; height: 8px; margin-top: 0.5rem; overflow: hidden; }
-    .progress-fill { height: 100%; border-radius: 99px; background: #4f46e5; transition: width 0.5s; }
-
-    .projection-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; margin-top: 1rem; }
-    .proj-stat { background: #f8fafc; border-radius: 8px; padding: 1rem; text-align: center; }
-    .proj-stat .val { font-size: 1.3rem; font-weight: 700; color: #4f46e5; }
-    .proj-stat .lbl { font-size: 0.75rem; color: #64748b; margin-top: 0.2rem; }
-    .on-track-yes { color: #10b981 !important; }
-    .on-track-no { color: #ef4444 !important; }
-
-    footer { text-align: center; padding: 2rem; color: #94a3b8; font-size: 0.8rem; }
+    footer { text-align: center; padding: 2rem; color: #94a3b8; font-size: 0.78rem; }
 
     @media (max-width: 600px) {
       .summary-bar { padding: 1rem; }
@@ -78,7 +83,7 @@
 <div class="summary-bar">
   <div class="summary-card">
     <div class="value">${{ "{:,.0f}".format(current_total) }}</div>
-    <div class="label">Total Net Worth</div>
+    <div class="label">Total Portfolio</div>
   </div>
   {% set proj = analysis.projection %}
   <div class="summary-card">
@@ -90,10 +95,18 @@
     <div class="label">Years to Retirement</div>
   </div>
   <div class="summary-card">
-    <div class="value {% if proj.on_track %}on-track-yes{% elif proj.on_track == false %}on-track-no{% endif %}">
-      {% if proj.on_track %}On Track{% elif proj.on_track == false %}Review Needed{% else %}Set Goals{% endif %}
-    </div>
-    <div class="label">Retirement Status</div>
+    <div class="value">{{ "{:.1f}".format(proj.average_growth_rate * 100) }}%</div>
+    <div class="label">Blended Growth Rate</div>
+  </div>
+  {% set tfsa = analysis.contribution_room.tfsa %}
+  <div class="summary-card">
+    <div class="value">${{ "{:,.0f}".format(tfsa.remaining_this_year or 0) }}</div>
+    <div class="label">TFSA Room Remaining</div>
+  </div>
+  <div class="summary-card">
+    {% set rrsp = analysis.contribution_room.rrsp %}
+    <div class="value">${{ "{:,.0f}".format(rrsp.remaining_this_year or 0) }}</div>
+    <div class="label">RRSP Room Remaining</div>
   </div>
 </div>
 
@@ -102,10 +115,56 @@
   <!-- Net Worth Over Time -->
   <div class="grid-1">
     <div class="card">
-      <div class="section-title">Net Worth Over Time</div>
+      <div class="card-label">Net Worth Over Time</div>
       <div class="chart-container" id="chart-net-worth"></div>
     </div>
   </div>
+
+  <!-- Deposits vs Current Value -->
+  {% set cb = analysis.cost_basis %}
+  {% if cb %}
+  <div class="section-title">Invested vs Current Value</div>
+  <div class="card grid-1">
+    <div class="cb-layout">
+      <div>
+        <div class="chart-container chart-sm" id="chart-cost-basis"></div>
+      </div>
+      <div>
+        <table class="cb-table">
+          <thead>
+            <tr>
+              <th>Account</th>
+              <th>Invested</th>
+              <th>Current Value</th>
+              <th>Gain / Loss</th>
+              <th>As of</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for row in cb %}
+            <tr>
+              <td>{{ row.label }}</td>
+              <td>{% if row.book_value is not none %}${{ "{:,.0f}".format(row.book_value) }}{% else %}<span class="gain-na">—</span>{% endif %}</td>
+              <td>${{ "{:,.0f}".format(row.current_value) }}</td>
+              <td>
+                {% if row.gain is not none %}
+                  <span class="{{ 'gain-pos' if row.gain >= 0 else 'gain-neg' }}">
+                    {{ '+' if row.gain >= 0 else '' }}${{ "{:,.0f}".format(row.gain) }}
+                    {% if row.gain_pct is not none %}({{ "{:+.1f}".format(row.gain_pct) }}%){% endif %}
+                  </span>
+                {% else %}
+                  <span class="gain-na">—</span>
+                {% endif %}
+              </td>
+              <td style="color:#94a3b8;font-size:0.8rem;">{{ row.as_of or "—" }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  {% endif %}
 
   <!-- Asset Allocation -->
   <div class="section-title">Asset Allocation</div>
@@ -125,83 +184,50 @@
   <div class="section-title">Contribution Room</div>
   <div class="grid-2">
     <div class="card">
-      <div class="chart-container" id="chart-contrib"></div>
+      <div class="chart-container chart-sm" id="chart-contrib-current"></div>
     </div>
     <div class="card">
-      <div class="contrib-grid">
-
-        {% set tfsa = analysis.contribution_room.tfsa %}
-        {% if tfsa and not tfsa.error %}
-        <div class="contrib-card">
-          <h4>TFSA</h4>
-          <div class="contrib-row"><span class="key">Available Room</span><span class="val">${{ "{:,.0f}".format(tfsa.current_room_available or 0) }}</span></div>
-          <div class="contrib-row"><span class="key">Contributed YTD</span><span class="val">${{ "{:,.0f}".format(tfsa.ytd_contributions or 0) }}</span></div>
-          <div class="contrib-row"><span class="key">Remaining This Year</span><span class="val">${{ "{:,.0f}".format(tfsa.remaining_this_year or 0) }}</span></div>
-          <div class="contrib-row"><span class="key">Annual Limit ({{ tfsa.annual_limit_this_year }})</span><span class="val"></span></div>
-          {% set total = (tfsa.ytd_contributions or 0) + (tfsa.remaining_this_year or 0) %}
-          {% set pct = ((tfsa.ytd_contributions or 0) / total * 100) if total > 0 else 0 %}
-          <div class="progress-bar"><div class="progress-fill" style="width: {{ pct }}%"></div></div>
-        </div>
-        {% endif %}
-
-        {% set rrsp = analysis.contribution_room.rrsp %}
-        {% if rrsp %}
-        <div class="contrib-card">
-          <h4>RRSP</h4>
-          <div class="contrib-row"><span class="key">Available Room</span><span class="val">${{ "{:,.0f}".format(rrsp.current_room_available or 0) }}</span></div>
-          <div class="contrib-row"><span class="key">Contributed YTD</span><span class="val">${{ "{:,.0f}".format(rrsp.ytd_contributions or 0) }}</span></div>
-          <div class="contrib-row"><span class="key">Remaining This Year</span><span class="val">${{ "{:,.0f}".format(rrsp.remaining_this_year or 0) }}</span></div>
-          <div class="contrib-row"><span class="key">New Room Accruing</span><span class="val">${{ "{:,.0f}".format(rrsp.new_room_accruing_this_year or 0) }}</span></div>
-          {% set total_r = (rrsp.ytd_contributions or 0) + (rrsp.remaining_this_year or 0) %}
-          {% set pct_r = ((rrsp.ytd_contributions or 0) / total_r * 100) if total_r > 0 else 0 %}
-          <div class="progress-bar"><div class="progress-fill" style="width: {{ pct_r }}%"></div></div>
-        </div>
-        {% endif %}
-
-        {% for b in analysis.contribution_room.resp %}
-        <div class="contrib-card">
-          <h4>RESP — {{ b.name }}{% if b.age %} (age {{ b.age }}){% endif %}</h4>
-          <div class="contrib-row"><span class="key">Lifetime Contributions</span><span class="val">${{ "{:,.0f}".format(b.lifetime_contributions or 0) }}</span></div>
-          <div class="contrib-row"><span class="key">Lifetime Room Left</span><span class="val">${{ "{:,.0f}".format(b.lifetime_room_remaining or 0) }}</span></div>
-          <div class="contrib-row"><span class="key">CESG Received (lifetime)</span><span class="val">${{ "{:,.0f}".format(b.lifetime_cesg_received or 0) }}</span></div>
-          <div class="contrib-row"><span class="key">Add'l CESG Available</span><span class="val" style="color:#10b981">${{ "{:,.0f}".format(b.potential_additional_cesg_this_year or 0) }}</span></div>
-          {% set total_resp = (b.lifetime_contributions or 0) + (b.lifetime_room_remaining or 0) %}
-          {% set pct_resp = ((b.lifetime_contributions or 0) / total_resp * 100) if total_resp > 0 else 0 %}
-          <div class="progress-bar"><div class="progress-fill" style="width: {{ pct_resp }}%"></div></div>
-        </div>
-        {% endfor %}
-
-      </div>
+      <div class="chart-container chart-sm" id="chart-contrib-prior"></div>
     </div>
   </div>
 
-  <!-- Projections -->
+  <!-- Retirement Projection -->
   <div class="section-title">Retirement Projection</div>
   <div class="grid-1">
     <div class="card">
       <div class="chart-container" id="chart-projection"></div>
+
       <div class="projection-stats">
         <div class="proj-stat">
           <div class="val">${{ "{:,.0f}".format(proj.projected_value_at_retirement) }}</div>
-          <div class="lbl">Projected Portfolio at Retirement</div>
+          <div class="lbl">Portfolio at Retirement</div>
         </div>
         <div class="proj-stat">
           <div class="val">${{ "{:,.0f}".format(proj.projected_value_real) }}</div>
           <div class="lbl">In Today's Dollars</div>
         </div>
         <div class="proj-stat">
-          <div class="val">${{ "{:,.0f}".format(proj.safe_withdrawal_annual) }}</div>
-          <div class="lbl">Safe Withdrawal / Year (4% rule)</div>
+          <div class="val">{{ "{:.1f}".format(proj.average_growth_rate * 100) }}%</div>
+          <div class="lbl">Blended Historical Rate</div>
+          <div class="sub">From actual statements</div>
         </div>
         <div class="proj-stat">
           <div class="val">${{ "{:,.0f}".format(proj.annual_contribution) }}</div>
-          <div class="lbl">Annual Contributions (planned)</div>
+          <div class="lbl">Annual Contributions</div>
         </div>
         <div class="proj-stat">
-          <div class="val">{{ "{:.1f}".format(proj.growth_rate * 100) }}%</div>
-          <div class="lbl">Assumed Growth Rate</div>
+          <div class="val">${{ "{:,.0f}".format(proj.annual_withdrawal) }}</div>
+          <div class="lbl">Annual Withdrawal Plan</div>
         </div>
       </div>
+
+      {% if proj.per_account_projections %}
+      <div class="acct-rates">
+        {% for acct in proj.per_account_projections %}
+        <div class="rate-badge">{{ acct.label }}: <span>{{ "{:.1f}".format(acct.growth_rate * 100) }}%/yr</span></div>
+        {% endfor %}
+      </div>
+      {% endif %}
     </div>
   </div>
 
@@ -233,34 +259,30 @@
 
 <script>
   var charts = {
-    netWorth: {{ charts.net_worth }},
-    allocClass: {{ charts.allocation.by_asset_class }},
-    allocGeo: {{ charts.allocation.by_geography }},
-    allocAcct: {{ charts.allocation.by_account }},
-    contrib: {{ charts.contribution_room }},
-    projection: {{ charts.projection }},
+    netWorth:       {{ charts.net_worth }},
+    allocClass:     {{ charts.allocation.by_asset_class }},
+    allocGeo:       {{ charts.allocation.by_geography }},
+    allocAcct:      {{ charts.allocation.by_account }},
+    contribCurrent: {{ charts.contribution_room_current }},
+    contribPrior:   {{ charts.contribution_room_prior }},
+    projection:     {{ charts.projection }},
+    costBasis:      {{ charts.cost_basis }},
   };
 
   var cfg = {responsive: true, displayModeBar: false};
 
-  if (charts.netWorth && charts.netWorth.data) {
-    Plotly.newPlot("chart-net-worth", charts.netWorth.data, charts.netWorth.layout, cfg);
+  function plot(id, chart) {
+    if (chart && chart.data) Plotly.newPlot(id, chart.data, chart.layout, cfg);
   }
-  if (charts.allocClass && charts.allocClass.data) {
-    Plotly.newPlot("chart-alloc-class", charts.allocClass.data, charts.allocClass.layout, cfg);
-  }
-  if (charts.allocGeo && charts.allocGeo.data) {
-    Plotly.newPlot("chart-alloc-geo", charts.allocGeo.data, charts.allocGeo.layout, cfg);
-  }
-  if (charts.allocAcct && charts.allocAcct.data) {
-    Plotly.newPlot("chart-alloc-acct", charts.allocAcct.data, charts.allocAcct.layout, cfg);
-  }
-  if (charts.contrib && charts.contrib.data) {
-    Plotly.newPlot("chart-contrib", charts.contrib.data, charts.contrib.layout, cfg);
-  }
-  if (charts.projection && charts.projection.data) {
-    Plotly.newPlot("chart-projection", charts.projection.data, charts.projection.layout, cfg);
-  }
+
+  plot("chart-net-worth",      charts.netWorth);
+  plot("chart-alloc-class",    charts.allocClass);
+  plot("chart-alloc-geo",      charts.allocGeo);
+  plot("chart-alloc-acct",     charts.allocAcct);
+  plot("chart-contrib-current",charts.contribCurrent);
+  plot("chart-contrib-prior",  charts.contribPrior);
+  plot("chart-projection",     charts.projection);
+  plot("chart-cost-basis",     charts.costBasis);
 </script>
 </body>
 </html>

@@ -1,0 +1,119 @@
+{
+  "institution": "wealthsimple",
+  "file": "December_2025.pdf",
+  "file_hash": "331623866f0fe8f6d1d6d7013c3f1771",
+  "parsed_at": "2026-03-30T20:24:37.471463",
+  "statement_date": "2025-12-31",
+  "account_type": "TFSA",
+  "total_value": 16975.44,
+  "cash_balance": 573.4,
+  "currency": "CAD",
+  "holdings": [
+    {
+      "symbol": "ABX",
+      "name": "Barrick Mining Corp.",
+      "quantity": 48.3533,
+      "price": 59.79,
+      "market_value": 2891.04,
+      "book_value": 1576.81
+    },
+    {
+      "symbol": "ZWC",
+      "name": "BMO Canadian High Dividend Covered",
+      "quantity": 28.1263,
+      "price": 20.53,
+      "market_value": 577.43,
+      "book_value": 448.27
+    },
+    {
+      "symbol": "DFN",
+      "name": "Dividend 15 Split Corp",
+      "quantity": 436.8631,
+      "price": 7.47,
+      "market_value": 3263.36,
+      "book_value": 3237.37
+    },
+    {
+      "symbol": "DCBO",
+      "name": "Docebo Inc",
+      "quantity": 9.0,
+      "price": 30.49,
+      "market_value": 274.41,
+      "book_value": 466.29
+    },
+    {
+      "symbol": "DOL",
+      "name": "Dollarama Inc",
+      "quantity": 7.5829,
+      "price": 205.14,
+      "market_value": 1555.55,
+      "book_value": 1431.58
+    },
+    {
+      "symbol": "GSY",
+      "name": "GoEasy Limited",
+      "quantity": 7.3206,
+      "price": 131.29,
+      "market_value": 961.12,
+      "book_value": 999.99
+    },
+    {
+      "symbol": "XDIV",
+      "name": "iShares Core MSCI Canadian Quality",
+      "quantity": 30.0,
+      "price": 36.82,
+      "market_value": 1104.6,
+      "book_value": 1011.3
+    },
+    {
+      "symbol": "NWH.UN",
+      "name": "NorthWest Healthcare Properties REIT",
+      "quantity": 180.4345,
+      "price": 5.11,
+      "market_value": 922.02,
+      "book_value": 1441.98
+    },
+    {
+      "symbol": "NVDA",
+      "name": "Nvidia CDR (CAD Hedged)",
+      "quantity": 19.2568,
+      "price": 42.32,
+      "market_value": 814.94,
+      "book_value": 871.89
+    },
+    {
+      "symbol": "SIA",
+      "name": "Sienna Senior Living Inc.",
+      "quantity": 3.2733,
+      "price": 20.43,
+      "market_value": 66.87,
+      "book_value": 46.95
+    },
+    {
+      "symbol": "SJ",
+      "name": "Stella-Jones Inc.",
+      "quantity": 7.097,
+      "price": 85.13,
+      "market_value": 604.16,
+      "book_value": 559.32
+    },
+    {
+      "symbol": "VFV",
+      "name": "Vanguard S&P 500 Index ETF",
+      "quantity": 13.0415,
+      "price": 166.62,
+      "market_value": 2172.97,
+      "book_value": 1955.47
+    },
+    {
+      "symbol": "HUM",
+      "name": "Humana Inc.",
+      "quantity": 3.4,
+      "price": 256.13,
+      "market_value": 1193.57,
+      "book_value": 1382.26
+    }
+  ],
+  "raw_text_snippet": "1/6\nORDER EXECUTION ONLY ACCOUNT\nAll figures in $CAD unless otherwise specified\nAccount No. Owner Statement Period\nH947126K9CAD Parth Patel 2025-12-01 - 2025-12-31\n201 - 80 Spadina Avenue\nToronto, ON, M5V 2J4\nPhone: (416) 595-7200 Fax: (647) 245-1002\nSelf-directed TFSA Account\nMarket Value % of Market Book Cost % of Total Book\n($CAD) Value ($CAD) Cost\nParth Patel Cash $573.40 3.37 $573.40 3.58\n60 Pauline Cres\nCanadian Equities and $15,208.47 89.59 $14,047.22 87.77\nBRAMPTON ON L7A2V6\nAlternatives",
+  "account_id": "H947126K9CAD_TFSA"
+}

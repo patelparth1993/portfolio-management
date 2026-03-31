@@ -53,3 +53,20 @@ retirement:
   oas_estimate_monthly: 727             # OAS starts at 65 — won't apply at age-55 retirement
 
 risk_tolerance: moderate-growth         # Between balanced (7%) and growth (9%) → 8%
+
+# Total deposits override — used in "Invested vs Current Value" table.
+# Keys must match account_id exactly. Hard overrides Gemini-parsed period_deposits sum.
+# WealthSimple accounts are auto-calculated from statement history — do not add them here.
+# Update Manulife each quarter once new statements are parsed (Gemini will extract "money that went in").
+cost_basis_overrides:
+  manulife_RPP: 10800   # Total contributions (member + employer match) to date
+  manulife_RRSP: 1800   # Total contributions deposited to Manulife group RRSP to date
+
+# Prior year contribution room — used for "last year" chart on dashboard
+# Sources: CRA TFSA room calculation (line 1-6 per CRA MyAccount)
+prior_year_contributions:
+  year: 2025
+  tfsa_room_start: 33562.89            # CRA Jan 1, 2025 TFSA room (line 1)
+  tfsa: 10000.00                       # Total TFSA contributions in 2025 (CRA line 2)
+  rrsp_room_start: 43308.00            # RRSP deduction limit at start of 2025 (from NOA 2024)
+  rrsp: 2230.00                        # Manulife group RRSP contributions in 2025 (estimated)

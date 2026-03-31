@@ -1,0 +1,22 @@
+{
+  "institution": "manulife",
+  "file": "Quarterly statement - Sep 2025.pdf",
+  "file_hash": "9a4182ad6ef519fd17090ad77fc98af0",
+  "parsed_at": "2026-03-30T20:24:36.157029",
+  "statement_date": "2025-09-30",
+  "account_type": "RRSP",
+  "total_value": 2211.39,
+  "cash_balance": null,
+  "currency": "CAD",
+  "holdings": [
+    {
+      "symbol": "2760MLRetDateIndxPlus2060o6",
+      "name": "2760MLRetDateIndxPlus2060o6",
+      "quantity": 112.55302,
+      "price": 19.648,
+      "market_value": 2211.39
+    }
+  ],
+  "raw_text_snippet": "Progress report:\nPARTHPATEL\nLooking ahead\n60PAULINECRES\nto your retirement\nBRAMPTONON L7A2V6\nJuly1,2025toSeptember30,2025\nDELOITTE LLP.\nPARTH PATEL Yourcustomernumber\n102853039\nThecurrentvalueofyourManulifeplansshowninthisreportis\nPlansyouareamemberof\n$14,070.40. Ifyoucontinuemakingyouraveragemonthl",
+  "account_id": "manulife_RRSP"
+}
