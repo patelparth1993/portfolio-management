@@ -106,6 +106,31 @@
     .rate-badge { background: #f1f5f9; border-radius: 6px; padding: 0.3rem 0.65rem; font-size: 0.72rem; color: #475569; border: 1px solid #e2e8f0; }
     .rate-badge span { font-weight: 700; color: #4f46e5; }
 
+    /* ── Chart controls (pills + reset) ── */
+    .chart-wrap { position: relative; }
+    .zoom-reset {
+      position: absolute; top: 0.5rem; right: 0.5rem;
+      background: white; border: 1px solid #e2e8f0; border-radius: 6px;
+      padding: 0.3rem 0.65rem; font-size: 0.72rem; font-weight: 600;
+      color: #475569; cursor: pointer; display: none; z-index: 10;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    }
+    .zoom-reset:active { background: #f1f5f9; }
+    .trace-pills {
+      display: flex; flex-wrap: wrap; gap: 0.4rem;
+      padding: 0.625rem 0 0.25rem;
+    }
+    .trace-pill {
+      padding: 0.35rem 0.75rem; border-radius: 99px; font-size: 0.75rem;
+      font-weight: 600; cursor: pointer; border: 1.5px solid transparent;
+      background: #f1f5f9; color: #64748b;
+      transition: background 0.15s, color 0.15s;
+      -webkit-tap-highlight-color: transparent;
+      min-height: 36px; display: flex; align-items: center;
+    }
+    .trace-pill.active { background: #4f46e5; color: white; border-color: #4f46e5; }
+    .trace-pill.dimmed { opacity: 0.4; }
+
     /* ── Suggestions ── */
     .suggestions { display: flex; flex-direction: column; gap: 0.625rem; }
     .suggestion { display: flex; gap: 0.875rem; padding: 0.875rem 1rem; border-radius: 10px; align-items: flex-start; }
@@ -226,7 +251,11 @@
   <div class="section" id="s-networth">
     <div class="section-title">Net Worth Over Time</div>
     <div class="card grid-1">
-      <div class="chart-container" id="chart-net-worth"></div>
+      <div class="chart-wrap">
+        <div class="chart-container" id="chart-net-worth"></div>
+        <button class="zoom-reset" id="reset-net-worth">↺ Reset</button>
+      </div>
+      <div class="trace-pills" id="pills-net-worth"></div>
     </div>
   </div>
 
@@ -301,7 +330,11 @@
   <div class="section" id="s-projection">
     <div class="section-title">Retirement Projection</div>
     <div class="card">
-      <div class="chart-container" id="chart-projection"></div>
+      <div class="chart-wrap">
+        <div class="chart-container" id="chart-projection"></div>
+        <button class="zoom-reset" id="reset-projection">↺ Reset</button>
+      </div>
+      <div class="trace-pills" id="pills-projection"></div>
       <div class="proj-stats">
         <div class="proj-stat">
           <div class="val">${{ "{:,.0f}".format(proj.projected_value_at_retirement) }}</div>
@@ -372,12 +405,11 @@
     costBasis:      {{ charts.cost_basis }},
   };
 
-  // Disable legend clicks (prevent accidental trace hide/show on mobile tap)
-  // Disable double-click zoom reset (jarring on mobile)
   var cfg = {
     responsive: true,
     displayModeBar: false,
-    doubleClick: false,
+    doubleClick: 'reset',   // double-tap resets zoom
+    scrollZoom: false,
   };
 
   function plot(id, chart) {
@@ -391,6 +423,72 @@
     Plotly.newPlot(id, chart.data, layout, cfg);
   }
 
+  // ── Zoom reset button ──────────────────────────────────────────────────────
+  function attachResetButton(chartId, btnId) {
+    var el  = document.getElementById(chartId);
+    var btn = document.getElementById(btnId);
+    if (!el || !btn) return;
+    el.on('plotly_relayout', function(e) {
+      var zoomed = ('xaxis.range[0]' in e) || ('xaxis.range' in e);
+      btn.style.display = zoomed ? 'block' : 'none';
+    });
+    btn.addEventListener('click', function() {
+      Plotly.relayout(el, {'xaxis.autorange': true, 'yaxis.autorange': true});
+      btn.style.display = 'none';
+    });
+  }
+
+  // ── Trace filter pills ─────────────────────────────────────────────────────
+  // Renders tappable pills to isolate individual traces on a line chart.
+  // "All" pill shows everything; individual pills toggle solo view.
+  function buildPills(chartId, pillsContainerId) {
+    var el        = document.getElementById(chartId);
+    var container = document.getElementById(pillsContainerId);
+    if (!el || !container || !el.data || el.data.length < 2) return;
+
+    var traces = el.data;
+    var soloIdx = null;  // null = all visible
+
+    function render() {
+      container.innerHTML = '';
+
+      // "All" pill
+      var allPill = document.createElement('button');
+      allPill.className = 'trace-pill' + (soloIdx === null ? ' active' : '');
+      allPill.textContent = 'All';
+      allPill.addEventListener('click', function() {
+        soloIdx = null;
+        var vis = traces.map(function() { return true; });
+        Plotly.restyle(el, {visible: vis});
+        render();
+      });
+      container.appendChild(allPill);
+
+      // One pill per trace
+      traces.forEach(function(trace, i) {
+        var pill = document.createElement('button');
+        var isActive = soloIdx === i;
+        pill.className = 'trace-pill' + (isActive ? ' active' : (soloIdx !== null ? ' dimmed' : ''));
+        pill.textContent = trace.name || ('Series ' + (i + 1));
+        pill.addEventListener('click', function() {
+          if (soloIdx === i) {
+            // Tap active pill → show all
+            soloIdx = null;
+            Plotly.restyle(el, {visible: traces.map(function() { return true; })});
+          } else {
+            soloIdx = i;
+            Plotly.restyle(el, {visible: traces.map(function(_, j) { return j === i ? true : 'legendonly'; })});
+          }
+          render();
+        });
+        container.appendChild(pill);
+      });
+    }
+
+    render();
+  }
+
+  // Plot all charts
   plot("chart-net-worth",       charts.netWorth);
   plot("chart-alloc-class",     charts.allocClass);
   plot("chart-alloc-geo",       charts.allocGeo);
@@ -399,6 +497,14 @@
   plot("chart-contrib-prior",   charts.contribPrior);
   plot("chart-projection",      charts.projection);
   plot("chart-cost-basis",      charts.costBasis);
+
+  // Attach reset buttons (zoomable line charts)
+  attachResetButton("chart-net-worth",  "reset-net-worth");
+  attachResetButton("chart-projection", "reset-projection");
+
+  // Attach trace pills (multi-trace line charts)
+  buildPills("chart-net-worth",  "pills-net-worth");
+  buildPills("chart-projection", "pills-projection");
 
   // Reflow on orientation change
   var chartIds = ["chart-net-worth","chart-alloc-class","chart-alloc-geo","chart-alloc-acct",
