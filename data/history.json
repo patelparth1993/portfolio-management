@@ -1043,22 +1043,6 @@
       "total_net_worth": 19423.95,
       "accounts": [
         {
-          "institution": "manulife",
-          "account_type": "RPP",
-          "account_id": "manulife_RPP",
-          "total_value": 9689.79,
-          "currency": "CAD",
-          "holdings_count": 0
-        },
-        {
-          "institution": "manulife",
-          "account_type": "RRSP",
-          "account_id": "manulife_RRSP",
-          "total_value": 2008.88,
-          "currency": "CAD",
-          "holdings_count": 1
-        },
-        {
           "institution": "wealthsimple",
           "account_type": "TFSA",
           "account_id": "H947126K9CAD_TFSA",
@@ -1073,12 +1057,28 @@
           "total_value": 1243.02,
           "currency": "CAD",
           "holdings_count": 3
+        },
+        {
+          "institution": "manulife",
+          "account_type": "RPP",
+          "account_id": "manulife_RPP",
+          "total_value": 9689.79,
+          "currency": "CAD",
+          "holdings_count": 0
+        },
+        {
+          "institution": "manulife",
+          "account_type": "RRSP",
+          "account_id": "manulife_RRSP",
+          "total_value": 2008.88,
+          "currency": "CAD",
+          "holdings_count": 1
         }
       ]
     },
     {
       "date": "2025-07-31",
-      "total_net_worth": 7934.18,
+      "total_net_worth": 19632.850000000002,
       "accounts": [
         {
           "institution": "wealthsimple",
@@ -1095,12 +1095,28 @@
           "total_value": 1276.13,
           "currency": "CAD",
           "holdings_count": 3
+        },
+        {
+          "institution": "manulife",
+          "account_type": "RPP",
+          "account_id": "manulife_RPP",
+          "total_value": 9689.79,
+          "currency": "CAD",
+          "holdings_count": 0
+        },
+        {
+          "institution": "manulife",
+          "account_type": "RRSP",
+          "account_id": "manulife_RRSP",
+          "total_value": 2008.88,
+          "currency": "CAD",
+          "holdings_count": 1
         }
       ]
     },
     {
       "date": "2025-08-31",
-      "total_net_worth": 11810.730000000001,
+      "total_net_worth": 23509.400000000005,
       "accounts": [
         {
           "institution": "wealthsimple",
@@ -1117,18 +1133,12 @@
           "total_value": 1302.36,
           "currency": "CAD",
           "holdings_count": 3
-        }
-      ]
-    },
-    {
-      "date": "2025-09-30",
-      "total_net_worth": 26519.050000000003,
-      "accounts": [
+        },
         {
           "institution": "manulife",
           "account_type": "RPP",
           "account_id": "manulife_RPP",
-          "total_value": 11859.01,
+          "total_value": 9689.79,
           "currency": "CAD",
           "holdings_count": 0
         },
@@ -1136,10 +1146,16 @@
           "institution": "manulife",
           "account_type": "RRSP",
           "account_id": "manulife_RRSP",
-          "total_value": 2211.39,
+          "total_value": 2008.88,
           "currency": "CAD",
           "holdings_count": 1
-        },
+        }
+      ]
+    },
+    {
+      "date": "2025-09-30",
+      "total_net_worth": 26519.05,
+      "accounts": [
         {
           "institution": "wealthsimple",
           "account_type": "TFSA",
@@ -1155,12 +1171,28 @@
           "total_value": 1350.9,
           "currency": "CAD",
           "holdings_count": 3
+        },
+        {
+          "institution": "manulife",
+          "account_type": "RPP",
+          "account_id": "manulife_RPP",
+          "total_value": 11859.01,
+          "currency": "CAD",
+          "holdings_count": 0
+        },
+        {
+          "institution": "manulife",
+          "account_type": "RRSP",
+          "account_id": "manulife_RRSP",
+          "total_value": 2211.39,
+          "currency": "CAD",
+          "holdings_count": 1
         }
       ]
     },
     {
       "date": "2025-10-31",
-      "total_net_worth": 16205.43,
+      "total_net_worth": 30275.83,
       "accounts": [
         {
           "institution": "wealthsimple",
@@ -1177,12 +1209,28 @@
           "total_value": 1875.17,
           "currency": "CAD",
           "holdings_count": 4
+        },
+        {
+          "institution": "manulife",
+          "account_type": "RPP",
+          "account_id": "manulife_RPP",
+          "total_value": 11859.01,
+          "currency": "CAD",
+          "holdings_count": 0
+        },
+        {
+          "institution": "manulife",
+          "account_type": "RRSP",
+          "account_id": "manulife_RRSP",
+          "total_value": 2211.39,
+          "currency": "CAD",
+          "holdings_count": 1
         }
       ]
     },
     {
       "date": "2025-11-30",
-      "total_net_worth": 19125.32,
+      "total_net_worth": 33195.72,
       "accounts": [
         {
           "institution": "wealthsimple",
@@ -1199,29 +1247,29 @@
           "total_value": 2406.49,
           "currency": "CAD",
           "holdings_count": 4
-        }
-      ]
-    },
-    {
-      "date": "2025-12-31",
-      "total_net_worth": 45080.899999999994,
-      "accounts": [
+        },
         {
           "institution": "manulife",
           "account_type": "RPP",
           "account_id": "manulife_RPP",
-          "total_value": 13550.02,
+          "total_value": 11859.01,
           "currency": "CAD",
-          "holdings_count": 1
+          "holdings_count": 0
         },
         {
           "institution": "manulife",
           "account_type": "RRSP",
           "account_id": "manulife_RRSP",
-          "total_value": 2275.57,
+          "total_value": 2211.39,
           "currency": "CAD",
           "holdings_count": 1
-        },
+        }
+      ]
+    },
+    {
+      "date": "2025-12-31",
+      "total_net_worth": 45080.9,
+      "accounts": [
         {
           "institution": "wealthsimple",
           "account_type": "TFSA",
@@ -1245,12 +1293,28 @@
           "total_value": 9886.23,
           "currency": "CAD",
           "holdings_count": 5
+        },
+        {
+          "institution": "manulife",
+          "account_type": "RPP",
+          "account_id": "manulife_RPP",
+          "total_value": 13550.02,
+          "currency": "CAD",
+          "holdings_count": 1
+        },
+        {
+          "institution": "manulife",
+          "account_type": "RRSP",
+          "account_id": "manulife_RRSP",
+          "total_value": 2275.57,
+          "currency": "CAD",
+          "holdings_count": 1
         }
       ]
     },
     {
       "date": "2026-01-31",
-      "total_net_worth": 31845.989999999998,
+      "total_net_worth": 47671.579999999994,
       "accounts": [
         {
           "institution": "wealthsimple",
@@ -1275,12 +1339,28 @@
           "total_value": 10018.8,
           "currency": "CAD",
           "holdings_count": 5
+        },
+        {
+          "institution": "manulife",
+          "account_type": "RPP",
+          "account_id": "manulife_RPP",
+          "total_value": 13550.02,
+          "currency": "CAD",
+          "holdings_count": 1
+        },
+        {
+          "institution": "manulife",
+          "account_type": "RRSP",
+          "account_id": "manulife_RRSP",
+          "total_value": 2275.57,
+          "currency": "CAD",
+          "holdings_count": 1
         }
       ]
     },
     {
       "date": "2026-02-28",
-      "total_net_worth": 32629.33,
+      "total_net_worth": 48454.920000000006,
       "accounts": [
         {
           "institution": "wealthsimple",
@@ -1305,9 +1385,25 @@
           "total_value": 10388.94,
           "currency": "CAD",
           "holdings_count": 5
+        },
+        {
+          "institution": "manulife",
+          "account_type": "RPP",
+          "account_id": "manulife_RPP",
+          "total_value": 13550.02,
+          "currency": "CAD",
+          "holdings_count": 1
+        },
+        {
+          "institution": "manulife",
+          "account_type": "RRSP",
+          "account_id": "manulife_RRSP",
+          "total_value": 2275.57,
+          "currency": "CAD",
+          "holdings_count": 1
         }
       ]
     }
   ],
-  "last_updated": "2026-04-01T10:06:13.422931"
+  "last_updated": "2026-04-01T18:18:36.226396"
 }

@@ -194,32 +194,59 @@ async def _run_gemini_batch_async(needs_gemini: list[tuple[str, Path, dict]]) ->
 
 
 def _build_snapshots(all_results: list[dict]) -> list[dict]:
-    """Aggregate all parsed results into per-date portfolio snapshots."""
-    by_date: dict[str, list] = defaultdict(list)
+    """Aggregate parsed results into per-date portfolio snapshots.
+
+    Uses carry-forward: for each snapshot date, every account contributes
+    its most recent known value (not just accounts with a statement on that
+    exact date). This prevents Manulife quarterly statements from causing
+    artificial spikes/dips in months where no Manulife statement exists.
+    """
+    # Collect per-account statement history, sorted by date
+    by_account: dict[str, list] = defaultdict(list)
     for r in all_results:
-        date = r.get("statement_date") or r.get("parsed_at", "")[:10]
-        by_date[date].append(r)
+        if r.get("record_type") == "crm2":
+            continue
+        if not r.get("total_value") or not r.get("statement_date"):
+            continue
+        key = r.get("account_id") or f"{r['institution']}_{r.get('account_type', '')}"
+        by_account[key].append(r)
+    for stmts in by_account.values():
+        stmts.sort(key=lambda r: r["statement_date"])
+
+    # All dates on which at least one account has a statement
+    all_dates = sorted({
+        r["statement_date"]
+        for stmts in by_account.values()
+        for r in stmts
+    })
 
     snapshots = []
-    for date, records in sorted(by_date.items()):
+    for snapshot_date in all_dates:
         accounts = []
         total = 0.0
-        for r in records:
-            if r.get("record_type") == "crm2":
-                continue  # CRM2 records are deposit history, not portfolio snapshots
-            val = r.get("total_value") or 0.0
+        for account_id, stmts in sorted(by_account.items()):
+            # Most recent statement on or before this snapshot date
+            latest = None
+            for s in stmts:
+                if s["statement_date"] <= snapshot_date:
+                    latest = s
+                else:
+                    break
+            if not latest:
+                continue
+            val = latest.get("total_value") or 0.0
             total += val
             accounts.append({
-                "institution": r["institution"],
-                "account_type": r["account_type"],
-                "account_id": r.get("account_id", f"{r['institution']}_{r.get('account_type', '')}"),
+                "institution": latest["institution"],
+                "account_type": latest["account_type"],
+                "account_id": account_id,
                 "total_value": val,
-                "currency": r.get("currency", "CAD"),
-                "holdings_count": len(r.get("holdings", [])),
+                "currency": latest.get("currency", "CAD"),
+                "holdings_count": len(latest.get("holdings", [])),
             })
         if accounts:
             snapshots.append({
-                "date": date,
+                "date": snapshot_date,
                 "total_net_worth": total,
                 "accounts": accounts,
             })
