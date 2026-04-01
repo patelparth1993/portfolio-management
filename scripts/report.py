@@ -322,7 +322,7 @@ def build_projection_chart(projection: dict) -> str:
             x=acct_years, y=acct_vals,
             name=f"{acct['label']} ({rate_pct}/yr)",
             mode="lines",
-            line=dict(color=color, width=2, dash="dot"),
+            line=dict(color=color, width=2),
             opacity=0.9,
             hovertemplate=f"<b>{acct['label']}</b>: $%{{y:,.0f}}<extra></extra>",
         ))

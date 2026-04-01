@@ -2,6 +2,7 @@
 Analysis engine: builds all metrics from processed statements + profile.
 """
 import json
+import os
 from datetime import date, datetime
 from pathlib import Path
 
@@ -501,55 +502,125 @@ def project_portfolio(profile: dict, config: dict, current_total: float, process
 
 # ─── Suggestions ──────────────────────────────────────────────────────────────
 
-def generate_suggestions(tfsa: dict, rrsp: dict, resp_list: list, projection: dict) -> list[dict]:
+def _rule_based_suggestions(tfsa: dict, rrsp: dict, resp_list: list, projection: dict) -> list[dict]:
+    """Fallback rule-based suggestions used when Gemini is unavailable."""
     suggestions = []
-
-    # TFSA
     if tfsa.get("remaining_this_year", 0) > 0:
         suggestions.append({
-            "priority": "high",
-            "account": "TFSA",
+            "priority": "high", "account": "TFSA",
             "message": f"You have ${tfsa['remaining_this_year']:,.0f} unused TFSA room this year. "
                        f"Unused room carries forward, but tax-free growth is lost forever.",
         })
-
-    # RRSP
     if rrsp.get("remaining_this_year", 0) > 5000:
         suggestions.append({
-            "priority": "medium",
-            "account": "RRSP",
+            "priority": "medium", "account": "RRSP",
             "message": f"${rrsp['remaining_this_year']:,.0f} in RRSP room available. "
                        f"Contributing reduces your taxable income for this year.",
         })
-
-    # RESP / CESG
     for b in resp_list:
         if b.get("potential_additional_cesg_this_year", 0) > 0 and (b.get("age") or 0) < 17:
             suggestions.append({
-                "priority": "high",
-                "account": "RESP",
-                "message": f"RESP for {b['name']}: contribute ${b['potential_additional_cesg_this_year'] / 0.20:,.0f} more "
+                "priority": "high", "account": "RESP",
+                "message": f"Contribute ${b['potential_additional_cesg_this_year'] / 0.20:,.0f} more to RESP "
                            f"to capture ${b['potential_additional_cesg_this_year']:,.0f} in CESG grants this year.",
             })
-
-    # Retirement projection
     if projection.get("on_track") is False:
         shortfall = projection["income_needed_from_portfolio"] - projection["safe_withdrawal_annual"]
         suggestions.append({
-            "priority": "high",
-            "account": "Retirement",
-            "message": f"Based on current projections, you may face a ${shortfall:,.0f}/year shortfall at retirement. "
-                       f"Consider increasing annual contributions or adjusting your target.",
+            "priority": "high", "account": "Retirement",
+            "message": f"Projected ${shortfall:,.0f}/year shortfall at retirement. "
+                       f"Consider increasing contributions or adjusting your target.",
         })
     elif projection.get("on_track") is True:
         suggestions.append({
-            "priority": "info",
-            "account": "Retirement",
-            "message": f"On track for retirement! Projected portfolio: ${projection['projected_value_at_retirement']:,.0f} "
-                       f"at age {(projection.get('years_to_retirement', 0) + 0)}.",
+            "priority": "info", "account": "Retirement",
+            "message": f"On track for retirement. Projected portfolio: "
+                       f"${projection['projected_value_at_retirement']:,.0f}.",
         })
-
     return suggestions
+
+
+def generate_suggestions(
+    tfsa: dict, rrsp: dict, resp_list: list, projection: dict,
+    cost_basis: list[dict] | None = None,
+    latest_per_account: dict | None = None,
+) -> list[dict]:
+    """
+    Generate 3 AI-powered recommendations using Gemini, focused on loss-causing
+    assets and portfolio balance. Falls back to rule-based suggestions if
+    GEMINI_API_KEY is not set or the call fails.
+    """
+    api_key = os.environ.get("GEMINI_API_KEY")
+    if not api_key:
+        return _rule_based_suggestions(tfsa, rrsp, resp_list, projection)
+
+    # Build a compact portfolio summary for Gemini
+    holdings_rows = []
+    for account_id, r in (latest_per_account or {}).items():
+        for h in r.get("holdings", []):
+            gain = round(h.get("market_value", 0) - h.get("book_value", 0), 2)
+            gain_pct = round(gain / h["book_value"] * 100, 1) if h.get("book_value") else None
+            holdings_rows.append({
+                "account": account_id,
+                "symbol": h.get("symbol", ""),
+                "name": h.get("name", ""),
+                "market_value": h.get("market_value", 0),
+                "book_value": h.get("book_value", 0),
+                "gain": gain,
+                "gain_pct": gain_pct,
+            })
+    holdings_rows.sort(key=lambda x: x["gain"])  # worst losses first
+
+    cb_summary = [
+        {"account": r["label"], "invested": r.get("book_value"), "current": r["current_value"],
+         "gain_pct": r.get("gain_pct")}
+        for r in (cost_basis or [])
+    ]
+
+    prompt = f"""You are a Canadian personal finance advisor reviewing an investment portfolio.
+
+Portfolio summary:
+- Total value: ${projection.get('current_total', 0) or sum(r['current_value'] for r in (cost_basis or [])):.0f} CAD
+- Years to retirement: {projection.get('years_to_retirement', 'unknown')}
+- Risk tolerance: moderate-growth
+- Account types: TFSA (self-managed + managed), RRSP, RPP
+
+Account performance (invested vs current):
+{json.dumps(cb_summary, indent=2)}
+
+Individual holdings (sorted worst to best gain):
+{json.dumps(holdings_rows[:20], indent=2)}
+
+TFSA room remaining: ${tfsa.get('remaining_this_year', 0):,.0f}
+RRSP room remaining: ${rrsp.get('remaining_this_year', 0):,.0f}
+
+Generate exactly 3 actionable recommendations. Focus on:
+1. Specific loss-causing holdings that should be reviewed or replaced
+2. Portfolio balance and diversification improvements
+3. One contribution room or tax efficiency tip
+
+Return ONLY a JSON array, no other text:
+[
+  {{"priority": "high|medium|info", "account": "<account name>", "message": "<concise actionable advice, 1-2 sentences>"}},
+  ...
+]"""
+
+    try:
+        from google import genai
+        client = genai.Client(api_key=api_key)
+        response = client.models.generate_content(
+            model="gemini-2.5-flash",
+            contents=prompt,
+        )
+        text = response.text.strip().removeprefix("```json").removeprefix("```").removesuffix("```").strip()
+        suggestions = json.loads(text)
+        if isinstance(suggestions, list) and suggestions:
+            print(f"  AI recommendations generated ({len(suggestions)} items)")
+            return suggestions[:3]
+    except Exception as e:
+        print(f"  Gemini recommendations failed: {e} — using rule-based fallback")
+
+    return _rule_based_suggestions(tfsa, rrsp, resp_list, projection)
 
 
 # ─── Main ─────────────────────────────────────────────────────────────────────
@@ -581,7 +652,9 @@ def run() -> dict:
     resp = resp_analysis(profile, config)
     prior_year_room = prior_year_room_analysis(profile, config)
     projection = project_portfolio(profile, config, current_total, processed)
-    suggestions = generate_suggestions(tfsa, rrsp, resp, projection)
+    suggestions = generate_suggestions(tfsa, rrsp, resp, projection,
+                                       cost_basis=cost_basis,
+                                       latest_per_account=latest_per_account)
 
     result = {
         "generated_at": datetime.now().isoformat(),

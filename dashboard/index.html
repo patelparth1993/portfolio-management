@@ -7,29 +7,90 @@
   <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #f8fafc; color: #1e293b; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #f1f5f9; color: #1e293b; -webkit-tap-highlight-color: transparent; }
 
-    .header { background: linear-gradient(135deg, #4f46e5, #7c3aed); color: white; padding: 2rem; }
-    .header h1 { font-size: 1.75rem; font-weight: 700; }
-    .header p { opacity: 0.85; margin-top: 0.25rem; font-size: 0.9rem; }
+    /* ── Header ── */
+    .header { background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%); color: white; padding: 1.75rem 2rem 1.5rem; }
+    .header h1 { font-size: 1.6rem; font-weight: 800; letter-spacing: -0.02em; }
+    .header-meta { display: flex; align-items: center; gap: 1rem; margin-top: 0.35rem; }
+    .header-meta .updated { opacity: 0.75; font-size: 0.82rem; }
+    .header-total { font-size: 2.4rem; font-weight: 800; letter-spacing: -0.03em; margin-top: 0.75rem; line-height: 1; }
+    .header-total-label { font-size: 0.78rem; opacity: 0.7; text-transform: uppercase; letter-spacing: 0.06em; margin-top: 0.2rem; }
 
-    .summary-bar { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; padding: 1.25rem 2rem; background: white; border-bottom: 1px solid #e2e8f0; }
-    .summary-card { text-align: center; padding: 0.5rem; }
-    .summary-card .value { font-size: 1.6rem; font-weight: 700; color: #4f46e5; }
-    .summary-card .label { font-size: 0.75rem; color: #64748b; text-transform: uppercase; letter-spacing: 0.05em; margin-top: 0.25rem; }
+    /* ── KPI strip ── */
+    .kpi-strip { display: flex; overflow-x: auto; gap: 0; background: white; border-bottom: 1px solid #e2e8f0; scrollbar-width: none; }
+    .kpi-strip::-webkit-scrollbar { display: none; }
+    .kpi { flex: 0 0 auto; text-align: center; padding: 0.9rem 1.25rem; border-right: 1px solid #f1f5f9; min-width: 130px; }
+    .kpi:last-child { border-right: none; }
+    .kpi .val { font-size: 1.15rem; font-weight: 700; color: #4f46e5; white-space: nowrap; }
+    .kpi .lbl { font-size: 0.68rem; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.05em; margin-top: 0.2rem; }
 
-    .main { max-width: 1400px; margin: 0 auto; padding: 2rem; }
-    .section-title { font-size: 1rem; font-weight: 600; color: #475569; margin-bottom: 1rem; padding-bottom: 0.4rem; border-bottom: 2px solid #e2e8f0; text-transform: uppercase; letter-spacing: 0.05em; }
+    /* ── Section nav (mobile bottom bar) ── */
+    .section-nav { display: none; }
+    @media (max-width: 640px) {
+      .section-nav {
+        display: flex;
+        position: fixed;
+        bottom: 0; left: 0; right: 0;
+        background: white;
+        border-top: 1px solid #e2e8f0;
+        z-index: 100;
+        padding-bottom: env(safe-area-inset-bottom);
+      }
+      .section-nav a {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 0.6rem 0.25rem 0.5rem;
+        text-decoration: none;
+        color: #94a3b8;
+        font-size: 0.6rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        gap: 0.2rem;
+        transition: color 0.15s;
+      }
+      .section-nav a.active { color: #4f46e5; }
+      .section-nav a svg { width: 20px; height: 20px; }
+      body { padding-bottom: calc(56px + env(safe-area-inset-bottom)); }
+    }
 
+<<<<<<< HEAD
     .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-bottom: 2rem; }
     .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-bottom: 2rem; }
     .grid-1 { margin-bottom: 2rem; }
+=======
+    /* ── Layout ── */
+    .main { max-width: 1400px; margin: 0 auto; padding: 1.5rem 2rem; }
+    .section { margin-bottom: 2rem; scroll-margin-top: 1rem; }
+    .section-title {
+      font-size: 0.72rem; font-weight: 700; color: #94a3b8;
+      text-transform: uppercase; letter-spacing: 0.08em;
+      margin-bottom: 0.875rem;
+      display: flex; align-items: center; gap: 0.5rem;
+    }
+    .section-title::after { content: ''; flex: 1; height: 1px; background: #e2e8f0; }
+>>>>>>> e5e1af1 (feat: AI recommendations via Gemini, solid projection lines, mobile nav)
 
-    .card { background: white; border-radius: 12px; padding: 1.25rem 1.5rem; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
-    .card-label { font-size: 0.8rem; font-weight: 600; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.75rem; }
-    .chart-container { width: 100%; min-height: 320px; }
+    .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+    .grid-1 {}
+
+    /* ── Cards ── */
+    .card {
+      background: white;
+      border-radius: 16px;
+      padding: 1.25rem 1.5rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05), 0 1px 2px rgba(0,0,0,0.04);
+      border: 1px solid #f1f5f9;
+    }
+    .card-label { font-size: 0.72rem; font-weight: 700; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.75rem; }
+    .chart-container { width: 100%; min-height: 300px; }
     .chart-sm { min-height: 200px; }
 
+<<<<<<< HEAD
     /* Cost basis table */
     .cb-table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
     .cb-table { width: 100%; border-collapse: collapse; font-size: 0.875rem; min-width: 480px; }
@@ -46,31 +107,57 @@
     .proj-stat .val { font-size: 1.2rem; font-weight: 700; color: #4f46e5; }
     .proj-stat .lbl { font-size: 0.72rem; color: #64748b; margin-top: 0.2rem; line-height: 1.4; }
     .proj-stat .sub { font-size: 0.7rem; color: #94a3b8; margin-top: 0.1rem; }
+=======
+    /* ── Cost basis ── */
+    .cb-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; align-items: start; }
+    .cb-table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .cb-table { width: 100%; border-collapse: collapse; font-size: 0.875rem; min-width: 460px; }
+    .cb-table th { text-align: left; padding: 0.5rem 0.75rem; color: #94a3b8; font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 1px solid #e2e8f0; white-space: nowrap; }
+    .cb-table td { padding: 0.65rem 0.75rem; border-bottom: 1px solid #f8fafc; vertical-align: middle; }
+    .cb-table tbody tr:last-child td { border-bottom: none; font-weight: 700; background: #f8fafc; border-radius: 0 0 8px 8px; }
+    .gain-pos { color: #10b981; font-weight: 600; }
+    .gain-neg { color: #ef4444; font-weight: 600; }
+    .gain-na  { color: #cbd5e1; }
 
-    .acct-rates { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.75rem; }
-    .rate-badge { background: #f1f5f9; border-radius: 6px; padding: 0.3rem 0.6rem; font-size: 0.75rem; color: #475569; }
+    /* ── Projection stats ── */
+    .proj-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 0.75rem; margin-top: 1.25rem; }
+    .proj-stat { background: #f8fafc; border-radius: 10px; padding: 0.875rem; text-align: center; border: 1px solid #f1f5f9; }
+    .proj-stat .val { font-size: 1.15rem; font-weight: 700; color: #4f46e5; }
+    .proj-stat .lbl { font-size: 0.68rem; color: #64748b; margin-top: 0.2rem; line-height: 1.4; }
+    .proj-stat .sub { font-size: 0.65rem; color: #94a3b8; margin-top: 0.1rem; }
+>>>>>>> e5e1af1 (feat: AI recommendations via Gemini, solid projection lines, mobile nav)
+
+    .acct-rates { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 1rem; }
+    .rate-badge { background: #f1f5f9; border-radius: 6px; padding: 0.3rem 0.65rem; font-size: 0.72rem; color: #475569; border: 1px solid #e2e8f0; }
     .rate-badge span { font-weight: 700; color: #4f46e5; }
 
-    .suggestions { display: flex; flex-direction: column; gap: 0.75rem; }
-    .suggestion { display: flex; gap: 1rem; padding: 0.875rem 1rem; border-radius: 8px; align-items: flex-start; }
-    .suggestion.high { background: #fef2f2; border-left: 4px solid #ef4444; }
-    .suggestion.medium { background: #fffbeb; border-left: 4px solid #f59e0b; }
-    .suggestion.info { background: #f0fdf4; border-left: 4px solid #10b981; }
-    .suggestion .badge { font-size: 0.65rem; font-weight: 700; padding: 2px 7px; border-radius: 99px; white-space: nowrap; }
-    .suggestion.high .badge { background: #ef4444; color: white; }
+    /* ── Suggestions ── */
+    .suggestions { display: flex; flex-direction: column; gap: 0.625rem; }
+    .suggestion { display: flex; gap: 0.875rem; padding: 0.875rem 1rem; border-radius: 10px; align-items: flex-start; }
+    .suggestion.high   { background: #fef2f2; border: 1px solid #fecaca; }
+    .suggestion.medium { background: #fffbeb; border: 1px solid #fde68a; }
+    .suggestion.info   { background: #f0fdf4; border: 1px solid #bbf7d0; }
+    .sug-icon { font-size: 1.1rem; line-height: 1.4; flex-shrink: 0; }
+    .suggestion .badge { display: inline-block; font-size: 0.6rem; font-weight: 700; padding: 2px 6px; border-radius: 99px; white-space: nowrap; margin-bottom: 0.2rem; }
+    .suggestion.high   .badge { background: #ef4444; color: white; }
     .suggestion.medium .badge { background: #f59e0b; color: white; }
-    .suggestion.info .badge { background: #10b981; color: white; }
-    .suggestion .text { font-size: 0.875rem; line-height: 1.5; }
-    .suggestion .account-tag { font-size: 0.72rem; font-weight: 600; color: #4f46e5; margin-bottom: 0.15rem; }
+    .suggestion.info   .badge { background: #10b981; color: white; }
+    .suggestion .text { font-size: 0.855rem; line-height: 1.55; color: #374151; }
+    .suggestion .account-tag { font-size: 0.68rem; font-weight: 700; color: #4f46e5; margin-bottom: 0.1rem; }
 
-    footer { text-align: center; padding: 2rem; color: #94a3b8; font-size: 0.78rem; }
+    footer { text-align: center; padding: 1.5rem; color: #cbd5e1; font-size: 0.75rem; }
 
+<<<<<<< HEAD
     /* Tablet: 2-col allocation, stacked contribution charts */
+=======
+    /* ── Tablet ── */
+>>>>>>> e5e1af1 (feat: AI recommendations via Gemini, solid projection lines, mobile nav)
     @media (max-width: 900px) {
       .grid-3 { grid-template-columns: repeat(2, 1fr); }
       .cb-layout { grid-template-columns: 1fr; }
     }
 
+<<<<<<< HEAD
     /* Mobile */
     @media (max-width: 640px) {
       .header { padding: 1rem; }
@@ -99,22 +186,64 @@
       .suggestion .text { font-size: 0.82rem; }
 
       footer { padding: 1.25rem 1rem; font-size: 0.72rem; }
+=======
+    /* ── Mobile ── */
+    @media (max-width: 640px) {
+      .header { padding: 1.25rem 1rem 1rem; }
+      .header h1 { font-size: 1.15rem; }
+      .header-total { font-size: 2rem; }
+
+      .kpi { min-width: 110px; padding: 0.75rem 1rem; }
+      .kpi .val { font-size: 1rem; }
+
+      .main { padding: 1rem 0.75rem; }
+      .section { margin-bottom: 1.5rem; }
+
+      .grid-2, .grid-3 { grid-template-columns: 1fr; gap: 0.75rem; }
+
+      .card { padding: 1rem; border-radius: 12px; }
+      .chart-container { min-height: 240px; }
+      .chart-sm { min-height: 170px; }
+
+      .proj-stats { grid-template-columns: repeat(2, 1fr); gap: 0.625rem; }
+      .proj-stat { padding: 0.75rem 0.5rem; }
+      .proj-stat .val { font-size: 1rem; }
+
+      .suggestion { padding: 0.75rem; gap: 0.625rem; }
+      .suggestion .text { font-size: 0.82rem; }
+
+      footer { padding: 1rem; }
+>>>>>>> e5e1af1 (feat: AI recommendations via Gemini, solid projection lines, mobile nav)
     }
   </style>
 </head>
 <body>
 
+<!-- Header -->
 <div class="header">
+<<<<<<< HEAD
   <h1>Portfolio Dashboard</h1>
   <p>Last updated: April 01, 2026 at 10:06 AM</p>
+=======
+  <div class="header-meta">
+    <h1>Portfolio Dashboard</h1>
+    <span class="updated">April 01, 2026 at 06:06 PM</span>
+  </div>
+  <div class="header-total">$48,455</div>
+  <div class="header-total-label">Total Portfolio Value</div>
+>>>>>>> e5e1af1 (feat: AI recommendations via Gemini, solid projection lines, mobile nav)
 </div>
 
-<!-- Summary Bar -->
-<div class="summary-bar">
-  <div class="summary-card">
-    <div class="value">$48,455</div>
-    <div class="label">Total Portfolio</div>
+<!-- KPI strip (horizontally scrollable) -->
+
+
+
+<div class="kpi-strip">
+  <div class="kpi">
+    <div class="val">$966,654</div>
+    <div class="lbl">Projected Retirement</div>
   </div>
+<<<<<<< HEAD
   
   <div class="summary-card">
     <div class="value">$966,654</div>
@@ -123,36 +252,64 @@
   <div class="summary-card">
     <div class="value">22</div>
     <div class="label">Years to Retirement</div>
+=======
+  <div class="kpi">
+    <div class="val">22 yrs</div>
+    <div class="lbl">To Retirement</div>
   </div>
-  <div class="summary-card">
-    <div class="value">9.2%</div>
-    <div class="label">Blended Growth Rate</div>
+  <div class="kpi">
+    <div class="val">9.2%</div>
+    <div class="lbl">Growth Rate</div>
+>>>>>>> e5e1af1 (feat: AI recommendations via Gemini, solid projection lines, mobile nav)
   </div>
-  
-  <div class="summary-card">
-    <div class="value">$30,563</div>
-    <div class="label">TFSA Room Remaining</div>
+  <div class="kpi">
+    <div class="val">$30,563</div>
+    <div class="lbl">TFSA Room</div>
   </div>
-  <div class="summary-card">
-    
-    <div class="value">$69,073</div>
-    <div class="label">RRSP Room Remaining</div>
+  <div class="kpi">
+    <div class="val">$69,073</div>
+    <div class="lbl">RRSP Room</div>
   </div>
 </div>
+
+<!-- Mobile section nav -->
+<nav class="section-nav" aria-label="Sections">
+  <a href="#s-networth" class="active">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+    Growth
+  </a>
+  <a href="#s-invested">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+    Invested
+  </a>
+  <a href="#s-allocation">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.21 15.89A10 10 0 1 1 8 2.83"/><path d="M22 12A10 10 0 0 0 12 2v10z"/></svg>
+    Allocation
+  </a>
+  <a href="#s-room">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+    Room
+  </a>
+  <a href="#s-tips">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+    Tips
+  </a>
+</nav>
 
 <div class="main">
 
   <!-- Net Worth Over Time -->
-  <div class="grid-1">
-    <div class="card">
-      <div class="card-label">Net Worth Over Time</div>
+  <div class="section" id="s-networth">
+    <div class="section-title">Net Worth Over Time</div>
+    <div class="card grid-1">
       <div class="chart-container" id="chart-net-worth"></div>
     </div>
   </div>
 
-  <!-- Deposits vs Current Value -->
+  <!-- Invested vs Current Value -->
   
   
+<<<<<<< HEAD
   <div class="section-title">Invested vs Current Value</div>
   <div class="card grid-1">
     <div class="cb-layout">
@@ -264,43 +421,151 @@
             
           </tbody>
         </table></div>
+=======
+  <div class="section" id="s-invested">
+    <div class="section-title">Invested vs Current Value</div>
+    <div class="card">
+      <div class="cb-layout">
+        <div>
+          <div class="chart-container chart-sm" id="chart-cost-basis"></div>
+        </div>
+        <div>
+          <div class="cb-table-wrap"><table class="cb-table">
+            <thead>
+              <tr>
+                <th>Account</th>
+                <th>Invested</th>
+                <th>Current</th>
+                <th>Gain / Loss</th>
+                <th>As of</th>
+              </tr>
+            </thead>
+            <tbody>
+              
+              <tr>
+                <td>WS TFSA</td>
+                <td>$17,500</td>
+                <td>$17,669</td>
+                <td>
+                  
+                    <span class="gain-pos">
+                      +$169
+                      <br><small>+1.0%</small>
+                    </span>
+                  
+                </td>
+                <td style="color:#cbd5e1;font-size:0.75rem;white-space:nowrap;">2026-02-28</td>
+              </tr>
+              
+              <tr>
+                <td>WS RRSP</td>
+                <td>$4,000</td>
+                <td>$4,572</td>
+                <td>
+                  
+                    <span class="gain-pos">
+                      +$572
+                      <br><small>+14.3%</small>
+                    </span>
+                  
+                </td>
+                <td style="color:#cbd5e1;font-size:0.75rem;white-space:nowrap;">2026-02-28</td>
+              </tr>
+              
+              <tr>
+                <td>WS TFSA Portfolio</td>
+                <td>$10,000</td>
+                <td>$10,389</td>
+                <td>
+                  
+                    <span class="gain-pos">
+                      +$389
+                      <br><small>+3.9%</small>
+                    </span>
+                  
+                </td>
+                <td style="color:#cbd5e1;font-size:0.75rem;white-space:nowrap;">2026-02-28</td>
+              </tr>
+              
+              <tr>
+                <td>Manulife RPP</td>
+                <td>$10,800</td>
+                <td>$13,550</td>
+                <td>
+                  
+                    <span class="gain-pos">
+                      +$2,750
+                      <br><small>+25.5%</small>
+                    </span>
+                  
+                </td>
+                <td style="color:#cbd5e1;font-size:0.75rem;white-space:nowrap;">2025-12-31</td>
+              </tr>
+              
+              <tr>
+                <td>Manulife RRSP</td>
+                <td>$1,800</td>
+                <td>$2,276</td>
+                <td>
+                  
+                    <span class="gain-pos">
+                      +$476
+                      <br><small>+26.4%</small>
+                    </span>
+                  
+                </td>
+                <td style="color:#cbd5e1;font-size:0.75rem;white-space:nowrap;">2025-12-31</td>
+              </tr>
+              
+              <tr>
+                <td>Total Portfolio</td>
+                <td>$44,100</td>
+                <td>$48,455</td>
+                <td>
+                  
+                    <span class="gain-pos">
+                      +$4,355
+                      <br><small>+9.9%</small>
+                    </span>
+                  
+                </td>
+                <td style="color:#cbd5e1;font-size:0.75rem;white-space:nowrap;">—</td>
+              </tr>
+              
+            </tbody>
+          </table></div>
+        </div>
+>>>>>>> e5e1af1 (feat: AI recommendations via Gemini, solid projection lines, mobile nav)
       </div>
     </div>
   </div>
   
 
   <!-- Asset Allocation -->
-  <div class="section-title">Asset Allocation</div>
-  <div class="grid-3">
-    <div class="card">
-      <div class="chart-container" id="chart-alloc-class"></div>
-    </div>
-    <div class="card">
-      <div class="chart-container" id="chart-alloc-geo"></div>
-    </div>
-    <div class="card">
-      <div class="chart-container" id="chart-alloc-acct"></div>
+  <div class="section" id="s-allocation">
+    <div class="section-title">Asset Allocation</div>
+    <div class="grid-3">
+      <div class="card"><div class="chart-container" id="chart-alloc-class"></div></div>
+      <div class="card"><div class="chart-container" id="chart-alloc-geo"></div></div>
+      <div class="card"><div class="chart-container" id="chart-alloc-acct"></div></div>
     </div>
   </div>
 
   <!-- Contribution Room -->
-  <div class="section-title">Contribution Room</div>
-  <div class="grid-2">
-    <div class="card">
-      <div class="chart-container chart-sm" id="chart-contrib-current"></div>
-    </div>
-    <div class="card">
-      <div class="chart-container chart-sm" id="chart-contrib-prior"></div>
+  <div class="section" id="s-room">
+    <div class="section-title">Contribution Room</div>
+    <div class="grid-2">
+      <div class="card"><div class="chart-container chart-sm" id="chart-contrib-current"></div></div>
+      <div class="card"><div class="chart-container chart-sm" id="chart-contrib-prior"></div></div>
     </div>
   </div>
 
   <!-- Retirement Projection -->
-  <div class="section-title">Retirement Projection</div>
-  <div class="grid-1">
+  <div class="section" id="s-projection">
+    <div class="section-title">Retirement Projection</div>
     <div class="card">
       <div class="chart-container" id="chart-projection"></div>
-
-      <div class="projection-stats">
+      <div class="proj-stats">
         <div class="proj-stat">
           <div class="val">$966,654</div>
           <div class="lbl">Portfolio at Retirement</div>
@@ -311,8 +576,8 @@
         </div>
         <div class="proj-stat">
           <div class="val">9.2%</div>
-          <div class="lbl">Blended Historical Rate</div>
-          <div class="sub">From actual statements</div>
+          <div class="lbl">Blended Growth Rate</div>
+          <div class="sub">From statements</div>
         </div>
         <div class="proj-stat">
           <div class="val">$2,230</div>
@@ -323,7 +588,6 @@
           <div class="lbl">Annual Withdrawal Plan</div>
         </div>
       </div>
-
       
       <div class="acct-rates">
         
@@ -344,39 +608,43 @@
 
   <!-- Suggestions -->
   
-  <div class="section-title">Recommendations</div>
-  <div class="card">
-    <div class="suggestions">
-      
-      <div class="suggestion high">
-        <div>
-          <span class="badge">HIGH</span>
+  <div class="section" id="s-tips">
+    <div class="section-title">Recommendations</div>
+    <div class="card">
+      <div class="suggestions">
+        
+        <div class="suggestion high">
+          <div class="sug-icon">⚠️</div>
+          <div>
+            <span class="badge">HIGH</span>
+            <div class="account-tag">TFSA</div>
+            <div class="text">You have $30,563 unused TFSA room this year. Unused room carries forward, but tax-free growth is lost forever.</div>
+          </div>
         </div>
-        <div>
-          <div class="account-tag">TFSA</div>
-          <div class="text">You have $30,563 unused TFSA room this year. Unused room carries forward, but tax-free growth is lost forever.</div>
+        
+        <div class="suggestion medium">
+          <div class="sug-icon">💡</div>
+          <div>
+            <span class="badge">MEDIUM</span>
+            <div class="account-tag">RRSP</div>
+            <div class="text">$69,073 in RRSP room available. Contributing reduces your taxable income for this year.</div>
+          </div>
         </div>
+        
       </div>
-      
-      <div class="suggestion medium">
-        <div>
-          <span class="badge">MEDIUM</span>
-        </div>
-        <div>
-          <div class="account-tag">RRSP</div>
-          <div class="text">$69,073 in RRSP room available. Contributing reduces your taxable income for this year.</div>
-        </div>
-      </div>
-      
     </div>
   </div>
   
 
 </div>
 
+<<<<<<< HEAD
 <footer>
   Portfolio Dashboard &mdash; Generated April 01, 2026 at 10:06 AM &mdash; For personal use only. Not financial advice.
 </footer>
+=======
+<footer>Generated April 01, 2026 at 06:06 PM &mdash; For personal use only. Not financial advice.</footer>
+>>>>>>> e5e1af1 (feat: AI recommendations via Gemini, solid projection lines, mobile nav)
 
 <script>
   var charts = {
@@ -386,16 +654,34 @@
     allocAcct:      {"data": [{"hole": 0.45, "hovertemplate": "%{label}: $%{value:,.0f} (%{percent})<extra></extra>", "labels": ["Manulife RPP", "Manulife RRSP", "WS TFSA", "WS RRSP"], "marker": {"colors": ["#4f46e5", "#7c3aed", "#0ea5e9", "#10b981"]}, "textfont": {"size": 11}, "textinfo": "label+percent", "values": [13550.02, 2275.57, 17668.84, 4571.55], "type": "pie"}], "layout": {"template": {"data": {"histogram2dcontour": [{"type": "histogram2dcontour", "colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]]}], "choropleth": [{"type": "choropleth", "colorbar": {"outlinewidth": 0, "ticks": ""}}], "histogram2d": [{"type": "histogram2d", "colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]]}], "heatmap": [{"type": "heatmap", "colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]]}], "contourcarpet": [{"type": "contourcarpet", "colorbar": {"outlinewidth": 0, "ticks": ""}}], "contour": [{"type": "contour", "colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]]}], "surface": [{"type": "surface", "colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]]}], "mesh3d": [{"type": "mesh3d", "colorbar": {"outlinewidth": 0, "ticks": ""}}], "scatter": [{"fillpattern": {"fillmode": "overlay", "size": 10, "solidity": 0.2}, "type": "scatter"}], "parcoords": [{"type": "parcoords", "line": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "scatterpolargl": [{"type": "scatterpolargl", "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "bar": [{"error_x": {"color": "#2a3f5f"}, "error_y": {"color": "#2a3f5f"}, "marker": {"line": {"color": "#E5ECF6", "width": 0.5}, "pattern": {"fillmode": "overlay", "size": 10, "solidity": 0.2}}, "type": "bar"}], "scattergeo": [{"type": "scattergeo", "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "scatterpolar": [{"type": "scatterpolar", "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "histogram": [{"marker": {"pattern": {"fillmode": "overlay", "size": 10, "solidity": 0.2}}, "type": "histogram"}], "scattergl": [{"type": "scattergl", "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "scatter3d": [{"type": "scatter3d", "line": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "scattermap": [{"type": "scattermap", "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "scattermapbox": [{"type": "scattermapbox", "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "scatterternary": [{"type": "scatterternary", "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "scattercarpet": [{"type": "scattercarpet", "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "carpet": [{"aaxis": {"endlinecolor": "#2a3f5f", "gridcolor": "white", "linecolor": "white", "minorgridcolor": "white", "startlinecolor": "#2a3f5f"}, "baxis": {"endlinecolor": "#2a3f5f", "gridcolor": "white", "linecolor": "white", "minorgridcolor": "white", "startlinecolor": "#2a3f5f"}, "type": "carpet"}], "table": [{"cells": {"fill": {"color": "#EBF0F8"}, "line": {"color": "white"}}, "header": {"fill": {"color": "#C8D4E3"}, "line": {"color": "white"}}, "type": "table"}], "barpolar": [{"marker": {"line": {"color": "#E5ECF6", "width": 0.5}, "pattern": {"fillmode": "overlay", "size": 10, "solidity": 0.2}}, "type": "barpolar"}], "pie": [{"automargin": true, "type": "pie"}]}, "layout": {"autotypenumbers": "strict", "colorway": ["#636efa", "#EF553B", "#00cc96", "#ab63fa", "#FFA15A", "#19d3f3", "#FF6692", "#B6E880", "#FF97FF", "#FECB52"], "font": {"color": "#2a3f5f"}, "hovermode": "closest", "hoverlabel": {"align": "left"}, "paper_bgcolor": "white", "plot_bgcolor": "#E5ECF6", "polar": {"bgcolor": "#E5ECF6", "angularaxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}, "radialaxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}}, "ternary": {"bgcolor": "#E5ECF6", "aaxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}, "baxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}, "caxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}}, "coloraxis": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "colorscale": {"sequential": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "sequentialminus": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "diverging": [[0, "#8e0152"], [0.1, "#c51b7d"], [0.2, "#de77ae"], [0.3, "#f1b6da"], [0.4, "#fde0ef"], [0.5, "#f7f7f7"], [0.6, "#e6f5d0"], [0.7, "#b8e186"], [0.8, "#7fbc41"], [0.9, "#4d9221"], [1, "#276419"]]}, "xaxis": {"gridcolor": "white", "linecolor": "white", "ticks": "", "title": {"standoff": 15}, "zerolinecolor": "white", "automargin": true, "zerolinewidth": 2}, "yaxis": {"gridcolor": "white", "linecolor": "white", "ticks": "", "title": {"standoff": 15}, "zerolinecolor": "white", "automargin": true, "zerolinewidth": 2}, "scene": {"xaxis": {"backgroundcolor": "#E5ECF6", "gridcolor": "white", "linecolor": "white", "showbackground": true, "ticks": "", "zerolinecolor": "white", "gridwidth": 2}, "yaxis": {"backgroundcolor": "#E5ECF6", "gridcolor": "white", "linecolor": "white", "showbackground": true, "ticks": "", "zerolinecolor": "white", "gridwidth": 2}, "zaxis": {"backgroundcolor": "#E5ECF6", "gridcolor": "white", "linecolor": "white", "showbackground": true, "ticks": "", "zerolinecolor": "white", "gridwidth": 2}}, "shapedefaults": {"line": {"color": "#2a3f5f"}}, "annotationdefaults": {"arrowcolor": "#2a3f5f", "arrowhead": 0, "arrowwidth": 1}, "geo": {"bgcolor": "white", "landcolor": "#E5ECF6", "subunitcolor": "white", "showland": true, "showlakes": true, "lakecolor": "white"}, "title": {"x": 0.05}, "mapbox": {"style": "light"}}}, "title": {"font": {"size": 13}, "text": "By Account"}, "margin": {"l": 10, "r": 10, "t": 50, "b": 10}, "plot_bgcolor": "white", "paper_bgcolor": "white", "showlegend": false}},
     contribCurrent: {"data": [{"hovertemplate": "<b>%{y}</b> Contributed: $%{x:,.0f}<extra></extra>", "insidetextanchor": "middle", "marker": {"color": "#4f46e5"}, "name": "Contributed", "orientation": "h", "text": ["$0", "$0"], "textposition": "inside", "x": [0, 0], "y": ["TFSA", "RRSP"], "type": "bar"}, {"hovertemplate": "<b>%{y}</b> Remaining: $%{x:,.0f}<extra></extra>", "insidetextanchor": "middle", "marker": {"color": "#e2e8f0"}, "name": "Remaining Room", "orientation": "h", "text": ["$30,563", "$69,073"], "textfont": {"color": "#64748b"}, "textposition": "inside", "x": [30562.89, 69073.0], "y": ["TFSA", "RRSP"], "type": "bar"}], "layout": {"template": {"data": {"histogram2dcontour": [{"type": "histogram2dcontour", "colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]]}], "choropleth": [{"type": "choropleth", "colorbar": {"outlinewidth": 0, "ticks": ""}}], "histogram2d": [{"type": "histogram2d", "colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]]}], "heatmap": [{"type": "heatmap", "colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]]}], "contourcarpet": [{"type": "contourcarpet", "colorbar": {"outlinewidth": 0, "ticks": ""}}], "contour": [{"type": "contour", "colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]]}], "surface": [{"type": "surface", "colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]]}], "mesh3d": [{"type": "mesh3d", "colorbar": {"outlinewidth": 0, "ticks": ""}}], "scatter": [{"fillpattern": {"fillmode": "overlay", "size": 10, "solidity": 0.2}, "type": "scatter"}], "parcoords": [{"type": "parcoords", "line": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "scatterpolargl": [{"type": "scatterpolargl", "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "bar": [{"error_x": {"color": "#2a3f5f"}, "error_y": {"color": "#2a3f5f"}, "marker": {"line": {"color": "#E5ECF6", "width": 0.5}, "pattern": {"fillmode": "overlay", "size": 10, "solidity": 0.2}}, "type": "bar"}], "scattergeo": [{"type": "scattergeo", "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "scatterpolar": [{"type": "scatterpolar", "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "histogram": [{"marker": {"pattern": {"fillmode": "overlay", "size": 10, "solidity": 0.2}}, "type": "histogram"}], "scattergl": [{"type": "scattergl", "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "scatter3d": [{"type": "scatter3d", "line": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "scattermap": [{"type": "scattermap", "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "scattermapbox": [{"type": "scattermapbox", "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "scatterternary": [{"type": "scatterternary", "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "scattercarpet": [{"type": "scattercarpet", "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "carpet": [{"aaxis": {"endlinecolor": "#2a3f5f", "gridcolor": "white", "linecolor": "white", "minorgridcolor": "white", "startlinecolor": "#2a3f5f"}, "baxis": {"endlinecolor": "#2a3f5f", "gridcolor": "white", "linecolor": "white", "minorgridcolor": "white", "startlinecolor": "#2a3f5f"}, "type": "carpet"}], "table": [{"cells": {"fill": {"color": "#EBF0F8"}, "line": {"color": "white"}}, "header": {"fill": {"color": "#C8D4E3"}, "line": {"color": "white"}}, "type": "table"}], "barpolar": [{"marker": {"line": {"color": "#E5ECF6", "width": 0.5}, "pattern": {"fillmode": "overlay", "size": 10, "solidity": 0.2}}, "type": "barpolar"}], "pie": [{"automargin": true, "type": "pie"}]}, "layout": {"autotypenumbers": "strict", "colorway": ["#636efa", "#EF553B", "#00cc96", "#ab63fa", "#FFA15A", "#19d3f3", "#FF6692", "#B6E880", "#FF97FF", "#FECB52"], "font": {"color": "#2a3f5f"}, "hovermode": "closest", "hoverlabel": {"align": "left"}, "paper_bgcolor": "white", "plot_bgcolor": "#E5ECF6", "polar": {"bgcolor": "#E5ECF6", "angularaxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}, "radialaxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}}, "ternary": {"bgcolor": "#E5ECF6", "aaxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}, "baxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}, "caxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}}, "coloraxis": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "colorscale": {"sequential": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "sequentialminus": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "diverging": [[0, "#8e0152"], [0.1, "#c51b7d"], [0.2, "#de77ae"], [0.3, "#f1b6da"], [0.4, "#fde0ef"], [0.5, "#f7f7f7"], [0.6, "#e6f5d0"], [0.7, "#b8e186"], [0.8, "#7fbc41"], [0.9, "#4d9221"], [1, "#276419"]]}, "xaxis": {"gridcolor": "white", "linecolor": "white", "ticks": "", "title": {"standoff": 15}, "zerolinecolor": "white", "automargin": true, "zerolinewidth": 2}, "yaxis": {"gridcolor": "white", "linecolor": "white", "ticks": "", "title": {"standoff": 15}, "zerolinecolor": "white", "automargin": true, "zerolinewidth": 2}, "scene": {"xaxis": {"backgroundcolor": "#E5ECF6", "gridcolor": "white", "linecolor": "white", "showbackground": true, "ticks": "", "zerolinecolor": "white", "gridwidth": 2}, "yaxis": {"backgroundcolor": "#E5ECF6", "gridcolor": "white", "linecolor": "white", "showbackground": true, "ticks": "", "zerolinecolor": "white", "gridwidth": 2}, "zaxis": {"backgroundcolor": "#E5ECF6", "gridcolor": "white", "linecolor": "white", "showbackground": true, "ticks": "", "zerolinecolor": "white", "gridwidth": 2}}, "shapedefaults": {"line": {"color": "#2a3f5f"}}, "annotationdefaults": {"arrowcolor": "#2a3f5f", "arrowhead": 0, "arrowwidth": 1}, "geo": {"bgcolor": "white", "landcolor": "#E5ECF6", "subunitcolor": "white", "showland": true, "showlakes": true, "lakecolor": "white"}, "title": {"x": 0.05}, "mapbox": {"style": "light"}}}, "title": {"font": {"size": 13}, "text": "2026 Contribution Room"}, "margin": {"l": 10, "r": 20, "t": 50, "b": 10}, "xaxis": {"tickprefix": "$", "tickformat": ",", "gridcolor": "#f1f5f9", "title": {"text": "Amount (CAD)"}}, "yaxis": {"showgrid": false}, "legend": {"orientation": "h", "yanchor": "bottom", "y": 1.02, "x": 0, "bgcolor": "rgba(0,0,0,0)"}, "barmode": "stack", "plot_bgcolor": "white", "paper_bgcolor": "white", "height": 220}},
     contribPrior:   {"data": [{"hovertemplate": "<b>%{y}</b> Contributed: $%{x:,.0f}<extra></extra>", "insidetextanchor": "middle", "marker": {"color": "#4f46e5"}, "name": "Contributed", "orientation": "h", "text": ["$10,000", "$2,230"], "textposition": "inside", "x": [10000.0, 2230.0], "y": ["TFSA", "RRSP"], "type": "bar"}, {"hovertemplate": "<b>%{y}</b> Remaining: $%{x:,.0f}<extra></extra>", "insidetextanchor": "middle", "marker": {"color": "#e2e8f0"}, "name": "Remaining Room", "orientation": "h", "text": ["$23,563", "$41,078"], "textfont": {"color": "#64748b"}, "textposition": "inside", "x": [23562.89, 41078.0], "y": ["TFSA", "RRSP"], "type": "bar"}], "layout": {"template": {"data": {"histogram2dcontour": [{"type": "histogram2dcontour", "colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]]}], "choropleth": [{"type": "choropleth", "colorbar": {"outlinewidth": 0, "ticks": ""}}], "histogram2d": [{"type": "histogram2d", "colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]]}], "heatmap": [{"type": "heatmap", "colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]]}], "contourcarpet": [{"type": "contourcarpet", "colorbar": {"outlinewidth": 0, "ticks": ""}}], "contour": [{"type": "contour", "colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]]}], "surface": [{"type": "surface", "colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]]}], "mesh3d": [{"type": "mesh3d", "colorbar": {"outlinewidth": 0, "ticks": ""}}], "scatter": [{"fillpattern": {"fillmode": "overlay", "size": 10, "solidity": 0.2}, "type": "scatter"}], "parcoords": [{"type": "parcoords", "line": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "scatterpolargl": [{"type": "scatterpolargl", "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "bar": [{"error_x": {"color": "#2a3f5f"}, "error_y": {"color": "#2a3f5f"}, "marker": {"line": {"color": "#E5ECF6", "width": 0.5}, "pattern": {"fillmode": "overlay", "size": 10, "solidity": 0.2}}, "type": "bar"}], "scattergeo": [{"type": "scattergeo", "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "scatterpolar": [{"type": "scatterpolar", "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "histogram": [{"marker": {"pattern": {"fillmode": "overlay", "size": 10, "solidity": 0.2}}, "type": "histogram"}], "scattergl": [{"type": "scattergl", "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "scatter3d": [{"type": "scatter3d", "line": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "scattermap": [{"type": "scattermap", "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "scattermapbox": [{"type": "scattermapbox", "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "scatterternary": [{"type": "scatterternary", "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "scattercarpet": [{"type": "scattercarpet", "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "carpet": [{"aaxis": {"endlinecolor": "#2a3f5f", "gridcolor": "white", "linecolor": "white", "minorgridcolor": "white", "startlinecolor": "#2a3f5f"}, "baxis": {"endlinecolor": "#2a3f5f", "gridcolor": "white", "linecolor": "white", "minorgridcolor": "white", "startlinecolor": "#2a3f5f"}, "type": "carpet"}], "table": [{"cells": {"fill": {"color": "#EBF0F8"}, "line": {"color": "white"}}, "header": {"fill": {"color": "#C8D4E3"}, "line": {"color": "white"}}, "type": "table"}], "barpolar": [{"marker": {"line": {"color": "#E5ECF6", "width": 0.5}, "pattern": {"fillmode": "overlay", "size": 10, "solidity": 0.2}}, "type": "barpolar"}], "pie": [{"automargin": true, "type": "pie"}]}, "layout": {"autotypenumbers": "strict", "colorway": ["#636efa", "#EF553B", "#00cc96", "#ab63fa", "#FFA15A", "#19d3f3", "#FF6692", "#B6E880", "#FF97FF", "#FECB52"], "font": {"color": "#2a3f5f"}, "hovermode": "closest", "hoverlabel": {"align": "left"}, "paper_bgcolor": "white", "plot_bgcolor": "#E5ECF6", "polar": {"bgcolor": "#E5ECF6", "angularaxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}, "radialaxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}}, "ternary": {"bgcolor": "#E5ECF6", "aaxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}, "baxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}, "caxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}}, "coloraxis": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "colorscale": {"sequential": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "sequentialminus": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "diverging": [[0, "#8e0152"], [0.1, "#c51b7d"], [0.2, "#de77ae"], [0.3, "#f1b6da"], [0.4, "#fde0ef"], [0.5, "#f7f7f7"], [0.6, "#e6f5d0"], [0.7, "#b8e186"], [0.8, "#7fbc41"], [0.9, "#4d9221"], [1, "#276419"]]}, "xaxis": {"gridcolor": "white", "linecolor": "white", "ticks": "", "title": {"standoff": 15}, "zerolinecolor": "white", "automargin": true, "zerolinewidth": 2}, "yaxis": {"gridcolor": "white", "linecolor": "white", "ticks": "", "title": {"standoff": 15}, "zerolinecolor": "white", "automargin": true, "zerolinewidth": 2}, "scene": {"xaxis": {"backgroundcolor": "#E5ECF6", "gridcolor": "white", "linecolor": "white", "showbackground": true, "ticks": "", "zerolinecolor": "white", "gridwidth": 2}, "yaxis": {"backgroundcolor": "#E5ECF6", "gridcolor": "white", "linecolor": "white", "showbackground": true, "ticks": "", "zerolinecolor": "white", "gridwidth": 2}, "zaxis": {"backgroundcolor": "#E5ECF6", "gridcolor": "white", "linecolor": "white", "showbackground": true, "ticks": "", "zerolinecolor": "white", "gridwidth": 2}}, "shapedefaults": {"line": {"color": "#2a3f5f"}}, "annotationdefaults": {"arrowcolor": "#2a3f5f", "arrowhead": 0, "arrowwidth": 1}, "geo": {"bgcolor": "white", "landcolor": "#E5ECF6", "subunitcolor": "white", "showland": true, "showlakes": true, "lakecolor": "white"}, "title": {"x": 0.05}, "mapbox": {"style": "light"}}}, "title": {"font": {"size": 13}, "text": "2025 Contribution Room"}, "margin": {"l": 10, "r": 20, "t": 50, "b": 10}, "xaxis": {"tickprefix": "$", "tickformat": ",", "gridcolor": "#f1f5f9", "title": {"text": "Amount (CAD)"}}, "yaxis": {"showgrid": false}, "legend": {"orientation": "h", "yanchor": "bottom", "y": 1.02, "x": 0, "bgcolor": "rgba(0,0,0,0)"}, "barmode": "stack", "plot_bgcolor": "white", "paper_bgcolor": "white", "height": 220}},
+<<<<<<< HEAD
     projection:     {"data": [{"hovertemplate": "<b>WS TFSA</b>: $%{y:,.0f}<extra></extra>", "line": {"color": "#e63946", "dash": "dot", "width": 2}, "mode": "lines", "name": "WS TFSA (1.6%/yr)", "opacity": 0.9, "x": [2026, 2027, 2028, 2029, 2030, 2031, 2032, 2033, 2034, 2035, 2036, 2037, 2038, 2039, 2040, 2041, 2042, 2043, 2044, 2045, 2046, 2047, 2048], "y": [17668.84, 17944.47, 18224.41, 18508.71, 18797.44, 19090.68, 19388.5, 19690.96, 19998.14, 20310.11, 20626.95, 20948.73, 21275.53, 21607.43, 21944.5, 22286.84, 22634.51, 22987.61, 23346.22, 23710.42, 24080.3, 24455.95, 24837.46], "type": "scatter"}, {"hovertemplate": "<b>WS RRSP</b>: $%{y:,.0f}<extra></extra>", "line": {"color": "#2196f3", "dash": "dot", "width": 2}, "mode": "lines", "name": "WS RRSP (3.4%/yr)", "opacity": 0.9, "x": [2026, 2027, 2028, 2029, 2030, 2031, 2032, 2033, 2034, 2035, 2036, 2037, 2038, 2039, 2040, 2041, 2042, 2043, 2044, 2045, 2046, 2047, 2048], "y": [4571.55, 4727.44, 4888.65, 5055.35, 5227.74, 5406.0, 5590.35, 5780.98, 5978.11, 6181.96, 6392.77, 6610.76, 6836.19, 7069.3, 7310.36, 7559.65, 7817.43, 8084.01, 8359.67, 8644.74, 8939.52, 9244.36, 9559.59], "type": "scatter"}, {"hovertemplate": "<b>WS TFSA Portfolio</b>: $%{y:,.0f}<extra></extra>", "line": {"color": "#4caf50", "dash": "dot", "width": 2}, "mode": "lines", "name": "WS TFSA Portfolio (8.2%/yr)", "opacity": 0.9, "x": [2026, 2027, 2028, 2029, 2030, 2031, 2032, 2033, 2034, 2035, 2036, 2037, 2038, 2039, 2040, 2041, 2042, 2043, 2044, 2045, 2046, 2047, 2048], "y": [10388.94, 11238.76, 12158.09, 13152.62, 14228.5, 15392.39, 16651.49, 18013.58, 19487.09, 21081.14, 22805.57, 24671.07, 26689.16, 28872.34, 31234.09, 33789.04, 36552.99, 39543.02, 42777.64, 46276.85, 50062.3, 54157.39, 58587.47], "type": "scatter"}, {"hovertemplate": "<b>Manulife RPP</b>: $%{y:,.0f}<extra></extra>", "line": {"color": "#ff9800", "dash": "dot", "width": 2}, "mode": "lines", "name": "Manulife RPP (20.0%/yr)", "opacity": 0.9, "x": [2026, 2027, 2028, 2029, 2030, 2031, 2032, 2033, 2034, 2035, 2036, 2037, 2038, 2039, 2040, 2041, 2042, 2043, 2044, 2045, 2046, 2047, 2048], "y": [13550.02, 16260.02, 19512.03, 23414.43, 28097.32, 33716.79, 40460.14, 48552.17, 58262.61, 69915.13, 83898.15, 100677.78, 120813.34, 144976.01, 173971.21, 208765.45, 250518.54, 300622.25, 360746.7, 432896.04, 519475.25, 623370.29, 748044.35], "type": "scatter"}, {"hovertemplate": "<b>Manulife RRSP</b>: $%{y:,.0f}<extra></extra>", "line": {"color": "#9c27b0", "dash": "dot", "width": 2}, "mode": "lines", "name": "Manulife RRSP (20.0%/yr)", "opacity": 0.9, "x": [2026, 2027, 2028, 2029, 2030, 2031, 2032, 2033, 2034, 2035, 2036, 2037, 2038, 2039, 2040, 2041, 2042, 2043, 2044, 2045, 2046, 2047, 2048], "y": [2275.57, 2730.68, 3276.82, 3932.18, 4718.62, 5662.35, 6794.82, 8153.78, 9784.53, 11741.44, 14089.73, 16907.68, 20289.21, 24347.05, 29216.46, 35059.76, 42071.71, 50486.05, 60583.26, 72699.91, 87239.89, 104687.87, 125625.44], "type": "scatter"}, {"fill": "tozeroy", "fillcolor": "rgba(79,70,229,0.07)", "hovertemplate": "<b>Total</b>: $%{y:,.0f}<extra></extra>", "line": {"color": "#4f46e5", "width": 3}, "mode": "lines", "name": "Total (9.2% blended)", "x": [2026, 2027, 2028, 2029, 2030, 2031, 2032, 2033, 2034, 2035, 2036, 2037, 2038, 2039, 2040, 2041, 2042, 2043, 2044, 2045, 2046, 2047, 2048], "y": [48454.92, 52901.37, 58060.0, 64063.29, 71069.62, 79268.21, 88885.3, 100191.47, 113510.48, 129229.78, 147813.17, 169816.02, 195903.43, 226872.13, 263676.62, 307460.74, 359595.18, 421722.94, 495813.49, 584227.96, 689797.26, 815915.86, 966654.31], "type": "scatter"}], "layout": {"template": {"data": {"histogram2dcontour": [{"type": "histogram2dcontour", "colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]]}], "choropleth": [{"type": "choropleth", "colorbar": {"outlinewidth": 0, "ticks": ""}}], "histogram2d": [{"type": "histogram2d", "colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]]}], "heatmap": [{"type": "heatmap", "colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]]}], "contourcarpet": [{"type": "contourcarpet", "colorbar": {"outlinewidth": 0, "ticks": ""}}], "contour": [{"type": "contour", "colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]]}], "surface": [{"type": "surface", "colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]]}], "mesh3d": [{"type": "mesh3d", "colorbar": {"outlinewidth": 0, "ticks": ""}}], "scatter": [{"fillpattern": {"fillmode": "overlay", "size": 10, "solidity": 0.2}, "type": "scatter"}], "parcoords": [{"type": "parcoords", "line": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "scatterpolargl": [{"type": "scatterpolargl", "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "bar": [{"error_x": {"color": "#2a3f5f"}, "error_y": {"color": "#2a3f5f"}, "marker": {"line": {"color": "#E5ECF6", "width": 0.5}, "pattern": {"fillmode": "overlay", "size": 10, "solidity": 0.2}}, "type": "bar"}], "scattergeo": [{"type": "scattergeo", "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "scatterpolar": [{"type": "scatterpolar", "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "histogram": [{"marker": {"pattern": {"fillmode": "overlay", "size": 10, "solidity": 0.2}}, "type": "histogram"}], "scattergl": [{"type": "scattergl", "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "scatter3d": [{"type": "scatter3d", "line": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "scattermap": [{"type": "scattermap", "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "scattermapbox": [{"type": "scattermapbox", "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "scatterternary": [{"type": "scatterternary", "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "scattercarpet": [{"type": "scattercarpet", "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "carpet": [{"aaxis": {"endlinecolor": "#2a3f5f", "gridcolor": "white", "linecolor": "white", "minorgridcolor": "white", "startlinecolor": "#2a3f5f"}, "baxis": {"endlinecolor": "#2a3f5f", "gridcolor": "white", "linecolor": "white", "minorgridcolor": "white", "startlinecolor": "#2a3f5f"}, "type": "carpet"}], "table": [{"cells": {"fill": {"color": "#EBF0F8"}, "line": {"color": "white"}}, "header": {"fill": {"color": "#C8D4E3"}, "line": {"color": "white"}}, "type": "table"}], "barpolar": [{"marker": {"line": {"color": "#E5ECF6", "width": 0.5}, "pattern": {"fillmode": "overlay", "size": 10, "solidity": 0.2}}, "type": "barpolar"}], "pie": [{"automargin": true, "type": "pie"}]}, "layout": {"autotypenumbers": "strict", "colorway": ["#636efa", "#EF553B", "#00cc96", "#ab63fa", "#FFA15A", "#19d3f3", "#FF6692", "#B6E880", "#FF97FF", "#FECB52"], "font": {"color": "#2a3f5f"}, "hovermode": "closest", "hoverlabel": {"align": "left"}, "paper_bgcolor": "white", "plot_bgcolor": "#E5ECF6", "polar": {"bgcolor": "#E5ECF6", "angularaxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}, "radialaxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}}, "ternary": {"bgcolor": "#E5ECF6", "aaxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}, "baxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}, "caxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}}, "coloraxis": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "colorscale": {"sequential": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "sequentialminus": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "diverging": [[0, "#8e0152"], [0.1, "#c51b7d"], [0.2, "#de77ae"], [0.3, "#f1b6da"], [0.4, "#fde0ef"], [0.5, "#f7f7f7"], [0.6, "#e6f5d0"], [0.7, "#b8e186"], [0.8, "#7fbc41"], [0.9, "#4d9221"], [1, "#276419"]]}, "xaxis": {"gridcolor": "white", "linecolor": "white", "ticks": "", "title": {"standoff": 15}, "zerolinecolor": "white", "automargin": true, "zerolinewidth": 2}, "yaxis": {"gridcolor": "white", "linecolor": "white", "ticks": "", "title": {"standoff": 15}, "zerolinecolor": "white", "automargin": true, "zerolinewidth": 2}, "scene": {"xaxis": {"backgroundcolor": "#E5ECF6", "gridcolor": "white", "linecolor": "white", "showbackground": true, "ticks": "", "zerolinecolor": "white", "gridwidth": 2}, "yaxis": {"backgroundcolor": "#E5ECF6", "gridcolor": "white", "linecolor": "white", "showbackground": true, "ticks": "", "zerolinecolor": "white", "gridwidth": 2}, "zaxis": {"backgroundcolor": "#E5ECF6", "gridcolor": "white", "linecolor": "white", "showbackground": true, "ticks": "", "zerolinecolor": "white", "gridwidth": 2}}, "shapedefaults": {"line": {"color": "#2a3f5f"}}, "annotationdefaults": {"arrowcolor": "#2a3f5f", "arrowhead": 0, "arrowwidth": 1}, "geo": {"bgcolor": "white", "landcolor": "#E5ECF6", "subunitcolor": "white", "showland": true, "showlakes": true, "lakecolor": "white"}, "title": {"x": 0.05}, "mapbox": {"style": "light"}}}, "shapes": [{"line": {"color": "#ef4444", "dash": "dot", "width": 1.5}, "type": "line", "x0": 2048, "x1": 2048, "xref": "x", "y0": 0, "y1": 1, "yref": "y domain"}], "annotations": [{"font": {"color": "#ef4444", "size": 11}, "showarrow": false, "text": "Retirement (2048)", "x": 2048, "xanchor": "left", "xref": "x", "y": 1, "yanchor": "top", "yref": "y domain"}], "font": {"family": "-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif", "size": 12, "color": "#1e293b"}, "margin": {"l": 60, "r": 20, "t": 50, "b": 40}, "legend": {"orientation": "h", "yanchor": "bottom", "y": 1.02, "x": 0, "bgcolor": "rgba(0,0,0,0)"}, "xaxis": {"title": {"text": "Year"}, "showgrid": false, "dtick": 5}, "yaxis": {"title": {"text": "Projected Value (CAD)"}, "tickprefix": "$", "tickformat": ",", "gridcolor": "#f1f5f9", "zeroline": false}, "plot_bgcolor": "white", "paper_bgcolor": "white", "hovermode": "x unified"}},
+=======
+    projection:     {"data": [{"hovertemplate": "<b>WS TFSA</b>: $%{y:,.0f}<extra></extra>", "line": {"color": "#e63946", "width": 2}, "mode": "lines", "name": "WS TFSA (1.6%/yr)", "opacity": 0.9, "x": [2026, 2027, 2028, 2029, 2030, 2031, 2032, 2033, 2034, 2035, 2036, 2037, 2038, 2039, 2040, 2041, 2042, 2043, 2044, 2045, 2046, 2047, 2048], "y": [17668.84, 17944.47, 18224.41, 18508.71, 18797.44, 19090.68, 19388.5, 19690.96, 19998.14, 20310.11, 20626.95, 20948.73, 21275.53, 21607.43, 21944.5, 22286.84, 22634.51, 22987.61, 23346.22, 23710.42, 24080.3, 24455.95, 24837.46], "type": "scatter"}, {"hovertemplate": "<b>WS RRSP</b>: $%{y:,.0f}<extra></extra>", "line": {"color": "#2196f3", "width": 2}, "mode": "lines", "name": "WS RRSP (3.4%/yr)", "opacity": 0.9, "x": [2026, 2027, 2028, 2029, 2030, 2031, 2032, 2033, 2034, 2035, 2036, 2037, 2038, 2039, 2040, 2041, 2042, 2043, 2044, 2045, 2046, 2047, 2048], "y": [4571.55, 4727.44, 4888.65, 5055.35, 5227.74, 5406.0, 5590.35, 5780.98, 5978.11, 6181.96, 6392.77, 6610.76, 6836.19, 7069.3, 7310.36, 7559.65, 7817.43, 8084.01, 8359.67, 8644.74, 8939.52, 9244.36, 9559.59], "type": "scatter"}, {"hovertemplate": "<b>WS TFSA Portfolio</b>: $%{y:,.0f}<extra></extra>", "line": {"color": "#4caf50", "width": 2}, "mode": "lines", "name": "WS TFSA Portfolio (8.2%/yr)", "opacity": 0.9, "x": [2026, 2027, 2028, 2029, 2030, 2031, 2032, 2033, 2034, 2035, 2036, 2037, 2038, 2039, 2040, 2041, 2042, 2043, 2044, 2045, 2046, 2047, 2048], "y": [10388.94, 11238.76, 12158.09, 13152.62, 14228.5, 15392.39, 16651.49, 18013.58, 19487.09, 21081.14, 22805.57, 24671.07, 26689.16, 28872.34, 31234.09, 33789.04, 36552.99, 39543.02, 42777.64, 46276.85, 50062.3, 54157.39, 58587.47], "type": "scatter"}, {"hovertemplate": "<b>Manulife RPP</b>: $%{y:,.0f}<extra></extra>", "line": {"color": "#ff9800", "width": 2}, "mode": "lines", "name": "Manulife RPP (20.0%/yr)", "opacity": 0.9, "x": [2026, 2027, 2028, 2029, 2030, 2031, 2032, 2033, 2034, 2035, 2036, 2037, 2038, 2039, 2040, 2041, 2042, 2043, 2044, 2045, 2046, 2047, 2048], "y": [13550.02, 16260.02, 19512.03, 23414.43, 28097.32, 33716.79, 40460.14, 48552.17, 58262.61, 69915.13, 83898.15, 100677.78, 120813.34, 144976.01, 173971.21, 208765.45, 250518.54, 300622.25, 360746.7, 432896.04, 519475.25, 623370.29, 748044.35], "type": "scatter"}, {"hovertemplate": "<b>Manulife RRSP</b>: $%{y:,.0f}<extra></extra>", "line": {"color": "#9c27b0", "width": 2}, "mode": "lines", "name": "Manulife RRSP (20.0%/yr)", "opacity": 0.9, "x": [2026, 2027, 2028, 2029, 2030, 2031, 2032, 2033, 2034, 2035, 2036, 2037, 2038, 2039, 2040, 2041, 2042, 2043, 2044, 2045, 2046, 2047, 2048], "y": [2275.57, 2730.68, 3276.82, 3932.18, 4718.62, 5662.35, 6794.82, 8153.78, 9784.53, 11741.44, 14089.73, 16907.68, 20289.21, 24347.05, 29216.46, 35059.76, 42071.71, 50486.05, 60583.26, 72699.91, 87239.89, 104687.87, 125625.44], "type": "scatter"}, {"fill": "tozeroy", "fillcolor": "rgba(79,70,229,0.07)", "hovertemplate": "<b>Total</b>: $%{y:,.0f}<extra></extra>", "line": {"color": "#4f46e5", "width": 3}, "mode": "lines", "name": "Total (9.2% blended)", "x": [2026, 2027, 2028, 2029, 2030, 2031, 2032, 2033, 2034, 2035, 2036, 2037, 2038, 2039, 2040, 2041, 2042, 2043, 2044, 2045, 2046, 2047, 2048], "y": [48454.92, 52901.37, 58060.0, 64063.29, 71069.62, 79268.21, 88885.3, 100191.47, 113510.48, 129229.78, 147813.17, 169816.02, 195903.43, 226872.13, 263676.62, 307460.74, 359595.18, 421722.94, 495813.49, 584227.96, 689797.26, 815915.86, 966654.31], "type": "scatter"}], "layout": {"template": {"data": {"histogram2dcontour": [{"type": "histogram2dcontour", "colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]]}], "choropleth": [{"type": "choropleth", "colorbar": {"outlinewidth": 0, "ticks": ""}}], "histogram2d": [{"type": "histogram2d", "colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]]}], "heatmap": [{"type": "heatmap", "colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]]}], "contourcarpet": [{"type": "contourcarpet", "colorbar": {"outlinewidth": 0, "ticks": ""}}], "contour": [{"type": "contour", "colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]]}], "surface": [{"type": "surface", "colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]]}], "mesh3d": [{"type": "mesh3d", "colorbar": {"outlinewidth": 0, "ticks": ""}}], "scatter": [{"fillpattern": {"fillmode": "overlay", "size": 10, "solidity": 0.2}, "type": "scatter"}], "parcoords": [{"type": "parcoords", "line": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "scatterpolargl": [{"type": "scatterpolargl", "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "bar": [{"error_x": {"color": "#2a3f5f"}, "error_y": {"color": "#2a3f5f"}, "marker": {"line": {"color": "#E5ECF6", "width": 0.5}, "pattern": {"fillmode": "overlay", "size": 10, "solidity": 0.2}}, "type": "bar"}], "scattergeo": [{"type": "scattergeo", "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "scatterpolar": [{"type": "scatterpolar", "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "histogram": [{"marker": {"pattern": {"fillmode": "overlay", "size": 10, "solidity": 0.2}}, "type": "histogram"}], "scattergl": [{"type": "scattergl", "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "scatter3d": [{"type": "scatter3d", "line": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "scattermap": [{"type": "scattermap", "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "scattermapbox": [{"type": "scattermapbox", "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "scatterternary": [{"type": "scatterternary", "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "scattercarpet": [{"type": "scattercarpet", "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "carpet": [{"aaxis": {"endlinecolor": "#2a3f5f", "gridcolor": "white", "linecolor": "white", "minorgridcolor": "white", "startlinecolor": "#2a3f5f"}, "baxis": {"endlinecolor": "#2a3f5f", "gridcolor": "white", "linecolor": "white", "minorgridcolor": "white", "startlinecolor": "#2a3f5f"}, "type": "carpet"}], "table": [{"cells": {"fill": {"color": "#EBF0F8"}, "line": {"color": "white"}}, "header": {"fill": {"color": "#C8D4E3"}, "line": {"color": "white"}}, "type": "table"}], "barpolar": [{"marker": {"line": {"color": "#E5ECF6", "width": 0.5}, "pattern": {"fillmode": "overlay", "size": 10, "solidity": 0.2}}, "type": "barpolar"}], "pie": [{"automargin": true, "type": "pie"}]}, "layout": {"autotypenumbers": "strict", "colorway": ["#636efa", "#EF553B", "#00cc96", "#ab63fa", "#FFA15A", "#19d3f3", "#FF6692", "#B6E880", "#FF97FF", "#FECB52"], "font": {"color": "#2a3f5f"}, "hovermode": "closest", "hoverlabel": {"align": "left"}, "paper_bgcolor": "white", "plot_bgcolor": "#E5ECF6", "polar": {"bgcolor": "#E5ECF6", "angularaxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}, "radialaxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}}, "ternary": {"bgcolor": "#E5ECF6", "aaxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}, "baxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}, "caxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}}, "coloraxis": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "colorscale": {"sequential": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "sequentialminus": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "diverging": [[0, "#8e0152"], [0.1, "#c51b7d"], [0.2, "#de77ae"], [0.3, "#f1b6da"], [0.4, "#fde0ef"], [0.5, "#f7f7f7"], [0.6, "#e6f5d0"], [0.7, "#b8e186"], [0.8, "#7fbc41"], [0.9, "#4d9221"], [1, "#276419"]]}, "xaxis": {"gridcolor": "white", "linecolor": "white", "ticks": "", "title": {"standoff": 15}, "zerolinecolor": "white", "automargin": true, "zerolinewidth": 2}, "yaxis": {"gridcolor": "white", "linecolor": "white", "ticks": "", "title": {"standoff": 15}, "zerolinecolor": "white", "automargin": true, "zerolinewidth": 2}, "scene": {"xaxis": {"backgroundcolor": "#E5ECF6", "gridcolor": "white", "linecolor": "white", "showbackground": true, "ticks": "", "zerolinecolor": "white", "gridwidth": 2}, "yaxis": {"backgroundcolor": "#E5ECF6", "gridcolor": "white", "linecolor": "white", "showbackground": true, "ticks": "", "zerolinecolor": "white", "gridwidth": 2}, "zaxis": {"backgroundcolor": "#E5ECF6", "gridcolor": "white", "linecolor": "white", "showbackground": true, "ticks": "", "zerolinecolor": "white", "gridwidth": 2}}, "shapedefaults": {"line": {"color": "#2a3f5f"}}, "annotationdefaults": {"arrowcolor": "#2a3f5f", "arrowhead": 0, "arrowwidth": 1}, "geo": {"bgcolor": "white", "landcolor": "#E5ECF6", "subunitcolor": "white", "showland": true, "showlakes": true, "lakecolor": "white"}, "title": {"x": 0.05}, "mapbox": {"style": "light"}}}, "shapes": [{"line": {"color": "#ef4444", "dash": "dot", "width": 1.5}, "type": "line", "x0": 2048, "x1": 2048, "xref": "x", "y0": 0, "y1": 1, "yref": "y domain"}], "annotations": [{"font": {"color": "#ef4444", "size": 11}, "showarrow": false, "text": "Retirement (2048)", "x": 2048, "xanchor": "left", "xref": "x", "y": 1, "yanchor": "top", "yref": "y domain"}], "font": {"family": "-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif", "size": 12, "color": "#1e293b"}, "margin": {"l": 60, "r": 20, "t": 50, "b": 40}, "legend": {"orientation": "h", "yanchor": "bottom", "y": 1.02, "x": 0, "bgcolor": "rgba(0,0,0,0)"}, "xaxis": {"title": {"text": "Year"}, "showgrid": false, "dtick": 5}, "yaxis": {"title": {"text": "Projected Value (CAD)"}, "tickprefix": "$", "tickformat": ",", "gridcolor": "#f1f5f9", "zeroline": false}, "plot_bgcolor": "white", "paper_bgcolor": "white", "hovermode": "x unified"}},
+>>>>>>> e5e1af1 (feat: AI recommendations via Gemini, solid projection lines, mobile nav)
     costBasis:      {"data": [{"hovertemplate": "<b>%{y}</b> Invested: $%{x:,.0f}<extra></extra>", "insidetextanchor": "middle", "marker": {"color": "#4f46e5"}, "name": "Amount Invested", "orientation": "h", "text": ["$17,500", "$4,000", "$10,000", "$10,800", "$1,800"], "textposition": "inside", "x": [17500.0, 4000.0, 10000.0, 10800.0, 1800.0], "y": ["WS TFSA", "WS RRSP", "WS TFSA Portfolio", "Manulife RPP", "Manulife RRSP"], "type": "bar"}, {"hovertemplate": "<b>%{y}</b> Gain: $%{x:,.0f}<extra></extra>", "insidetextanchor": "middle", "marker": {"color": "#10b981"}, "name": "Gain", "orientation": "h", "text": ["+$169", "+$572", "+$389", "+$2,750", "+$476"], "textposition": "inside", "x": [168.84, 571.55, 388.94, 2750.02, 475.57], "y": ["WS TFSA", "WS RRSP", "WS TFSA Portfolio", "Manulife RPP", "Manulife RRSP"], "type": "bar"}], "layout": {"template": {"data": {"histogram2dcontour": [{"type": "histogram2dcontour", "colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]]}], "choropleth": [{"type": "choropleth", "colorbar": {"outlinewidth": 0, "ticks": ""}}], "histogram2d": [{"type": "histogram2d", "colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]]}], "heatmap": [{"type": "heatmap", "colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]]}], "contourcarpet": [{"type": "contourcarpet", "colorbar": {"outlinewidth": 0, "ticks": ""}}], "contour": [{"type": "contour", "colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]]}], "surface": [{"type": "surface", "colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]]}], "mesh3d": [{"type": "mesh3d", "colorbar": {"outlinewidth": 0, "ticks": ""}}], "scatter": [{"fillpattern": {"fillmode": "overlay", "size": 10, "solidity": 0.2}, "type": "scatter"}], "parcoords": [{"type": "parcoords", "line": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "scatterpolargl": [{"type": "scatterpolargl", "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "bar": [{"error_x": {"color": "#2a3f5f"}, "error_y": {"color": "#2a3f5f"}, "marker": {"line": {"color": "#E5ECF6", "width": 0.5}, "pattern": {"fillmode": "overlay", "size": 10, "solidity": 0.2}}, "type": "bar"}], "scattergeo": [{"type": "scattergeo", "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "scatterpolar": [{"type": "scatterpolar", "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "histogram": [{"marker": {"pattern": {"fillmode": "overlay", "size": 10, "solidity": 0.2}}, "type": "histogram"}], "scattergl": [{"type": "scattergl", "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "scatter3d": [{"type": "scatter3d", "line": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "scattermap": [{"type": "scattermap", "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "scattermapbox": [{"type": "scattermapbox", "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "scatterternary": [{"type": "scatterternary", "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "scattercarpet": [{"type": "scattercarpet", "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "carpet": [{"aaxis": {"endlinecolor": "#2a3f5f", "gridcolor": "white", "linecolor": "white", "minorgridcolor": "white", "startlinecolor": "#2a3f5f"}, "baxis": {"endlinecolor": "#2a3f5f", "gridcolor": "white", "linecolor": "white", "minorgridcolor": "white", "startlinecolor": "#2a3f5f"}, "type": "carpet"}], "table": [{"cells": {"fill": {"color": "#EBF0F8"}, "line": {"color": "white"}}, "header": {"fill": {"color": "#C8D4E3"}, "line": {"color": "white"}}, "type": "table"}], "barpolar": [{"marker": {"line": {"color": "#E5ECF6", "width": 0.5}, "pattern": {"fillmode": "overlay", "size": 10, "solidity": 0.2}}, "type": "barpolar"}], "pie": [{"automargin": true, "type": "pie"}]}, "layout": {"autotypenumbers": "strict", "colorway": ["#636efa", "#EF553B", "#00cc96", "#ab63fa", "#FFA15A", "#19d3f3", "#FF6692", "#B6E880", "#FF97FF", "#FECB52"], "font": {"color": "#2a3f5f"}, "hovermode": "closest", "hoverlabel": {"align": "left"}, "paper_bgcolor": "white", "plot_bgcolor": "#E5ECF6", "polar": {"bgcolor": "#E5ECF6", "angularaxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}, "radialaxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}}, "ternary": {"bgcolor": "#E5ECF6", "aaxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}, "baxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}, "caxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}}, "coloraxis": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "colorscale": {"sequential": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "sequentialminus": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "diverging": [[0, "#8e0152"], [0.1, "#c51b7d"], [0.2, "#de77ae"], [0.3, "#f1b6da"], [0.4, "#fde0ef"], [0.5, "#f7f7f7"], [0.6, "#e6f5d0"], [0.7, "#b8e186"], [0.8, "#7fbc41"], [0.9, "#4d9221"], [1, "#276419"]]}, "xaxis": {"gridcolor": "white", "linecolor": "white", "ticks": "", "title": {"standoff": 15}, "zerolinecolor": "white", "automargin": true, "zerolinewidth": 2}, "yaxis": {"gridcolor": "white", "linecolor": "white", "ticks": "", "title": {"standoff": 15}, "zerolinecolor": "white", "automargin": true, "zerolinewidth": 2}, "scene": {"xaxis": {"backgroundcolor": "#E5ECF6", "gridcolor": "white", "linecolor": "white", "showbackground": true, "ticks": "", "zerolinecolor": "white", "gridwidth": 2}, "yaxis": {"backgroundcolor": "#E5ECF6", "gridcolor": "white", "linecolor": "white", "showbackground": true, "ticks": "", "zerolinecolor": "white", "gridwidth": 2}, "zaxis": {"backgroundcolor": "#E5ECF6", "gridcolor": "white", "linecolor": "white", "showbackground": true, "ticks": "", "zerolinecolor": "white", "gridwidth": 2}}, "shapedefaults": {"line": {"color": "#2a3f5f"}}, "annotationdefaults": {"arrowcolor": "#2a3f5f", "arrowhead": 0, "arrowwidth": 1}, "geo": {"bgcolor": "white", "landcolor": "#E5ECF6", "subunitcolor": "white", "showland": true, "showlakes": true, "lakecolor": "white"}, "title": {"x": 0.05}, "mapbox": {"style": "light"}}}, "margin": {"l": 10, "r": 20, "t": 20, "b": 10}, "xaxis": {"tickprefix": "$", "tickformat": ",", "gridcolor": "#f1f5f9", "title": {"text": "Amount (CAD)"}}, "yaxis": {"showgrid": false}, "legend": {"orientation": "h", "yanchor": "bottom", "y": 1.02, "x": 0, "bgcolor": "rgba(0,0,0,0)"}, "barmode": "stack", "plot_bgcolor": "white", "paper_bgcolor": "white", "height": 380}},
   };
 
-  var cfg = {responsive: true, displayModeBar: false};
+  // Disable legend clicks (prevent accidental trace hide/show on mobile tap)
+  // Disable double-click zoom reset (jarring on mobile)
+  var cfg = {
+    responsive: true,
+    displayModeBar: false,
+    doubleClick: false,
+  };
 
   function plot(id, chart) {
-    if (chart && chart.data) Plotly.newPlot(id, chart.data, chart.layout, cfg);
+    if (!chart || !chart.data) return;
+    var layout = Object.assign({}, chart.layout, {
+      legend: Object.assign({}, (chart.layout || {}).legend, {
+        itemclick: false,
+        itemdoubleclick: false,
+      }),
+    });
+    Plotly.newPlot(id, chart.data, layout, cfg);
   }
 
+<<<<<<< HEAD
   plot("chart-net-worth",      charts.netWorth);
   plot("chart-alloc-class",    charts.allocClass);
   plot("chart-alloc-geo",      charts.allocGeo);
@@ -406,6 +692,18 @@
   plot("chart-cost-basis",     charts.costBasis);
 
   // Reflow all Plotly charts on orientation change / resize
+=======
+  plot("chart-net-worth",       charts.netWorth);
+  plot("chart-alloc-class",     charts.allocClass);
+  plot("chart-alloc-geo",       charts.allocGeo);
+  plot("chart-alloc-acct",      charts.allocAcct);
+  plot("chart-contrib-current", charts.contribCurrent);
+  plot("chart-contrib-prior",   charts.contribPrior);
+  plot("chart-projection",      charts.projection);
+  plot("chart-cost-basis",      charts.costBasis);
+
+  // Reflow on orientation change
+>>>>>>> e5e1af1 (feat: AI recommendations via Gemini, solid projection lines, mobile nav)
   var chartIds = ["chart-net-worth","chart-alloc-class","chart-alloc-geo","chart-alloc-acct",
                   "chart-contrib-current","chart-contrib-prior","chart-projection","chart-cost-basis"];
   window.addEventListener("resize", function() {
@@ -414,6 +712,32 @@
       if (el && el.data) Plotly.Plots.resize(el);
     });
   });
+<<<<<<< HEAD
+=======
+
+  // Highlight active nav item as user scrolls
+  var sections = ["s-networth","s-invested","s-allocation","s-room","s-tips"];
+  var navLinks  = document.querySelectorAll(".section-nav a");
+  var navTargets = ["s-networth","s-invested","s-allocation","s-room","s-tips"];
+
+  if ("IntersectionObserver" in window) {
+    var active = "s-networth";
+    var obs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (e.isIntersecting) active = e.target.id;
+      });
+      navLinks.forEach(function(a) {
+        var href = a.getAttribute("href").replace("#", "");
+        a.classList.toggle("active", href === active);
+      });
+    }, { rootMargin: "-40% 0px -55% 0px" });
+
+    navTargets.forEach(function(id) {
+      var el = document.getElementById(id);
+      if (el) obs.observe(el);
+    });
+  }
+>>>>>>> e5e1af1 (feat: AI recommendations via Gemini, solid projection lines, mobile nav)
 </script>
 </body>
 </html>
