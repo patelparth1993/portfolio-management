@@ -1,0 +1,29 @@
+{
+  "institution": "manulife",
+  "file": "Quarterly statement - Mar 2026.pdf",
+  "file_hash": "49b8890ac762cc32920b168d776c98a6",
+  "parsed_at": "2026-04-14T16:29:08.682196",
+  "statement_date": "2026-03-31",
+  "account_type": "RRSP",
+  "total_value": 5127.95,
+  "period_deposits": 0.0,
+  "cash_balance": null,
+  "currency": "CAD",
+  "holdings": [
+    {
+      "symbol": "2760MLRetDateIndxPlus2060o6",
+      "name": "2760MLRetDateIndxPlus2060o6",
+      "quantity": 251.53823,
+      "price": 20.386,
+      "market_value": 5127.95
+    },
+    {
+      "symbol": "2745MLRetDateIndxPlus2045o6",
+      "name": "2745MLRetDateIndxPlus2045o6",
+      "quantity": 33.60407,
+      "price": 29.829,
+      "market_value": 1002.36
+    }
+  ],
+  "account_id": "manulife_RRSP"
+}

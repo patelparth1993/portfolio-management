@@ -1,0 +1,119 @@
+{
+  "institution": "wealthsimple",
+  "file": "March_2026.pdf",
+  "file_hash": "bdf3ebc008d55eb5ee153ef0470f2193",
+  "parsed_at": "2026-04-14T16:29:08.683668",
+  "statement_date": "2026-03-31",
+  "account_type": "TFSA",
+  "total_value": 15792.63,
+  "cash_balance": 4.95,
+  "period_deposits": 0.0,
+  "currency": "CAD",
+  "holdings": [
+    {
+      "symbol": "ABX",
+      "name": "Barrick Mining Corp.",
+      "quantity": 28.6339,
+      "price": 56.85,
+      "market_value": 1627.83,
+      "book_value": 940.95
+    },
+    {
+      "symbol": "ZWC",
+      "name": "BMO Canadian High Dividend Covered",
+      "quantity": 28.1263,
+      "price": 21.52,
+      "market_value": 605.27,
+      "book_value": 448.27
+    },
+    {
+      "symbol": "DFN",
+      "name": "Dividend 15 Split Corp",
+      "quantity": 544.0771,
+      "price": 7.29,
+      "market_value": 3966.32,
+      "book_value": 4078.06
+    },
+    {
+      "symbol": "DOL",
+      "name": "Dollarama Inc",
+      "quantity": 7.5829,
+      "price": 170.73,
+      "market_value": 1294.62,
+      "book_value": 1431.58
+    },
+    {
+      "symbol": "GSY",
+      "name": "GoEasy Limited",
+      "quantity": 15.8868,
+      "price": 38.23,
+      "market_value": 607.35,
+      "book_value": 1698.83
+    },
+    {
+      "symbol": "XDIV",
+      "name": "iShares Core MSCI Canadian Quality",
+      "quantity": 41.5808,
+      "price": 39.51,
+      "market_value": 1642.85,
+      "book_value": 1461.91
+    },
+    {
+      "symbol": "NVDA",
+      "name": "Nvidia CDR (CAD Hedged)",
+      "quantity": 19.2568,
+      "price": 39.31,
+      "market_value": 756.98,
+      "book_value": 871.89
+    },
+    {
+      "symbol": "SIA",
+      "name": "Sienna Senior Living Inc.",
+      "quantity": 3.2847,
+      "price": 21.65,
+      "market_value": 71.11,
+      "book_value": 47.21
+    },
+    {
+      "symbol": "SJ",
+      "name": "Stella-Jones Inc.",
+      "quantity": 7.097,
+      "price": 93.34,
+      "market_value": 662.43,
+      "book_value": 559.32
+    },
+    {
+      "symbol": "T",
+      "name": "Telus Corp.",
+      "quantity": 30.0,
+      "price": 17.88,
+      "market_value": 536.4,
+      "book_value": 567.6
+    },
+    {
+      "symbol": "TRI",
+      "name": "Thomson Reuters Corp",
+      "quantity": 4.0796,
+      "price": 125.56,
+      "market_value": 512.23,
+      "book_value": 503.62
+    },
+    {
+      "symbol": "VFV",
+      "name": "Vanguard Investments Canada Inc. - S&P",
+      "quantity": 13.0415,
+      "price": 160.99,
+      "market_value": 2099.55,
+      "book_value": 1955.47
+    },
+    {
+      "symbol": "VITL.UN",
+      "name": "Vital Infrastructure Properties REIT",
+      "quantity": 266.0509,
+      "price": 5.28,
+      "market_value": 1404.74,
+      "book_value": 1941.98
+    }
+  ],
+  "account_id": "H947126K9CAD_TFSA"
+}

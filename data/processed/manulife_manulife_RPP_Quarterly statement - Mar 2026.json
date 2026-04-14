@@ -1,0 +1,22 @@
+{
+  "institution": "manulife",
+  "file": "Quarterly statement - Mar 2026.pdf",
+  "file_hash": "49b8890ac762cc32920b168d776c98a6",
+  "parsed_at": "2026-04-14T16:29:08.682184",
+  "statement_date": "2026-03-31",
+  "account_type": "RPP",
+  "total_value": 14786.37,
+  "period_deposits": 0.0,
+  "cash_balance": null,
+  "currency": "CAD",
+  "holdings": [
+    {
+      "symbol": "2760MLRetDateIndxPlus2060o6",
+      "name": "2760MLRetDateIndxPlus2060o6",
+      "quantity": 725.30753,
+      "price": 20.386,
+      "market_value": 14786.37
+    }
+  ],
+  "account_id": "manulife_RPP"
+}

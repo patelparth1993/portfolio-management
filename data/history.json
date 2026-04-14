@@ -115,7 +115,11 @@
     "dca7dc815b1983f689344fecfd0d13ef",
     "1e5ebd962381a862d3dbfc873a97a6c2",
     "25def82efe906bc14b3e47cf537f8575",
-    "3649f6567014f8c7cda2f9ff5b2f323c"
+    "3649f6567014f8c7cda2f9ff5b2f323c",
+    "49b8890ac762cc32920b168d776c98a6",
+    "bdf3ebc008d55eb5ee153ef0470f2193",
+    "b43419032ca97349775ff46338849267",
+    "abbeac823a9918c438901f4a945ce8e1"
   ],
   "snapshots": [
     {
@@ -1403,7 +1407,53 @@
           "holdings_count": 1
         }
       ]
+    },
+    {
+      "date": "2026-03-31",
+      "total_net_worth": 51933.36,
+      "accounts": [
+        {
+          "institution": "wealthsimple",
+          "account_type": "TFSA",
+          "account_id": "H947126K9CAD_TFSA",
+          "total_value": 15792.63,
+          "currency": "CAD",
+          "holdings_count": 13
+        },
+        {
+          "institution": "wealthsimple",
+          "account_type": "RRSP",
+          "account_id": "HF4253745CAD_RRSP",
+          "total_value": 6255.56,
+          "currency": "CAD",
+          "holdings_count": 8
+        },
+        {
+          "institution": "wealthsimple",
+          "account_type": "TFSA",
+          "account_id": "WZ0969XK4CAD_TFSA_PORTFOLIO",
+          "total_value": 9970.85,
+          "currency": "CAD",
+          "holdings_count": 5
+        },
+        {
+          "institution": "manulife",
+          "account_type": "RPP",
+          "account_id": "manulife_RPP",
+          "total_value": 14786.37,
+          "currency": "CAD",
+          "holdings_count": 1
+        },
+        {
+          "institution": "manulife",
+          "account_type": "RRSP",
+          "account_id": "manulife_RRSP",
+          "total_value": 5127.95,
+          "currency": "CAD",
+          "holdings_count": 2
+        }
+      ]
     }
   ],
-  "last_updated": "2026-04-01T22:22:48.382476"
+  "last_updated": "2026-04-14T16:29:11.186939"
 }

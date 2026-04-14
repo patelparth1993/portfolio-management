@@ -1,0 +1,55 @@
+{
+  "institution": "wealthsimple",
+  "file": "March_2026.pdf",
+  "file_hash": "abbeac823a9918c438901f4a945ce8e1",
+  "parsed_at": "2026-04-14T16:29:10.668066",
+  "statement_date": "2026-03-31",
+  "account_type": "TFSA",
+  "total_value": 9970.85,
+  "cash_balance": 33.14,
+  "period_deposits": 0.0,
+  "currency": "CAD",
+  "holdings": [
+    {
+      "symbol": "QCN",
+      "name": "Mackenzie Canadian Equity Index ETF",
+      "quantity": 13.78,
+      "price": 199.74,
+      "market_value": 2752.41,
+      "book_value": 2693.25
+    },
+    {
+      "symbol": "IEFA",
+      "name": "iShares Core MSCI EAFE ETF",
+      "quantity": 14.5377,
+      "price": 90.53,
+      "market_value": 1834.5,
+      "book_value": 1795.5
+    },
+    {
+      "symbol": "EEMV",
+      "name": "iShares Inc. - MSCI Emerging Markets Min",
+      "quantity": 6.7564,
+      "price": 64.73,
+      "market_value": 609.61,
+      "book_value": 598.5
+    },
+    {
+      "symbol": "ACWV",
+      "name": "iShares Inc. - MSCI Global Min Vol",
+      "quantity": 7.8686,
+      "price": 119.51,
+      "market_value": 1310.79,
+      "book_value": 1296.75
+    },
+    {
+      "symbol": "VOO",
+      "name": "Vanguard S&P 500 ETF",
+      "quantity": 4.1185,
+      "price": 597.55,
+      "market_value": 3430.4,
+      "book_value": 3590.92
+    }
+  ],
+  "account_id": "WZ0969XK4CAD_TFSA_PORTFOLIO"
+}

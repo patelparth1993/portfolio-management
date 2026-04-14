@@ -1,0 +1,79 @@
+{
+  "institution": "wealthsimple",
+  "file": "March_2026.pdf",
+  "file_hash": "b43419032ca97349775ff46338849267",
+  "parsed_at": "2026-04-14T16:29:10.104758",
+  "statement_date": "2026-03-31",
+  "account_type": "RRSP",
+  "total_value": 6255.56,
+  "cash_balance": 1000.02,
+  "period_deposits": 6000.0,
+  "currency": "CAD",
+  "holdings": [
+    {
+      "symbol": "ZWC",
+      "name": "BMO Canadian High Dividend Covered",
+      "quantity": 80.307,
+      "price": 21.52,
+      "market_value": 1728.2,
+      "book_value": 1568.76
+    },
+    {
+      "symbol": "ZGRO",
+      "name": "BMO Growth ETF",
+      "quantity": 32.1468,
+      "price": 17.47,
+      "market_value": 561.6,
+      "book_value": 564.25
+    },
+    {
+      "symbol": "ZCN",
+      "name": "BMO SP TSX CAPPED COMP IDX ETF",
+      "quantity": 11.241,
+      "price": 43.81,
+      "market_value": 492.46,
+      "book_value": 500.0
+    },
+    {
+      "symbol": "DOL",
+      "name": "Dollarama Inc",
+      "quantity": 4.6534,
+      "price": 170.73,
+      "market_value": 794.47,
+      "book_value": 806.71
+    },
+    {
+      "symbol": "EIF",
+      "name": "Exchange Income Corporation",
+      "quantity": 0.153,
+      "price": 104.39,
+      "market_value": 15.97,
+      "book_value": 12.35
+    },
+    {
+      "symbol": "GSY",
+      "name": "GoEasy Limited",
+      "quantity": 1.8624,
+      "price": 38.23,
+      "market_value": 71.19,
+      "book_value": 252.67
+    },
+    {
+      "symbol": "VFV",
+      "name": "Vanguard Investments Canada Inc. - S&P",
+      "quantity": 3.968,
+      "price": 160.99,
+      "market_value": 638.8,
+      "book_value": 548.28
+    },
+    {
+      "symbol": "VITL.UN",
+      "name": "Vital Infrastructure Properties REIT",
+      "quantity": 180.4642,
+      "price": 5.28,
+      "market_value": 952.85,
+      "book_value": 1005.39
+    }
+  ],
+  "account_id": "HF4253745CAD_RRSP"
+}
